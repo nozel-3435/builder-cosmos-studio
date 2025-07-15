@@ -61,22 +61,8 @@ const App = () => (
                     </div>
                   }
                 />
-                <Route
-                  path="/favorites"
-                  element={
-                    <div className="p-8 text-center">
-                      Favoris - À implémenter
-                    </div>
-                  }
-                />
-                <Route
-                  path="/orders"
-                  element={
-                    <div className="p-8 text-center">
-                      Commandes - À implémenter
-                    </div>
-                  }
-                />
+                <Route path="/favorites" element={<Favorites />} />
+                <Route path="/orders" element={<Orders />} />
                 <Route path="/cart" element={<Cart />} />
 
                 {/* Merchant routes */}
