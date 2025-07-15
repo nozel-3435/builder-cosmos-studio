@@ -17,6 +17,8 @@ import Register from "./pages/auth/Register";
 import Profile from "./pages/Profile";
 import Products from "./pages/client/Products";
 import Cart from "./pages/client/Cart";
+import Favorites from "./pages/client/Favorites";
+import Orders from "./pages/client/Orders";
 import MerchantDashboard from "./pages/merchant/Dashboard";
 import AddProduct from "./pages/merchant/AddProduct";
 import Inventory from "./pages/merchant/Inventory";
