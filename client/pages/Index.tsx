@@ -283,7 +283,7 @@ const HomePage = () => {
 
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex flex-col">
-                      <span className="text-xl font-bold text-linka-green">
+                      <span className="price-tag">
                         {product.price.toLocaleString()} FCFA
                       </span>
                       {product.originalPrice && (
