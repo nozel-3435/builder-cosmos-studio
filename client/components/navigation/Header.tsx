@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { LinkaMarketLogo } from "@/components/ui/logos";
 import {
   ShoppingCart,
   Heart,
@@ -77,13 +78,8 @@ export const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-linka-green to-linka-orange rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">L</span>
-            </div>
-            <span className="text-xl font-bold text-gray-900">
-              Linka<span className="text-linka-green">Market</span>
-            </span>
+          <Link to="/" className="flex items-center">
+            <LinkaMarketLogo size="lg" variant="full" />
           </Link>
 
           {/* Desktop Navigation */}
