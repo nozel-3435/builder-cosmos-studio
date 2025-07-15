@@ -1,3 +1,5 @@
+ALTER TABLE profiles DROP CONSTRAINT IF EXISTS profiles_id_fkey;
+
 -- Script de migration des données LinkaMarket vers Supabase
 -- Exécutez ce script après avoir créé le schéma de base
 

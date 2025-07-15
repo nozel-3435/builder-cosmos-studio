@@ -368,7 +368,7 @@ INSERT INTO categories (name, icon, description) VALUES
 
 -- Sous-catégories pour Alimentaire
 INSERT INTO subcategories (name, category_id) 
-SELECT subcat, c.id FROM (VALUES 
+SELECT subchat, c.id FROM (VALUES 
     ('Céréales & Légumineuses'),
     ('Fruits & Légumes'),
     ('Viandes & Poissons'),
