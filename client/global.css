@@ -92,6 +92,31 @@
   }
 }
 
+/* Leaflet Map Styles */
+.leaflet-container {
+  font-family: inherit;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.leaflet-popup-content {
+  margin: 0;
+}
+
+.merchant-popup .leaflet-popup-content {
+  min-width: 200px;
+}
+
+.custom-marker {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @layer base {
   * {
     @apply border-border;
