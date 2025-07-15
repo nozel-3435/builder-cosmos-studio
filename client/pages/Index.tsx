@@ -92,7 +92,7 @@ const HomePage = () => {
 
   return (
     <div className="bg-white">
-            {/* Hero Section */}
+      {/* Hero Section */}
       <section className="relative pt-16 pb-20 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
@@ -106,83 +106,84 @@ const HomePage = () => {
 
         {/* Content */}
         <div className="relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Bienvenue sur <span className="text-linka-green">Linka</span>
-              <span className="text-linka-orange">Market</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              La plateforme qui connecte clients, commerçants et livreurs pour
-              une expérience d'achat moderne et fluide
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              {!user ? (
-                <>
-                  <Link
-                    to="/register"
-                    className="bg-linka-green text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-linka-green/90 transition-all duration-300 shadow-lg hover:shadow-xl"
-                  >
-                    Commencer maintenant
-                  </Link>
-                  <Link
-                    to="/products"
-                    className="bg-white text-linka-green border-2 border-linka-green px-8 py-4 rounded-xl text-lg font-semibold hover:bg-linka-green hover:text-white transition-all duration-300"
-                  >
-                    Explorer les produits
-                  </Link>
-                </>
-              ) : (
-                <>
-                  {user.role === "client" && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                Bienvenue sur <span className="text-linka-green">Linka</span>
+                <span className="text-linka-orange">Market</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                La plateforme qui connecte clients, commerçants et livreurs pour
+                une expérience d'achat moderne et fluide
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                {!user ? (
+                  <>
+                    <Link
+                      to="/register"
+                      className="bg-linka-green text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-linka-green/90 transition-all duration-300 shadow-lg hover:shadow-xl"
+                    >
+                      Commencer maintenant
+                    </Link>
                     <Link
                       to="/products"
-                      className="bg-linka-green text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-linka-green/90 transition-all duration-300 shadow-lg hover:shadow-xl"
+                      className="bg-white text-linka-green border-2 border-linka-green px-8 py-4 rounded-xl text-lg font-semibold hover:bg-linka-green hover:text-white transition-all duration-300"
                     >
                       Explorer les produits
                     </Link>
-                  )}
-                  {user.role === "merchant" && (
-                    <Link
-                      to="/merchant"
-                      className="bg-linka-green text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-linka-green/90 transition-all duration-300 shadow-lg hover:shadow-xl"
-                    >
-                      Tableau de bord
-                    </Link>
-                  )}
-                  {user.role === "delivery" && (
-                    <Link
-                      to="/delivery"
-                      className="bg-linka-green text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-linka-green/90 transition-all duration-300 shadow-lg hover:shadow-xl"
-                    >
-                      Mes livraisons
-                    </Link>
-                  )}
-                </>
-              )}
+                  </>
+                ) : (
+                  <>
+                    {user.role === "client" && (
+                      <Link
+                        to="/products"
+                        className="bg-linka-green text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-linka-green/90 transition-all duration-300 shadow-lg hover:shadow-xl"
+                      >
+                        Explorer les produits
+                      </Link>
+                    )}
+                    {user.role === "merchant" && (
+                      <Link
+                        to="/merchant"
+                        className="bg-linka-green text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-linka-green/90 transition-all duration-300 shadow-lg hover:shadow-xl"
+                      >
+                        Tableau de bord
+                      </Link>
+                    )}
+                    {user.role === "delivery" && (
+                      <Link
+                        to="/delivery"
+                        className="bg-linka-green text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-linka-green/90 transition-all duration-300 shadow-lg hover:shadow-xl"
+                      >
+                        Mes livraisons
+                      </Link>
+                    )}
+                  </>
+                )}
+              </div>
             </div>
-          </div>
 
-          {/* Hero Image/Graphic */}
-          <div className="mt-16 flex justify-center">
-            <div className="relative">
-              <div className="w-80 h-80 bg-gradient-to-br from-linka-green to-linka-orange rounded-full flex items-center justify-center shadow-2xl">
-                <div className="w-64 h-64 bg-white rounded-full flex items-center justify-center">
-                  <ShoppingBag className="w-32 h-32 text-linka-green" />
+            {/* Hero Image/Graphic */}
+            <div className="mt-16 flex justify-center">
+              <div className="relative">
+                <div className="w-80 h-80 bg-gradient-to-br from-linka-green to-linka-orange rounded-full flex items-center justify-center shadow-2xl">
+                  <div className="w-64 h-64 bg-white rounded-full flex items-center justify-center">
+                    <ShoppingBag className="w-32 h-32 text-linka-green" />
+                  </div>
                 </div>
-              </div>
-              <div className="absolute -top-8 -left-8 w-16 h-16 bg-linka-orange rounded-full flex items-center justify-center shadow-lg">
-                <Store className="w-8 h-8 text-white" />
-              </div>
-              <div className="absolute -bottom-8 -right-8 w-16 h-16 bg-linka-green rounded-full flex items-center justify-center shadow-lg">
-                <Truck className="w-8 h-8 text-white" />
+                <div className="absolute -top-8 -left-8 w-16 h-16 bg-linka-orange rounded-full flex items-center justify-center shadow-lg">
+                  <Store className="w-8 h-8 text-white" />
+                </div>
+                <div className="absolute -bottom-8 -right-8 w-16 h-16 bg-linka-green rounded-full flex items-center justify-center shadow-lg">
+                  <Truck className="w-8 h-8 text-white" />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-            {/* Stats Section */}
+      {/* Stats Section */}
       <section className="py-16 bg-linka-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -206,7 +207,8 @@ const HomePage = () => {
               Explorez nos catégories
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Trouvez exactement ce que vous cherchez dans nos catégories variées
+              Trouvez exactement ce que vous cherchez dans nos catégories
+              variées
             </p>
           </div>
 
