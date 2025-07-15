@@ -22,6 +22,8 @@ import AddProduct from "./pages/merchant/AddProduct";
 import Inventory from "./pages/merchant/Inventory";
 import MyStore from "./pages/merchant/MyStore";
 import DeliveryDashboard from "./pages/delivery/Dashboard";
+import AdminDashboard from "./pages/admin/Dashboard";
+import AdminUsers from "./pages/admin/Users";
 
 const queryClient = new QueryClient();
 
@@ -100,6 +102,34 @@ const App = () => (
                   element={
                     <div className="p-8 text-center">
                       Historique Livraisons - À implémenter
+                    </div>
+                  }
+                />
+
+                {/* Admin routes */}
+                <Route path="/admin" element={<AdminDashboard />} />
+                <Route path="/admin/users" element={<AdminUsers />} />
+                <Route
+                  path="/admin/products"
+                  element={
+                    <div className="p-8 text-center">
+                      Modération Produits - À implémenter
+                    </div>
+                  }
+                />
+                <Route
+                  path="/admin/orders"
+                  element={
+                    <div className="p-8 text-center">
+                      Suivi Commandes Admin - À implémenter
+                    </div>
+                  }
+                />
+                <Route
+                  path="/admin/analytics"
+                  element={
+                    <div className="p-8 text-center">
+                      Analytics Avancées - À implémenter
                     </div>
                   }
                 />
