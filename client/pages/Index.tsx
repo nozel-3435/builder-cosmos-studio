@@ -350,12 +350,9 @@ const HomePage = () => {
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <div
-                  key={index}
-                  className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
-                >
-                  <div className="w-12 h-12 bg-linka-green/10 rounded-lg flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-linka-green" />
+                <div key={index} className="feature-card">
+                  <div className="feature-icon">
+                    <Icon className="w-6 h-6 text-blue-600" />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
                     {feature.title}
