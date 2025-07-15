@@ -92,8 +92,20 @@ const HomePage = () => {
 
   return (
     <div className="bg-white">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-linka-green/10 via-white to-linka-orange/10 pt-16 pb-20">
+            {/* Hero Section */}
+      <section className="relative pt-16 pb-20 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            alt="Marché africain traditionnel"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-linka-green/30 via-white/80 to-linka-orange/30"></div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
@@ -170,7 +182,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
+            {/* Stats Section */}
       <section className="py-16 bg-linka-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -194,8 +206,7 @@ const HomePage = () => {
               Explorez nos catégories
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Trouvez exactement ce que vous cherchez dans nos catégories
-              variées
+              Trouvez exactement ce que vous cherchez dans nos catégories variées
             </p>
           </div>
 
