@@ -350,7 +350,7 @@ const HomePage = () => {
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <div key={index} className="feature-card">
+                <div key={index} className="feature-card group">
                   <div className="feature-icon">
                     <Icon className="w-6 h-6 text-blue-600" />
                   </div>
