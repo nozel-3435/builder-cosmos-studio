@@ -1,5 +1,29 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import { User, Mail, Phone, MapPin, Store, Truck } from "lucide-react";
+import {
+  User,
+  Mail,
+  Phone,
+  MapPin,
+  Store,
+  Truck,
+  Edit3,
+  Settings,
+  Shield,
+  Bell,
+  Calendar,
+  Star,
+  Package,
+  TrendingUp,
+  Award,
+  Clock,
+  Eye,
+  Heart,
+  ShoppingCart,
+  Target,
+  BarChart3,
+} from "lucide-react";
 
 const Profile = () => {
   const { user } = useAuth();
