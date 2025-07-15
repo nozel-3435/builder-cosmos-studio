@@ -250,10 +250,7 @@ const HomePage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
             {popularProducts.slice(0, 8).map((product) => (
-              <div
-                key={product.id}
-                className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 group"
-              >
+              <div key={product.id} className="product-card card-hover group">
                 <div className="relative">
                   <img
                     src={product.image}
