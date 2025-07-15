@@ -18,6 +18,9 @@ import Profile from "./pages/Profile";
 import Products from "./pages/client/Products";
 import Cart from "./pages/client/Cart";
 import MerchantDashboard from "./pages/merchant/Dashboard";
+import AddProduct from "./pages/merchant/AddProduct";
+import Inventory from "./pages/merchant/Inventory";
+import MyStore from "./pages/merchant/MyStore";
 import DeliveryDashboard from "./pages/delivery/Dashboard";
 
 const queryClient = new QueryClient();
@@ -70,27 +73,14 @@ const App = () => (
 
                 {/* Merchant routes */}
                 <Route path="/merchant" element={<MerchantDashboard />} />
-                <Route
-                  path="/merchant/products"
-                  element={
-                    <div className="p-8 text-center">
-                      Gestion Produits - À implémenter
-                    </div>
-                  }
-                />
+                <Route path="/merchant/add-product" element={<AddProduct />} />
+                <Route path="/merchant/products" element={<Inventory />} />
+                <Route path="/merchant/store" element={<MyStore />} />
                 <Route
                   path="/merchant/orders"
                   element={
                     <div className="p-8 text-center">
                       Commandes Reçues - À implémenter
-                    </div>
-                  }
-                />
-                <Route
-                  path="/merchant/store"
-                  element={
-                    <div className="p-8 text-center">
-                      Ma Boutique - À implémenter
                     </div>
                   }
                 />
