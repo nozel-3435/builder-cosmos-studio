@@ -54,14 +54,7 @@ const App = () => (
 
                 {/* Client routes */}
                 <Route path="/products" element={<Products />} />
-                <Route
-                  path="/stores"
-                  element={
-                    <div className="p-8 text-center">
-                      Boutiques - À implémenter
-                    </div>
-                  }
-                />
+                <Route path="/stores" element={<Stores />} />
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/cart" element={<Cart />} />
