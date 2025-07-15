@@ -97,11 +97,11 @@ const HomePage = () => {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-            alt="Marché africain traditionnel"
-            className="w-full h-full object-cover opacity-20"
+            src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            alt="Africains effectuant des transactions au marché"
+            className="w-full h-full object-cover opacity-25"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-linka-green/30 via-white/80 to-linka-orange/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-linka-green/20 via-white/85 to-linka-orange/20"></div>
         </div>
 
         {/* Content */}
