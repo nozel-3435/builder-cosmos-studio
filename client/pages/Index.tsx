@@ -119,16 +119,10 @@ const HomePage = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 {!user ? (
                   <>
-                    <Link
-                      to="/register"
-                      className="bg-linka-green text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-linka-green/90 transition-all duration-300 shadow-lg hover:shadow-xl"
-                    >
+                    <Link to="/register" className="btn-primary text-lg">
                       Commencer maintenant
                     </Link>
-                    <Link
-                      to="/products"
-                      className="bg-white text-linka-green border-2 border-linka-green px-8 py-4 rounded-xl text-lg font-semibold hover:bg-linka-green hover:text-white transition-all duration-300"
-                    >
+                    <Link to="/products" className="btn-secondary text-lg">
                       Explorer les produits
                     </Link>
                   </>
