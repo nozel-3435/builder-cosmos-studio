@@ -227,7 +227,7 @@
   }
 
   .feature-card {
-    @apply bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group;
+    @apply bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100;
   }
 
   .feature-icon {
