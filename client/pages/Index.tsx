@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { popularProducts, categories } from "@/data/products";
 import {
   Search,
   Store,
@@ -12,6 +13,8 @@ import {
   ArrowRight,
   Phone,
   CreditCard,
+  Heart,
+  ShoppingCart,
 } from "lucide-react";
 
 const HomePage = () => {
@@ -179,6 +182,149 @@ const HomePage = () => {
                 <div className="text-gray-600 font-medium">{stat.label}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Categories Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Explorez nos catégories
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Trouvez exactement ce que vous cherchez dans nos catégories
+              variées
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
+            {categories.slice(0, 10).map((category, index) => (
+              <Link
+                key={category.id}
+                to={`/products?category=${category.id}`}
+                className="group bg-linka-gray-50 rounded-xl p-6 text-center hover:bg-linka-green hover:text-white transition-all duration-300 transform hover:scale-105"
+              >
+                <div className="text-4xl mb-3">{category.icon}</div>
+                <h3 className="font-semibold text-gray-900 group-hover:text-white mb-1">
+                  {category.name}
+                </h3>
+                <p className="text-sm text-gray-600 group-hover:text-white/90">
+                  {category.productCount} produits
+                </p>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link
+              to="/products"
+              className="inline-flex items-center space-x-2 bg-linka-green text-white px-6 py-3 rounded-lg hover:bg-linka-green/90 transition-colors"
+            >
+              <span>Voir toutes les catégories</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Products Section */}
+      <section className="py-20 bg-linka-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Produits les plus demandés
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Découvrez les produits préférés de nos clients
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+            {popularProducts.slice(0, 8).map((product) => (
+              <div
+                key={product.id}
+                className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 group"
+              >
+                <div className="relative">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  {product.discount && (
+                    <div className="absolute top-3 left-3 bg-linka-orange text-white px-2 py-1 rounded-full text-xs font-semibold">
+                      -{product.discount}%
+                    </div>
+                  )}
+                  <button className="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-red-50 hover:text-red-500 transition-colors">
+                    <Heart className="w-4 h-4" />
+                  </button>
+                </div>
+
+                <div className="p-4">
+                  <div className="mb-2">
+                    <span className="text-xs text-linka-green font-medium bg-linka-green/10 px-2 py-1 rounded-full">
+                      {product.category}
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1 line-clamp-2">
+                    {product.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-2">{product.store}</p>
+                  <p className="text-xs text-gray-500 mb-3">
+                    {product.storeLocation}
+                  </p>
+
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex flex-col">
+                      <span className="text-xl font-bold text-linka-green">
+                        {product.price.toLocaleString()} FCFA
+                      </span>
+                      {product.originalPrice && (
+                        <span className="text-sm text-gray-400 line-through">
+                          {product.originalPrice.toLocaleString()} FCFA
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center">
+                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                      <span className="text-sm text-gray-600 ml-1">
+                        {product.rating}
+                      </span>
+                      <span className="text-xs text-gray-400 ml-1">
+                        ({product.reviewCount})
+                      </span>
+                    </div>
+                  </div>
+
+                  <button
+                    disabled={!product.inStock}
+                    className={`w-full flex items-center justify-center space-x-2 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
+                      product.inStock
+                        ? "bg-linka-green text-white hover:bg-linka-green/90"
+                        : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                    }`}
+                  >
+                    <ShoppingCart className="w-4 h-4" />
+                    <span>
+                      {product.inStock ? "Ajouter au panier" : "Non disponible"}
+                    </span>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link
+              to="/products"
+              className="inline-flex items-center space-x-2 bg-linka-green text-white px-8 py-3 rounded-xl text-lg font-semibold hover:bg-linka-green/90 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              <span>Voir tous les produits</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
           </div>
         </div>
       </section>
