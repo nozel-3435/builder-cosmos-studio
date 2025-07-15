@@ -14,7 +14,7 @@ const sizeClasses = {
   xl: "w-16 h-16",
 };
 
-// Logo principal LinkaMarket - inspiré de la loupe avec boutique
+// Logo principal LinkaMarket - utilise le vrai logo professionnel
 export const LinkaMarketLogo: React.FC<LogoProps> = ({
   className = "",
   size = "md",
@@ -24,7 +24,6 @@ export const LinkaMarketLogo: React.FC<LogoProps> = ({
   const iconSize = sizeClasses[size];
   const textColor = theme === "dark" ? "text-white" : "text-gray-900";
   const greenColor = theme === "dark" ? "#6FCF97" : "#6FCF97";
-  const orangeColor = theme === "dark" ? "#F2994A" : "#F2994A";
 
   if (variant === "text") {
     return (
@@ -37,96 +36,32 @@ export const LinkaMarketLogo: React.FC<LogoProps> = ({
   if (variant === "icon") {
     return (
       <div className={`${iconSize} ${className} relative`}>
-        <svg viewBox="0 0 100 100" className="w-full h-full">
-          {/* Cercle de base de la loupe */}
-          <circle
-            cx="40"
-            cy="40"
-            r="30"
-            fill="none"
-            stroke="#1F2937"
-            strokeWidth="6"
-          />
-
-          {/* Intérieur de la loupe avec fond clair */}
-          <circle cx="40" cy="40" r="24" fill="#F9FAFB" />
-
-          {/* Store/Boutique à l'intérieur */}
-          <g transform="translate(28, 28)">
-            {/* Stores/Auvents oranges */}
-            <rect x="4" y="8" width="4" height="8" rx="2" fill={orangeColor} />
-            <rect x="9" y="8" width="4" height="8" rx="2" fill={orangeColor} />
-            <rect x="14" y="8" width="4" height="8" rx="2" fill={orangeColor} />
-            <rect x="19" y="8" width="4" height="8" rx="2" fill={orangeColor} />
-
-            {/* Panier/container vert */}
-            <rect x="6" y="16" width="12" height="8" rx="2" fill={greenColor} />
-            <rect x="8" y="18" width="2" height="4" fill="white" />
-            <rect x="11" y="18" width="2" height="4" fill="white" />
-            <rect x="14" y="18" width="2" height="4" fill="white" />
-          </g>
-
-          {/* Manche de la loupe */}
-          <line
-            x1="62"
-            y1="62"
-            x2="85"
-            y2="85"
-            stroke="#1F2937"
-            strokeWidth="6"
-            strokeLinecap="round"
-          />
-
-          {/* Ombre légère */}
-          <ellipse cx="50" cy="90" rx="15" ry="3" fill="#00000010" />
-        </svg>
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets%2Fd9c69c3f1ccd486d8ee7f60471ffc975%2F66f1fad903b044fe93058bc6b8d225e4?format=webp&width=800"
+          alt="LinkaMarket"
+          className="w-full h-full object-contain"
+        />
       </div>
     );
   }
 
   return (
-    <div className={`flex items-center space-x-2 ${className}`}>
+    <div className={`flex items-center space-x-3 ${className}`}>
       <div className={iconSize}>
-        <svg viewBox="0 0 100 100" className="w-full h-full">
-          <circle
-            cx="40"
-            cy="40"
-            r="30"
-            fill="none"
-            stroke="#1F2937"
-            strokeWidth="6"
-          />
-          <circle cx="40" cy="40" r="24" fill="#F9FAFB" />
-          <g transform="translate(28, 28)">
-            <rect x="4" y="8" width="4" height="8" rx="2" fill={orangeColor} />
-            <rect x="9" y="8" width="4" height="8" rx="2" fill={orangeColor} />
-            <rect x="14" y="8" width="4" height="8" rx="2" fill={orangeColor} />
-            <rect x="19" y="8" width="4" height="8" rx="2" fill={orangeColor} />
-            <rect x="6" y="16" width="12" height="8" rx="2" fill={greenColor} />
-            <rect x="8" y="18" width="2" height="4" fill="white" />
-            <rect x="11" y="18" width="2" height="4" fill="white" />
-            <rect x="14" y="18" width="2" height="4" fill="white" />
-          </g>
-          <line
-            x1="62"
-            y1="62"
-            x2="85"
-            y2="85"
-            stroke="#1F2937"
-            strokeWidth="6"
-            strokeLinecap="round"
-          />
-          <ellipse cx="50" cy="90" rx="15" ry="3" fill="#00000010" />
-        </svg>
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets%2Fd9c69c3f1ccd486d8ee7f60471ffc975%2F66f1fad903b044fe93058bc6b8d225e4?format=webp&width=800"
+          alt="LinkaMarket"
+          className="w-full h-full object-contain"
+        />
       </div>
-      <span className={`font-bold ${textColor}`}>
+      <span className={`font-bold ${textColor} text-xl`}>
         Linka<span style={{ color: greenColor }}>Market</span>
       </span>
     </div>
   );
 };
 
-// Logo LinkaDrop - inspiré de la loupe avec colis
+// Logo LinkaDrop - utilise le vrai logo professionnel
 export const LinkaDropLogo: React.FC<LogoProps> = ({
   className = "",
   size = "md",
@@ -148,94 +83,25 @@ export const LinkaDropLogo: React.FC<LogoProps> = ({
   if (variant === "icon") {
     return (
       <div className={`${iconSize} ${className} relative`}>
-        <svg viewBox="0 0 100 100" className="w-full h-full">
-          {/* Cercle de base de la loupe */}
-          <circle
-            cx="40"
-            cy="40"
-            r="30"
-            fill="none"
-            stroke="#1F2937"
-            strokeWidth="6"
-          />
-
-          {/* Intérieur de la loupe avec fond clair */}
-          <circle cx="40" cy="40" r="24" fill="#F9FAFB" />
-
-          {/* Package hexagonal à l'intérieur */}
-          <g transform="translate(32, 32)">
-            {/* Hexagone vert */}
-            <path
-              d="M8 4 L14 0 L20 4 L20 12 L14 16 L8 12 Z"
-              fill={greenColor}
-            />
-            {/* Détails du package */}
-            <path
-              d="M8 4 L14 8 L20 4"
-              fill="none"
-              stroke="white"
-              strokeWidth="2"
-            />
-            <path d="M14 8 L14 16" fill="none" stroke="white" strokeWidth="2" />
-          </g>
-
-          {/* Manche de la loupe */}
-          <line
-            x1="62"
-            y1="62"
-            x2="85"
-            y2="85"
-            stroke="#1F2937"
-            strokeWidth="6"
-            strokeLinecap="round"
-          />
-
-          {/* Ombre légère */}
-          <ellipse cx="50" cy="90" rx="15" ry="3" fill="#00000010" />
-        </svg>
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets%2Fd9c69c3f1ccd486d8ee7f60471ffc975%2F89f6543a0d52474fbb7f7e8676e6c208?format=webp&width=800"
+          alt="LinkaDrop"
+          className="w-full h-full object-contain"
+        />
       </div>
     );
   }
 
   return (
-    <div className={`flex items-center space-x-2 ${className}`}>
+    <div className={`flex items-center space-x-3 ${className}`}>
       <div className={iconSize}>
-        <svg viewBox="0 0 100 100" className="w-full h-full">
-          <circle
-            cx="40"
-            cy="40"
-            r="30"
-            fill="none"
-            stroke="#1F2937"
-            strokeWidth="6"
-          />
-          <circle cx="40" cy="40" r="24" fill="#F9FAFB" />
-          <g transform="translate(32, 32)">
-            <path
-              d="M8 4 L14 0 L20 4 L20 12 L14 16 L8 12 Z"
-              fill={greenColor}
-            />
-            <path
-              d="M8 4 L14 8 L20 4"
-              fill="none"
-              stroke="white"
-              strokeWidth="2"
-            />
-            <path d="M14 8 L14 16" fill="none" stroke="white" strokeWidth="2" />
-          </g>
-          <line
-            x1="62"
-            y1="62"
-            x2="85"
-            y2="85"
-            stroke="#1F2937"
-            strokeWidth="6"
-            strokeLinecap="round"
-          />
-          <ellipse cx="50" cy="90" rx="15" ry="3" fill="#00000010" />
-        </svg>
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets%2Fd9c69c3f1ccd486d8ee7f60471ffc975%2F89f6543a0d52474fbb7f7e8676e6c208?format=webp&width=800"
+          alt="LinkaDrop"
+          className="w-full h-full object-contain"
+        />
       </div>
-      <span className={`font-bold ${textColor}`}>
+      <span className={`font-bold ${textColor} text-xl`}>
         Linka<span style={{ color: greenColor }}>Drop</span>
       </span>
     </div>
