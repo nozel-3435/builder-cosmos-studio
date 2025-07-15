@@ -24,6 +24,8 @@ import MyStore from "./pages/merchant/MyStore";
 import DeliveryDashboard from "./pages/delivery/Dashboard";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminUsers from "./pages/admin/Users";
+import Settings from "./pages/Settings";
+import Map from "./pages/Map";
 
 const queryClient = new QueryClient();
 
