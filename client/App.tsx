@@ -78,22 +78,8 @@ const App = () => (
 
                 {/* Delivery routes */}
                 <Route path="/delivery" element={<DeliveryDashboard />} />
-                <Route
-                  path="/delivery/active"
-                  element={
-                    <div className="p-8 text-center">
-                      Livraisons Actives - À implémenter
-                    </div>
-                  }
-                />
-                <Route
-                  path="/delivery/history"
-                  element={
-                    <div className="p-8 text-center">
-                      Historique Livraisons - À implémenter
-                    </div>
-                  }
-                />
+                <Route path="/delivery/active" element={<ActiveDeliveries />} />
+                <Route path="/delivery/history" element={<DeliveryHistory />} />
 
                 {/* Admin routes */}
                 <Route path="/admin" element={<AdminDashboard />} />
