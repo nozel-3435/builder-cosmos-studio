@@ -57,6 +57,14 @@ export const Header = () => {
           },
           { href: "/delivery/history", label: "Historique", icon: Package },
         ];
+      case "admin":
+        return [
+          { href: "/admin", label: "Administration", icon: BarChart3 },
+          { href: "/admin/users", label: "Utilisateurs", icon: User },
+          { href: "/admin/products", label: "Produits", icon: Package },
+          { href: "/admin/orders", label: "Commandes", icon: ShoppingCart },
+          { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
+        ];
       default:
         return [];
     }
@@ -144,7 +152,9 @@ export const Header = () => {
                           ? "Client"
                           : user.role === "merchant"
                             ? "Commerçant"
-                            : "Livreur"}
+                            : user.role === "delivery"
+                              ? "Livreur"
+                              : "Administrateur"}
                       </p>
                     </div>
                     <Link
