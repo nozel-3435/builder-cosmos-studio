@@ -28,6 +28,7 @@ import AdminDashboard from "./pages/admin/Dashboard";
 import AdminUsers from "./pages/admin/Users";
 import Settings from "./pages/Settings";
 import Map from "./pages/Map";
+import Stores from "./pages/Stores";
 
 const queryClient = new QueryClient();
 
