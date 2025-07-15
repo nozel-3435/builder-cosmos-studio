@@ -109,7 +109,7 @@ const HomePage = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-                Bienvenue sur <span className="text-linka-green">Linka</span>
+                Bienvenue sur <span className="text-gradient">Linka</span>
                 <span className="text-linka-orange">Market</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
