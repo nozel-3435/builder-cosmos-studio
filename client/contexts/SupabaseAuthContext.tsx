@@ -9,7 +9,7 @@ import { supabase } from "@/lib/supabase";
 import type { User, Session } from "@supabase/supabase-js";
 import { toast } from "sonner";
 
-export type UserRole = "client" | "merchant" | "delivery";
+export type UserRole = "client" | "merchant" | "delivery" | "admin";
 
 export interface Profile {
   id: string;
