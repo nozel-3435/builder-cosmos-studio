@@ -29,6 +29,9 @@ import AdminUsers from "./pages/admin/Users";
 import Settings from "./pages/Settings";
 import Map from "./pages/Map";
 import Stores from "./pages/Stores";
+import ActiveDeliveries from "./pages/delivery/ActiveDeliveries";
+import DeliveryHistory from "./pages/delivery/DeliveryHistory";
+import Feedback from "./pages/Feedback";
 
 const queryClient = new QueryClient();
 
