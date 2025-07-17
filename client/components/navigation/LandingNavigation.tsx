@@ -231,8 +231,8 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
                 to="/login"
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   isScrolled
-                    ? "text-gray-700 hover:text-blue-600"
-                    : "text-white hover:text-blue-200"
+                    ? "text-gray-700 hover:text-linka-green"
+                    : "text-white hover:text-linka-green/70"
                 }`}
               >
                 Connexion
