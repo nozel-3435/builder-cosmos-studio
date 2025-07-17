@@ -376,9 +376,9 @@ const LandingPage = () => {
                   repeat: Infinity,
                   repeatType: "reverse",
                 }}
-                className="absolute -top-4 -right-4 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center"
+                className="absolute -top-4 -right-4 w-12 h-12 bg-linka-green/20 rounded-full flex items-center justify-center"
               >
-                <Smartphone className="h-6 w-6 text-blue-600" />
+                <Smartphone className="h-6 w-6 text-linka-green" />
               </motion.div>
               <motion.div
                 animate={{
