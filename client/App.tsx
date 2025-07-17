@@ -109,29 +109,11 @@ const App = () => (
                     {/* Admin routes */}
                     <Route path="/admin" element={<AdminDashboard />} />
                     <Route path="/admin/users" element={<AdminUsers />} />
-                    <Route
-                      path="/admin/products"
-                      element={
-                        <div className="p-8 text-center">
-                          Modération Produits - À implémenter
-                        </div>
-                      }
-                    />
-                    <Route
-                      path="/admin/orders"
-                      element={
-                        <div className="p-8 text-center">
-                          Suivi Commandes Admin - À implémenter
-                        </div>
-                      }
-                    />
+                    <Route path="/admin/products" element={<AdminProducts />} />
+                    <Route path="/admin/orders" element={<AdminOrders />} />
                     <Route
                       path="/admin/analytics"
-                      element={
-                        <div className="p-8 text-center">
-                          Analytics Avancées - À implémenter
-                        </div>
-                      }
+                      element={<AdminAnalytics />}
                     />
 
                     {/* Catch-all route */}
