@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useStorytellingAnimation } from "../../hooks/useStorytellingAnimation";
 import AutoEnhancer from "./AutoEnhancer";
+import StorytellingControls from "./StorytellingControls";
 
 interface StorytellingLayoutProps {
   children: React.ReactNode;
