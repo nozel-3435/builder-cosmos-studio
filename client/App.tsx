@@ -35,6 +35,7 @@ import Feedback from "./pages/Feedback";
 import LandingPage from "./pages/LandingPage";
 import AnimatedBackground from "./components/animations/AnimatedBackground";
 import PageTransition from "./components/animations/PageTransition";
+import StorytellingLayout from "./components/animations/StorytellingLayout";
 
 const queryClient = new QueryClient();
 
