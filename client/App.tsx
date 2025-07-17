@@ -132,6 +132,7 @@ const App = () => (
                 </StorytellingLayout>
               </MinimalPageTransition>
             </main>
+            <FloatingSettings />
           </div>
         </AuthProvider>
       </BrowserRouter>
