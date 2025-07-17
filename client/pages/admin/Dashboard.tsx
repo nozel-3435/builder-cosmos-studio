@@ -30,6 +30,7 @@ import {
 const AdminDashboard = () => {
   const [timeRange, setTimeRange] = useState("7d");
   const [refreshing, setRefreshing] = useState(false);
+  const { logoutAdmin } = useAdminAuth();
 
   // Données simulées pour l'administration
   const adminStats = useMemo(() => {
