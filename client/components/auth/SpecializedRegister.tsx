@@ -166,6 +166,7 @@ const SpecializedRegister: React.FC<SpecializedRegisterProps> = ({
     >,
   ) => {
     const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
 
     if (name.includes(".")) {
       const [parent, child] = name.split(".");
@@ -173,17 +174,13 @@ const SpecializedRegister: React.FC<SpecializedRegisterProps> = ({
         ...prev,
         [parent]: {
           ...prev[parent as keyof typeof prev],
-          [child]:
-            type === "checkbox"
-              ? (e.target as HTMLInputElement).checked
-              : value,
+          [child]: type === "checkbox" ? checked : value,
         },
       }));
     } else {
       setFormData((prev) => ({
         ...prev,
-        [name]:
-          type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
+        [name]: type === "checkbox" ? checked : value,
       }));
     }
   };
