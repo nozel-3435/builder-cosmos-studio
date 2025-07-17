@@ -14,20 +14,16 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onAuthenticated }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { loginAdmin } = useAdminAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
 
-    // Check admin credentials
-    if (
-      credentials.username === "NOZIMA" &&
-      credentials.password === "TOUT2000@"
-    ) {
-      // Store admin session
-      sessionStorage.setItem("admin_authenticated", "true");
-      sessionStorage.setItem("admin_timestamp", Date.now().toString());
+    const success = loginAdmin(credentials.username, credentials.password);
+
+    if (success) {
       onAuthenticated();
     } else {
       setError("Identifiants incorrects. Accès refusé.");
