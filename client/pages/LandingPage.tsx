@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
+import LandingNavigation from "../components/navigation/LandingNavigation";
 import {
   ArrowRight,
   Smartphone,
