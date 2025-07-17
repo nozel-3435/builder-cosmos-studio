@@ -42,7 +42,6 @@ interface AdminUser {
 }
 
 const AdminUsers = () => {
-  const { user } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRole, setSelectedRole] = useState("all");
   const [selectedStatus, setSelectedStatus] = useState("all");
