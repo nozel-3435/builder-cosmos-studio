@@ -87,7 +87,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
                 repeat: Infinity,
                 ease: "linear",
               }}
-              className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center"
+              className="w-10 h-10 bg-gradient-to-br from-linka-green to-linka-orange rounded-lg flex items-center justify-center"
             >
               <ShoppingBag className="h-5 w-5 text-white" />
             </motion.div>
