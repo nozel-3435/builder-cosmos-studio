@@ -160,6 +160,7 @@ const StorytellingLayout: React.FC<StorytellingLayoutProps> = ({
       transition={{ duration: 0.5 }}
       className={`storytelling-layout ${className}`}
     >
+      <AutoEnhancer />
       {children}
 
       <style jsx>{`
