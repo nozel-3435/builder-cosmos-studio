@@ -301,7 +301,7 @@ const LandingPage = () => {
                     className="bg-white/60 backdrop-blur-md rounded-xl p-6 shadow-lg"
                   >
                     <div className="flex items-center justify-center mb-3">
-                      <IconComponent className="h-8 w-8 text-blue-600" />
+                      <IconComponent className="h-8 w-8 text-linka-green" />
                     </div>
                     <div className="text-2xl font-bold text-gray-900 mb-1">
                       {stat.number}
