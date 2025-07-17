@@ -45,82 +45,92 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-                <AuthProvider>
+        <AuthProvider>
           <div className="min-h-screen bg-linka-gray-50 relative">
             <AnimatedBackground theme="commerce" intensity="subtle" />
             <Header />
-                        <main className="relative z-10">
+            <main className="relative z-10">
               <PageTransition>
                 <StorytellingLayout>
                   <Routes>
-                                                <Route path="/" element={<Index />} />
-                <Route path="/landing" element={<LandingPage />} />
+                    <Route path="/" element={<Index />} />
+                    <Route path="/landing" element={<LandingPage />} />
 
-                {/* Auth routes */}
-                                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/profile" element={<Profile />} />
-                                <Route path="/settings" element={<Settings />} />
-                <Route path="/map" element={<Map />} />
-                <Route path="/feedback" element={<Feedback />} />
+                    {/* Auth routes */}
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/settings" element={<Settings />} />
+                    <Route path="/map" element={<Map />} />
+                    <Route path="/feedback" element={<Feedback />} />
 
-                {/* Client routes */}
-                <Route path="/products" element={<Products />} />
-                                <Route path="/stores" element={<Stores />} />
-                                <Route path="/favorites" element={<Favorites />} />
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/cart" element={<Cart />} />
+                    {/* Client routes */}
+                    <Route path="/products" element={<Products />} />
+                    <Route path="/stores" element={<Stores />} />
+                    <Route path="/favorites" element={<Favorites />} />
+                    <Route path="/orders" element={<Orders />} />
+                    <Route path="/cart" element={<Cart />} />
 
-                                {/* Merchant routes */}
-                <Route path="/merchant" element={<MerchantDashboard />} />
-                <Route path="/merchant/add-product" element={<AddProduct />} />
-                <Route path="/merchant/products" element={<Inventory />} />
-                <Route path="/merchant/store" element={<MyStore />} />
-                <Route
-                  path="/merchant/orders"
-                  element={
-                    <div className="p-8 text-center">
-                      Commandes Reçues - À implémenter
-                    </div>
-                  }
-                />
+                    {/* Merchant routes */}
+                    <Route path="/merchant" element={<MerchantDashboard />} />
+                    <Route
+                      path="/merchant/add-product"
+                      element={<AddProduct />}
+                    />
+                    <Route path="/merchant/products" element={<Inventory />} />
+                    <Route path="/merchant/store" element={<MyStore />} />
+                    <Route
+                      path="/merchant/orders"
+                      element={
+                        <div className="p-8 text-center">
+                          Commandes Reçues - À implémenter
+                        </div>
+                      }
+                    />
 
-                                {/* Delivery routes */}
-                <Route path="/delivery" element={<DeliveryDashboard />} />
-                                <Route path="/delivery/active" element={<ActiveDeliveries />} />
-                <Route path="/delivery/history" element={<DeliveryHistory />} />
+                    {/* Delivery routes */}
+                    <Route path="/delivery" element={<DeliveryDashboard />} />
+                    <Route
+                      path="/delivery/active"
+                      element={<ActiveDeliveries />}
+                    />
+                    <Route
+                      path="/delivery/history"
+                      element={<DeliveryHistory />}
+                    />
 
-                {/* Admin routes */}
-                <Route path="/admin" element={<AdminDashboard />} />
-                <Route path="/admin/users" element={<AdminUsers />} />
-                <Route
-                  path="/admin/products"
-                  element={
-                    <div className="p-8 text-center">
-                      Modération Produits - À implémenter
-                    </div>
-                  }
-                />
-                <Route
-                  path="/admin/orders"
-                  element={
-                    <div className="p-8 text-center">
-                      Suivi Commandes Admin - À implémenter
-                    </div>
-                  }
-                />
-                <Route
-                  path="/admin/analytics"
-                  element={
-                    <div className="p-8 text-center">
-                      Analytics Avancées - À implémenter
-                    </div>
-                  }
-                />
+                    {/* Admin routes */}
+                    <Route path="/admin" element={<AdminDashboard />} />
+                    <Route path="/admin/users" element={<AdminUsers />} />
+                    <Route
+                      path="/admin/products"
+                      element={
+                        <div className="p-8 text-center">
+                          Modération Produits - À implémenter
+                        </div>
+                      }
+                    />
+                    <Route
+                      path="/admin/orders"
+                      element={
+                        <div className="p-8 text-center">
+                          Suivi Commandes Admin - À implémenter
+                        </div>
+                      }
+                    />
+                    <Route
+                      path="/admin/analytics"
+                      element={
+                        <div className="p-8 text-center">
+                          Analytics Avancées - À implémenter
+                        </div>
+                      }
+                    />
 
-                {/* Catch-all route */}
-                                <Route path="*" element={<NotFound />} />
-              </Routes>
+                    {/* Catch-all route */}
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </StorytellingLayout>
               </PageTransition>
             </main>
           </div>
