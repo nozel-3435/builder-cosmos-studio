@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
-import { useAuth } from "@/contexts/AuthContext";
+import AdminRouteWrapper from "@/components/admin/AdminRouteWrapper";
+import BackButton from "@/components/ui/BackButton";
 import {
   Users,
   Search,
