@@ -284,13 +284,18 @@ const AdminUsers = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-3">
-            <Users className="w-8 h-8 text-linka-green" />
-            <span>Gestion des utilisateurs</span>
-          </h1>
-          <p className="text-gray-600 mt-2">
-            Gérez tous les utilisateurs de la plateforme LinkaMarket
-          </p>
+          <div className="flex items-center space-x-4 mb-4">
+            <BackButton to="/admin" />
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-3">
+                <Users className="w-8 h-8 text-linka-green" />
+                <span>Gestion des utilisateurs</span>
+              </h1>
+              <p className="text-gray-600 mt-2">
+                Gérez tous les utilisateurs de la plateforme LinkaMarket
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Statistiques */}
