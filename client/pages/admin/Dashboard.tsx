@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AdvancedCharts from "@/components/admin/AdvancedCharts";
 import BackButton from "@/components/ui/BackButton";
 import AdminRouteWrapper from "@/components/admin/AdminRouteWrapper";
+import { useAdminAuth } from "@/hooks/useAdminAuth";
 import { products } from "@/data/products";
 import {
   Users,
