@@ -353,7 +353,7 @@ const LandingPage = () => {
                       }}
                       className="text-center"
                     >
-                      <ShoppingBag className="h-16 w-16 text-blue-600 mx-auto mb-4" />
+                      <ShoppingBag className="h-16 w-16 text-linka-green mx-auto mb-4" />
                       <h3 className="text-lg font-bold text-gray-900 mb-2">
                         LinkaMarket App
                       </h3>
