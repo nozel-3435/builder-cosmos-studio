@@ -209,8 +209,8 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
               onClick={onThemeChange}
               className={`p-2 rounded-lg transition-colors ${
                 isScrolled
-                  ? "text-gray-600 hover:text-purple-600 hover:bg-purple-50"
-                  : "text-white hover:text-purple-200"
+                  ? "text-gray-600 hover:text-linka-orange hover:bg-linka-orange/10"
+                  : "text-white hover:text-linka-orange/70"
               }`}
               title={
                 theme === "light"
