@@ -138,4 +138,9 @@ const App = () => (
   </QueryClientProvider>
 );
 
-createRoot(document.getElementById("root")!).render(<App />);
+// Ensure single root creation
+const rootElement = document.getElementById("root");
+if (rootElement && !rootElement._reactRootContainer) {
+  const root = createRoot(rootElement);
+  root.render(<App />);
+}
