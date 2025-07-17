@@ -523,6 +523,11 @@ const HomePage = () => {
                     Boutiques
                   </Link>
                 </li>
+                <li>
+                  <Link to="/landing" className="hover:text-white">
+                    Landing moderne
+                  </Link>
+                </li>
                 <li>LinkaDrop</li>
               </ul>
             </div>
