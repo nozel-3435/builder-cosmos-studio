@@ -1079,6 +1079,9 @@ const SpecializedRegister: React.FC<SpecializedRegisterProps> = ({
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-2xl mx-auto px-4">
+        <div className="mb-6">
+          <BackButton to="/login" label="Retour à la connexion" />
+        </div>
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           {/* Progress Bar */}
           <div className="bg-linka-green/10 px-6 py-4">
