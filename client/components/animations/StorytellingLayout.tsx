@@ -163,6 +163,7 @@ const StorytellingLayout: React.FC<StorytellingLayoutProps> = ({
     >
       <AutoEnhancer />
       {children}
+      <StorytellingControls />
 
       <style jsx>{`
         @keyframes floating {
