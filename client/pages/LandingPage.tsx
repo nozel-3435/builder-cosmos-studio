@@ -625,7 +625,9 @@ const LandingPage = () => {
                   key={index}
                   onClick={() => setCurrentTestimonial(index)}
                   className={`w-3 h-3 rounded-full transition-colors ${
-                    index === currentTestimonial ? "bg-blue-600" : "bg-gray-300"
+                    index === currentTestimonial
+                      ? "bg-linka-green"
+                      : "bg-gray-300"
                   }`}
                 />
               ))}
