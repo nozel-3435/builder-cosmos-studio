@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import { useStorytellingAnimation } from "../../hooks/useStorytellingAnimation";
 
 interface StorytellingLayoutProps {
   children: React.ReactNode;
