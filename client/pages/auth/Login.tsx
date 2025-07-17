@@ -39,6 +39,9 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-linka-green/10 via-white to-linka-orange/10 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
+        <div className="flex justify-start mb-4">
+          <BackButton to="/" />
+        </div>
         <div className="text-center">
           <Link to="/" className="inline-flex items-center space-x-2 mb-8">
             <div className="w-10 h-10 bg-gradient-to-br from-linka-green to-linka-orange rounded-lg flex items-center justify-center">
