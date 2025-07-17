@@ -32,6 +32,7 @@ import Stores from "./pages/Stores";
 import ActiveDeliveries from "./pages/delivery/ActiveDeliveries";
 import DeliveryHistory from "./pages/delivery/DeliveryHistory";
 import Feedback from "./pages/Feedback";
+import LandingPage from "./pages/LandingPage";
 
 const queryClient = new QueryClient();
 
