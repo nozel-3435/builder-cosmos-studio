@@ -108,7 +108,7 @@ const AdminDashboard = () => {
     {
       id: 3,
       type: "delivery",
-      message: "Livraison complét��e #DEL-789",
+      message: "Livraison complétée #DEL-789",
       time: "Il y a 32 min",
       icon: Truck,
       color: "text-linka-orange",
@@ -378,6 +378,9 @@ const AdminDashboard = () => {
             </div>
           </div>
         </div>
+
+        {/* Advanced Charts Section */}
+        <AdvancedCharts />
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Graphiques et Analytics */}
