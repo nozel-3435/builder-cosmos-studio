@@ -33,6 +33,7 @@ import ActiveDeliveries from "./pages/delivery/ActiveDeliveries";
 import DeliveryHistory from "./pages/delivery/DeliveryHistory";
 import Feedback from "./pages/Feedback";
 import LandingPage from "./pages/LandingPage";
+import EditableProfile from "./pages/EditableProfile";
 import MinimalPageTransition from "./components/animations/MinimalPageTransition";
 import StorytellingLayout from "./components/animations/StorytellingLayout";
 import FloatingSettings from "./components/ui/FloatingSettings";
