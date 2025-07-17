@@ -652,6 +652,8 @@ const AdminUsers = () => {
       </div>
     </div>
   );
+
+  return <AdminRouteWrapper>{usersContent}</AdminRouteWrapper>;
 };
 
 export default AdminUsers;
