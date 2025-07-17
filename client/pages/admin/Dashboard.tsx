@@ -1,6 +1,7 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import AdminLogin from "@/components/auth/AdminLogin";
 import { products } from "@/data/products";
 import {
   Users,
@@ -28,6 +29,8 @@ const AdminDashboard = () => {
   const { user } = useAuth();
   const [timeRange, setTimeRange] = useState("7d");
   const [refreshing, setRefreshing] = useState(false);
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Données simulées pour l'administration
   const adminStats = useMemo(() => {
@@ -157,6 +160,35 @@ const AdminDashboard = () => {
     },
   ];
 
+  useEffect(() => {
+    // Check if admin is already authenticated in this session
+    const checkAdminAuth = () => {
+      const isAuthenticated = sessionStorage.getItem("admin_authenticated");
+      const timestamp = sessionStorage.getItem("admin_timestamp");
+
+      if (isAuthenticated && timestamp) {
+        // Check if session is still valid (24 hours)
+        const sessionAge = Date.now() - parseInt(timestamp);
+        const maxAge = 24 * 60 * 60 * 1000; // 24 hours
+
+        if (sessionAge < maxAge) {
+          setIsAdminAuthenticated(true);
+        } else {
+          // Clear expired session
+          sessionStorage.removeItem("admin_authenticated");
+          sessionStorage.removeItem("admin_timestamp");
+        }
+      }
+      setIsLoading(false);
+    };
+
+    checkAdminAuth();
+  }, []);
+
+  const handleAdminAuthenticated = () => {
+    setIsAdminAuthenticated(true);
+  };
+
   const handleRefresh = async () => {
     setRefreshing(true);
     // Simuler le rechargement des données
@@ -164,19 +196,19 @@ const AdminDashboard = () => {
     setRefreshing(false);
   };
 
-  if (user?.role !== "admin") {
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">
-            Accès non autorisé
-          </h1>
-          <p className="text-gray-600">
-            Cette page est réservée aux administrateurs.
-          </p>
+          <div className="w-8 h-8 border-4 border-linka-green border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">Vérification...</p>
         </div>
       </div>
     );
+  }
+
+  if (!isAdminAuthenticated) {
+    return <AdminLogin onAuthenticated={handleAdminAuthenticated} />;
   }
 
   return (
