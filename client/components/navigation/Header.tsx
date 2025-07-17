@@ -25,6 +25,8 @@ export const Header = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [language, setLanguage] = useState("fr");
+  const [theme, setTheme] = useState("light");
 
   const getNavigationItems = () => {
     if (!user) {
