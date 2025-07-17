@@ -336,11 +336,195 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+    background: linear-gradient(180deg, #6fcf97, #f2994a);
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #2563eb, #7c3aed);
+    background: linear-gradient(180deg, #5bb882, #e8873f);
+  }
+
+  /* Advanced Storytelling Animations */
+  .storytelling-enter {
+    animation: storytelling-slide-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .storytelling-card {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-style: preserve-3d;
+  }
+
+  .storytelling-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(111, 207, 151, 0.2);
+  }
+
+  .storytelling-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .storytelling-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.6s ease;
+  }
+
+  .storytelling-button:hover::before {
+    left: 100%;
+  }
+
+  .storytelling-button:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(111, 207, 151, 0.3);
+  }
+
+  .storytelling-icon {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .storytelling-icon:hover {
+    transform: scale(1.1) rotate(5deg);
+    filter: brightness(1.2);
+  }
+
+  @keyframes storytelling-slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes storytelling-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes storytelling-zoom-in {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes storytelling-slide-left {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes storytelling-slide-right {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes storytelling-float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .storytelling-float {
+    animation: storytelling-float 3s ease-in-out infinite;
+  }
+
+  .storytelling-stagger > * {
+    animation: storytelling-slide-up 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation-fill-mode: both;
+  }
+
+  .storytelling-stagger > *:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .storytelling-stagger > *:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .storytelling-stagger > *:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .storytelling-stagger > *:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .storytelling-stagger > *:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  .storytelling-stagger > *:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .storytelling-card:hover {
+      transform: translateY(-4px) scale(1.01);
+    }
+
+    .storytelling-button:hover {
+      transform: translateY(-1px) scale(1.02);
+    }
+
+    .storytelling-icon:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+    .storytelling-card,
+    .storytelling-button,
+    .storytelling-icon,
+    .storytelling-enter,
+    .storytelling-float,
+    .storytelling-stagger > * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* Focus states for accessibility */
+  .storytelling-button:focus-visible {
+    outline: 2px solid #6fcf97;
+    outline-offset: 2px;
+  }
+
+  .storytelling-card:focus-within {
+    box-shadow: 0 0 0 2px #6fcf97;
   }
 }
