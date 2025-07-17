@@ -48,7 +48,7 @@ const App = () => (
           <div className="min-h-screen bg-linka-gray-50 relative">
             <Header />
             <main className="relative z-10">
-              <PageTransition>
+              <MinimalPageTransition>
                 <StorytellingLayout>
                   <Routes>
                     <Route path="/" element={<Index />} />
@@ -129,7 +129,7 @@ const App = () => (
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </StorytellingLayout>
-              </PageTransition>
+              </MinimalPageTransition>
             </main>
           </div>
         </AuthProvider>
