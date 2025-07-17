@@ -2,6 +2,8 @@ import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import AdminLogin from "@/components/auth/AdminLogin";
+import AdvancedCharts from "@/components/admin/AdvancedCharts";
+import BackButton from "@/components/ui/BackButton";
 import { products } from "@/data/products";
 import {
   Users,
