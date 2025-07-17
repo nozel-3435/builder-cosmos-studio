@@ -443,8 +443,8 @@ const LandingPage = () => {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="flex items-center space-x-4"
                     >
-                      <div className="p-3 bg-gradient-to-br from-blue-100 to-purple-100 rounded-xl">
-                        <IconComponent className="h-6 w-6 text-blue-600" />
+                      <div className="p-3 bg-gradient-to-br from-linka-green/20 to-linka-orange/20 rounded-xl">
+                        <IconComponent className="h-6 w-6 text-linka-green" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900">
