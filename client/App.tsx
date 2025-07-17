@@ -35,6 +35,7 @@ import Feedback from "./pages/Feedback";
 import LandingPage from "./pages/LandingPage";
 import MinimalPageTransition from "./components/animations/MinimalPageTransition";
 import StorytellingLayout from "./components/animations/StorytellingLayout";
+import FloatingSettings from "./components/ui/FloatingSettings";
 
 const queryClient = new QueryClient();
 
