@@ -33,7 +33,7 @@ import ActiveDeliveries from "./pages/delivery/ActiveDeliveries";
 import DeliveryHistory from "./pages/delivery/DeliveryHistory";
 import Feedback from "./pages/Feedback";
 import LandingPage from "./pages/LandingPage";
-import PageTransition from "./components/animations/PageTransition";
+import MinimalPageTransition from "./components/animations/MinimalPageTransition";
 import StorytellingLayout from "./components/animations/StorytellingLayout";
 
 const queryClient = new QueryClient();
