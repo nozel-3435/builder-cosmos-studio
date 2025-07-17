@@ -90,7 +90,7 @@ const LandingPage = () => {
       title: "Livraison Express",
       description: "Livraisons ultra-rapides par des livreurs locaux vérifiés",
       icon: Truck,
-      color: "from-blue-500 to-cyan-500",
+      color: "from-linka-green to-green-600",
       features: [
         "Livraison en 30min",
         "Suivi en temps réel",
@@ -102,7 +102,7 @@ const LandingPage = () => {
       title: "Santé & Bien-être",
       description: "Médicaments et produits de santé livrés à domicile",
       icon: Shield,
-      color: "from-green-500 to-emerald-500",
+      color: "from-linka-orange to-orange-600",
       features: [
         "Pharmacies agréées",
         "Conseils experts",
@@ -114,7 +114,7 @@ const LandingPage = () => {
       title: "Paiements Sécurisés",
       description: "Solution de paiement mobile intégrée et sécurisée",
       icon: CreditCard,
-      color: "from-purple-500 to-pink-500",
+      color: "from-linka-green to-linka-orange",
       features: [
         "TMoney & Flooz",
         "Paiement en ligne",
