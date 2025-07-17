@@ -256,7 +256,7 @@ const LandingPage = () => {
                   repeat: Infinity,
                   repeatType: "reverse",
                 }}
-                className="inline-block w-0.5 h-6 bg-blue-600 ml-1"
+                className="inline-block w-0.5 h-6 bg-linka-green ml-1"
               />
             </motion.div>
 
