@@ -25,6 +25,7 @@ import {
   Calendar,
   MapPin,
   Store,
+  Shield,
 } from "lucide-react";
 
 const AdminDashboard = () => {
