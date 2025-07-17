@@ -33,6 +33,8 @@ import ActiveDeliveries from "./pages/delivery/ActiveDeliveries";
 import DeliveryHistory from "./pages/delivery/DeliveryHistory";
 import Feedback from "./pages/Feedback";
 import LandingPage from "./pages/LandingPage";
+import AnimatedBackground from "./components/animations/AnimatedBackground";
+import PageTransition from "./components/animations/PageTransition";
 
 const queryClient = new QueryClient();
 
