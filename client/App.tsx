@@ -47,7 +47,8 @@ const App = () => (
             <Header />
             <main>
               <Routes>
-                <Route path="/" element={<Index />} />
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/home" element={<Index />} />
 
                 {/* Auth routes */}
                 <Route path="/login" element={<Login />} />
