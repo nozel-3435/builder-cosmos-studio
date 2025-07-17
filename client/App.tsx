@@ -60,6 +60,10 @@ const App = () => (
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route
+                      path="/editable-profile"
+                      element={<EditableProfile />}
+                    />
                     <Route path="/settings" element={<Settings />} />
                     <Route path="/map" element={<Map />} />
                     <Route path="/feedback" element={<Feedback />} />
