@@ -481,7 +481,7 @@ const LandingPage = () => {
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               L'écosystème{" "}
-              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-linka-green to-linka-orange bg-clip-text text-transparent">
                 évolutif
               </span>
             </h2>
