@@ -189,8 +189,8 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
               onClick={onLanguageChange}
               className={`flex items-center space-x-1 p-2 rounded-lg transition-colors ${
                 isScrolled
-                  ? "text-gray-600 hover:text-blue-600 hover:bg-blue-50"
-                  : "text-white hover:text-blue-200"
+                  ? "text-gray-600 hover:text-linka-green hover:bg-linka-green/10"
+                  : "text-white hover:text-linka-green/70"
               }`}
               title={
                 language === "fr" ? "Switch to English" : "Passer en français"
