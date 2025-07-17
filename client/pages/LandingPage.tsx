@@ -234,7 +234,7 @@ const LandingPage = () => {
               className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight"
             >
               La marketplace{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-linka-green to-linka-orange bg-clip-text text-transparent">
                 intelligente
               </span>
               <br />
@@ -412,7 +412,7 @@ const LandingPage = () => {
 
               <p className="text-xl text-gray-600 leading-relaxed">
                 LinkaMarket connecte intelligemment les clients, commerçants et
-                livreurs de Kara dans un ��cosystème digital innovant. Découvrez
+                livreurs de Kara dans un écosystème digital innovant. Découvrez
                 une nouvelle façon de consommer local.
               </p>
 
