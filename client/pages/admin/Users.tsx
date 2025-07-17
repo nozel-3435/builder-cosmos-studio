@@ -279,22 +279,7 @@ const AdminUsers = () => {
     }
   };
 
-  if (user?.role !== "admin") {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">
-            Accès non autorisé
-          </h1>
-          <p className="text-gray-600">
-            Cette page est réservée aux administrateurs.
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  return (
+  const usersContent = (
     <div className="min-h-screen bg-linka-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
