@@ -460,7 +460,7 @@ const LandingPage = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center space-x-2 bg-gradient-to-r from-green-600 to-blue-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg"
+                className="inline-flex items-center space-x-2 bg-gradient-to-r from-linka-green to-linka-orange text-white px-6 py-3 rounded-xl font-semibold shadow-lg"
               >
                 <Play className="h-5 w-5" />
                 <span>Voir la démo</span>
