@@ -1,9 +1,8 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "@/contexts/AuthContext";
-import AdminLogin from "@/components/auth/AdminLogin";
 import AdvancedCharts from "@/components/admin/AdvancedCharts";
 import BackButton from "@/components/ui/BackButton";
+import AdminRouteWrapper from "@/components/admin/AdminRouteWrapper";
 import { products } from "@/data/products";
 import {
   Users,
@@ -28,11 +27,8 @@ import {
 } from "lucide-react";
 
 const AdminDashboard = () => {
-  const { user } = useAuth();
   const [timeRange, setTimeRange] = useState("7d");
   const [refreshing, setRefreshing] = useState(false);
-  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   // Données simulées pour l'administration
   const adminStats = useMemo(() => {
@@ -162,35 +158,6 @@ const AdminDashboard = () => {
     },
   ];
 
-  useEffect(() => {
-    // Check if admin is already authenticated in this session
-    const checkAdminAuth = () => {
-      const isAuthenticated = sessionStorage.getItem("admin_authenticated");
-      const timestamp = sessionStorage.getItem("admin_timestamp");
-
-      if (isAuthenticated && timestamp) {
-        // Check if session is still valid (24 hours)
-        const sessionAge = Date.now() - parseInt(timestamp);
-        const maxAge = 24 * 60 * 60 * 1000; // 24 hours
-
-        if (sessionAge < maxAge) {
-          setIsAdminAuthenticated(true);
-        } else {
-          // Clear expired session
-          sessionStorage.removeItem("admin_authenticated");
-          sessionStorage.removeItem("admin_timestamp");
-        }
-      }
-      setIsLoading(false);
-    };
-
-    checkAdminAuth();
-  }, []);
-
-  const handleAdminAuthenticated = () => {
-    setIsAdminAuthenticated(true);
-  };
-
   const handleRefresh = async () => {
     setRefreshing(true);
     // Simuler le rechargement des données
@@ -198,22 +165,7 @@ const AdminDashboard = () => {
     setRefreshing(false);
   };
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-8 h-8 border-4 border-linka-green border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Vérification...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!isAdminAuthenticated) {
-    return <AdminLogin onAuthenticated={handleAdminAuthenticated} />;
-  }
-
-  return (
+  const dashboardContent = (
     <div className="min-h-screen bg-linka-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -612,6 +564,8 @@ const AdminDashboard = () => {
       </div>
     </div>
   );
+
+  return <AdminRouteWrapper>{dashboardContent}</AdminRouteWrapper>;
 };
 
 export default AdminDashboard;
