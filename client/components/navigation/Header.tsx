@@ -109,8 +109,39 @@ export const Header = () => {
             })}
           </nav>
 
-          {/* Right side - Cart, Profile, Login */}
-          <div className="flex items-center space-x-4">
+          {/* Right side - Language, Theme, Cart, Profile, Login */}
+          <div className="flex items-center space-x-3">
+            {/* Language Toggle */}
+            <button
+              onClick={() => setLanguage(language === "fr" ? "en" : "fr")}
+              className="flex items-center space-x-1 p-2 rounded-lg hover:bg-gray-100 transition-colors group"
+              title={
+                language === "fr" ? "Switch to English" : "Passer en français"
+              }
+            >
+              <Globe className="w-4 h-4 text-gray-600 group-hover:text-blue-600" />
+              <span className="text-sm font-medium text-gray-700 group-hover:text-blue-600">
+                {language.toUpperCase()}
+              </span>
+            </button>
+
+            {/* Theme Toggle */}
+            <button
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              className="p-2 rounded-lg hover:bg-gray-100 transition-colors group"
+              title={
+                theme === "light"
+                  ? "Activer le mode sombre"
+                  : "Activer le mode clair"
+              }
+            >
+              {theme === "light" ? (
+                <Moon className="w-4 h-4 text-gray-600 group-hover:text-purple-600" />
+              ) : (
+                <Sun className="w-4 h-4 text-gray-600 group-hover:text-yellow-600" />
+              )}
+            </button>
+
             {/* Cart (only for clients) */}
             {user?.role === "client" && (
               <Link
