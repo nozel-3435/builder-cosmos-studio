@@ -125,6 +125,13 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen bg-white overflow-hidden">
+      {/* Navigation */}
+      <LandingNavigation
+        language={language}
+        theme={theme}
+        onLanguageChange={() => setLanguage(language === "fr" ? "en" : "fr")}
+        onThemeChange={() => setTheme(theme === "light" ? "dark" : "light")}
+      />
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
         <svg
