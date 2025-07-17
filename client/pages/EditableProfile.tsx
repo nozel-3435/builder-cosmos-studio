@@ -390,14 +390,18 @@ const EditableProfile = () => {
         {/* Header */}
         <div className="bg-white rounded-xl shadow-sm p-6 mb-6">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <Edit3 className="w-8 h-8 text-linka-green" />
-                Modifier mon profil
-              </h1>
-              <p className="text-gray-600 mt-2">
-                Mettez à jour vos informations personnelles et professionnelles
-              </p>
+            <div className="flex items-center space-x-4">
+              <BackButton to="/profile" />
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
+                  <Edit3 className="w-8 h-8 text-linka-green" />
+                  Modifier mon profil
+                </h1>
+                <p className="text-gray-600 mt-2">
+                  Mettez à jour vos informations personnelles et
+                  professionnelles
+                </p>
+              </div>
             </div>
             <button
               onClick={() => navigate("/profile")}
