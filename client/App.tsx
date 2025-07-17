@@ -44,30 +44,32 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <AuthProvider>
-          <div className="min-h-screen bg-linka-gray-50">
+                <AuthProvider>
+          <div className="min-h-screen bg-linka-gray-50 relative">
+            <AnimatedBackground theme="commerce" intensity="subtle" />
             <Header />
-            <main>
-              <Routes>
-                <Route path="/" element={<Index />} />
+            <main className="relative z-10">
+              <PageTransition>
+                <Routes>
+                                                <Route path="/" element={<Index />} />
                 <Route path="/landing" element={<LandingPage />} />
 
                 {/* Auth routes */}
-                <Route path="/login" element={<Login />} />
+                                <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/profile" element={<Profile />} />
-                <Route path="/settings" element={<Settings />} />
+                                <Route path="/settings" element={<Settings />} />
                 <Route path="/map" element={<Map />} />
                 <Route path="/feedback" element={<Feedback />} />
 
                 {/* Client routes */}
                 <Route path="/products" element={<Products />} />
-                <Route path="/stores" element={<Stores />} />
-                <Route path="/favorites" element={<Favorites />} />
+                                <Route path="/stores" element={<Stores />} />
+                                <Route path="/favorites" element={<Favorites />} />
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/cart" element={<Cart />} />
 
-                {/* Merchant routes */}
+                                {/* Merchant routes */}
                 <Route path="/merchant" element={<MerchantDashboard />} />
                 <Route path="/merchant/add-product" element={<AddProduct />} />
                 <Route path="/merchant/products" element={<Inventory />} />
@@ -81,9 +83,9 @@ const App = () => (
                   }
                 />
 
-                {/* Delivery routes */}
+                                {/* Delivery routes */}
                 <Route path="/delivery" element={<DeliveryDashboard />} />
-                <Route path="/delivery/active" element={<ActiveDeliveries />} />
+                                <Route path="/delivery/active" element={<ActiveDeliveries />} />
                 <Route path="/delivery/history" element={<DeliveryHistory />} />
 
                 {/* Admin routes */}
