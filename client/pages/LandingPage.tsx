@@ -220,7 +220,7 @@ const LandingPage = () => {
                 >
                   <ShoppingBag className="h-6 w-6 text-white" />
                 </motion.div>
-                <span className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="text-3xl font-bold bg-gradient-to-r from-linka-green to-linka-orange bg-clip-text text-transparent">
                   LinkaMarket
                 </span>
               </div>
@@ -412,7 +412,7 @@ const LandingPage = () => {
 
               <p className="text-xl text-gray-600 leading-relaxed">
                 LinkaMarket connecte intelligemment les clients, commerçants et
-                livreurs de Kara dans un écosystème digital innovant. Découvrez
+                livreurs de Kara dans un ��cosystème digital innovant. Découvrez
                 une nouvelle façon de consommer local.
               </p>
 
