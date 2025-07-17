@@ -390,9 +390,9 @@ const LandingPage = () => {
                   repeat: Infinity,
                   repeatType: "reverse",
                 }}
-                className="absolute bottom-10 -left-4 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center"
+                className="absolute bottom-10 -left-4 w-12 h-12 bg-linka-orange/20 rounded-full flex items-center justify-center"
               >
-                <Package className="h-6 w-6 text-green-600" />
+                <Package className="h-6 w-6 text-linka-orange" />
               </motion.div>
             </motion.div>
 
