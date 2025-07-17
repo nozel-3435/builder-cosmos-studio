@@ -108,7 +108,7 @@ const AdminDashboard = () => {
     {
       id: 3,
       type: "delivery",
-      message: "Livraison complétée #DEL-789",
+      message: "Livraison complét��e #DEL-789",
       time: "Il y a 32 min",
       icon: Truck,
       color: "text-linka-orange",
@@ -219,14 +219,17 @@ const AdminDashboard = () => {
         {/* Header */}
         <div className="mb-8">
           <div className="flex justify-between items-start">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-3">
-                <BarChart3 className="w-8 h-8 text-linka-green" />
-                <span>Administration LinkaMarket</span>
-              </h1>
-              <p className="text-gray-600 mt-2">
-                Vue d'ensemble de la plateforme et gestion globale
-              </p>
+            <div className="flex items-center space-x-4">
+              <BackButton to="/" />
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-3">
+                  <BarChart3 className="w-8 h-8 text-linka-green" />
+                  <span>Administration LinkaMarket</span>
+                </h1>
+                <p className="text-gray-600 mt-2">
+                  Vue d'ensemble de la plateforme et gestion globale
+                </p>
+              </div>
             </div>
             <div className="flex items-center space-x-4">
               <select
