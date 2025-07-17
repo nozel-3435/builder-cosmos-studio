@@ -33,7 +33,6 @@ import ActiveDeliveries from "./pages/delivery/ActiveDeliveries";
 import DeliveryHistory from "./pages/delivery/DeliveryHistory";
 import Feedback from "./pages/Feedback";
 import LandingPage from "./pages/LandingPage";
-import AnimatedBackground from "./components/animations/AnimatedBackground";
 import PageTransition from "./components/animations/PageTransition";
 import StorytellingLayout from "./components/animations/StorytellingLayout";
 
@@ -47,7 +46,6 @@ const App = () => (
       <BrowserRouter>
         <AuthProvider>
           <div className="min-h-screen bg-linka-gray-50 relative">
-            <AnimatedBackground theme="commerce" intensity="subtle" />
             <Header />
             <main className="relative z-10">
               <PageTransition>
