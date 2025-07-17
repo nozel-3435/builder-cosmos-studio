@@ -11,8 +11,16 @@ const StorytellingLayout: React.FC<StorytellingLayoutProps> = ({
   children,
   className = "",
 }) => {
+  // Use the storytelling animation hook
+  const { enhanceElement } = useStorytellingAnimation({
+    enableHoverEffects: true,
+    enableScrollAnimations: true,
+    enableIconAnimations: true,
+    delay: 150,
+  });
+
   useEffect(() => {
-    // Auto-enhance existing elements when component mounts
+    // Additional custom enhancements
     const enhanceExistingElements = () => {
       // Add hover effects to buttons
       const buttons = document.querySelectorAll(
