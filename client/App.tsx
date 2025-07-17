@@ -138,9 +138,13 @@ const App = () => (
   </QueryClientProvider>
 );
 
-// Ensure single root creation
+// Ensure single root creation for React 18
 const rootElement = document.getElementById("root");
-if (rootElement && !rootElement._reactRootContainer) {
-  const root = createRoot(rootElement);
-  root.render(<App />);
+if (rootElement) {
+  // Check if already has React root
+  if (!rootElement.hasAttribute("data-react-root")) {
+    rootElement.setAttribute("data-react-root", "true");
+    const root = createRoot(rootElement);
+    root.render(<App />);
+  }
 }
