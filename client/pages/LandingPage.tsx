@@ -216,7 +216,7 @@ const LandingPage = () => {
                     repeat: Infinity,
                     ease: "linear",
                   }}
-                  className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center"
+                  className="w-12 h-12 bg-gradient-to-br from-linka-green to-linka-orange rounded-xl flex items-center justify-center"
                 >
                   <ShoppingBag className="h-6 w-6 text-white" />
                 </motion.div>
