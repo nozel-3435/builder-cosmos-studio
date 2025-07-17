@@ -69,24 +69,21 @@ const HomePage = () => {
       role: "Cliente",
       content:
         "LinkaMarket a révolutionné ma façon de faire mes courses. Je trouve tout ce dont j'ai besoin en un clic !",
-      avatar:
-        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face",
+      avatar: "https://randomuser.me/api/portraits/women/75.jpg",
     },
     {
       name: "Jean-Baptiste Traore",
       role: "Commerçant",
       content:
         "Grâce à LinkaMarket, mes ventes ont augmenté de 40%. L'interface est simple et efficace.",
-      avatar:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+      avatar: "https://randomuser.me/api/portraits/men/42.jpg",
     },
     {
       name: "Aminata Diallo",
       role: "Livreuse",
       content:
         "LinkaDrop me permet de gérer mes livraisons facilement et d'augmenter mes revenus.",
-      avatar:
-        "https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?w=100&h=100&fit=crop&crop=face",
+      avatar: "https://randomuser.me/api/portraits/women/65.jpg",
     },
   ];
 
