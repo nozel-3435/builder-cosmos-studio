@@ -141,9 +141,9 @@ const LandingPage = () => {
         >
           <defs>
             <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#f0f9ff" />
-              <stop offset="50%" stopColor="#e0f2fe" />
-              <stop offset="100%" stopColor="#f0fdf4" />
+              <stop offset="0%" stopColor="#f0fdf4" />
+              <stop offset="50%" stopColor="#f9fafb" />
+              <stop offset="100%" stopColor="#fef7ed" />
             </linearGradient>
           </defs>
           <rect width="100%" height="100%" fill="url(#grad1)" />
