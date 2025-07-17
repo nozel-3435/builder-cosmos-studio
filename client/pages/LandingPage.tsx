@@ -269,7 +269,7 @@ const LandingPage = () => {
             >
               <Link
                 to="/register"
-                className="group inline-flex items-center space-x-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                className="group inline-flex items-center space-x-3 bg-gradient-to-r from-linka-green to-linka-orange text-white px-8 py-4 rounded-2xl text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
               >
                 <span>Rejoindre l'écosystème</span>
                 <motion.div
