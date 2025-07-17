@@ -89,47 +89,51 @@ const StorytellingLayout: React.FC<StorytellingLayoutProps> = ({
     >
       {children}
 
-      <style jsx>{`
-        /* Respect user preferences for reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-          .storytelling-layout *,
-          .storytelling-layout *::before,
-          .storytelling-layout *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-            scroll-behavior: auto !important;
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+          /* Respect user preferences for reduced motion */
+          @media (prefers-reduced-motion: reduce) {
+            .storytelling-layout *,
+            .storytelling-layout *::before,
+            .storytelling-layout *::after {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              transition-duration: 0.01ms !important;
+              scroll-behavior: auto !important;
+            }
           }
-        }
 
-        /* Minimal essential styles */
-        .enhanced {
-          transition: transform 0.2s ease;
-        }
+          /* Minimal essential styles */
+          .enhanced {
+            transition: transform 0.2s ease;
+          }
 
-        /* Smooth scrolling only if not reduced motion */
-        .storytelling-layout {
-          scroll-behavior: smooth;
-        }
+          /* Smooth scrolling only if not reduced motion */
+          .storytelling-layout {
+            scroll-behavior: smooth;
+          }
 
-        /* Simplified custom scrollbar */
-        .storytelling-layout::-webkit-scrollbar {
-          width: 6px;
-        }
+          /* Simplified custom scrollbar */
+          .storytelling-layout::-webkit-scrollbar {
+            width: 6px;
+          }
 
-        .storytelling-layout::-webkit-scrollbar-track {
-          background: #f8f9fa;
-        }
+          .storytelling-layout::-webkit-scrollbar-track {
+            background: #f8f9fa;
+          }
 
-        .storytelling-layout::-webkit-scrollbar-thumb {
-          background: #6fcf97;
-          border-radius: 3px;
-        }
+          .storytelling-layout::-webkit-scrollbar-thumb {
+            background: #6fcf97;
+            border-radius: 3px;
+          }
 
-        .storytelling-layout::-webkit-scrollbar-thumb:hover {
-          background: #5bb882;
-        }
-      `}</style>
+          .storytelling-layout::-webkit-scrollbar-thumb:hover {
+            background: #5bb882;
+          }
+        `,
+        }}
+      />
     </motion.div>
   );
 };
