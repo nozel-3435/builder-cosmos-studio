@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useStorytellingAnimation } from "../../hooks/useStorytellingAnimation";
-import AutoEnhancer from "./AutoEnhancer";
-import StorytellingControls from "./StorytellingControls";
 
 interface StorytellingLayoutProps {
   children: React.ReactNode;
@@ -89,9 +87,7 @@ const StorytellingLayout: React.FC<StorytellingLayoutProps> = ({
       transition={{ duration: 0.5 }}
       className={`storytelling-layout ${className}`}
     >
-      <AutoEnhancer />
       {children}
-      <StorytellingControls />
 
       <style jsx>{`
         /* Respect user preferences for reduced motion */
