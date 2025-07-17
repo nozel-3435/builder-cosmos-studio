@@ -24,6 +24,8 @@ import {
 
 const LandingPage = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [language, setLanguage] = useState("fr");
+  const [theme, setTheme] = useState("light");
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
