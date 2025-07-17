@@ -15,9 +15,6 @@ import {
   Package,
   BarChart3,
   MapPin,
-  Globe,
-  Sun,
-  Moon,
 } from "lucide-react";
 
 export const Header = () => {
