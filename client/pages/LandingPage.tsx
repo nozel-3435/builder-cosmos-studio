@@ -405,7 +405,7 @@ const LandingPage = () => {
             >
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
                 Une plateforme,{" "}
-                <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-linka-green to-linka-orange bg-clip-text text-transparent">
                   trois univers
                 </span>
               </h2>
