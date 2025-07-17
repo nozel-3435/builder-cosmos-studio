@@ -183,7 +183,7 @@ const LandingPage = () => {
             cx="700"
             cy="150"
             r="4"
-            fill="#8b5cf6"
+            fill="#22C55E"
             animate={{
               x: [0, 60, 0],
               y: [0, 120, 0],
