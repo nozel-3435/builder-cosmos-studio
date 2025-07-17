@@ -659,7 +659,7 @@ const LandingPage = () => {
               >
                 Commencer maintenant
               </Link>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white hover:text-blue-600 transition-colors">
+              <button className="border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white hover:text-linka-green transition-colors">
                 Voir la démo
               </button>
             </div>
