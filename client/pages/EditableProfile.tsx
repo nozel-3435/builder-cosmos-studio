@@ -226,7 +226,7 @@ const EditableProfile = () => {
       setFormData((prev) => ({
         ...prev,
         [parent]: {
-          ...prev[parent as keyof typeof prev],
+          ...(prev[parent as keyof typeof prev] || {}),
           [child]: type === "checkbox" ? checked : value,
         },
       }));
