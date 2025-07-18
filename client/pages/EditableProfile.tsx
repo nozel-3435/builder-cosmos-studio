@@ -902,12 +902,13 @@ const EditableProfile = () => {
                       <MapPin className="w-4 h-4" />
                       <span>Localiser ma boutique sur la carte</span>
                     </button>
-                    {formData.businessCoordinates.lat !== 0 && (
-                      <p className="text-sm text-green-600 mt-2 flex items-center">
-                        <Check className="w-4 h-4 mr-1" />
-                        Boutique localisée
-                      </p>
-                    )}
+                    {formData.businessCoordinates &&
+                      formData.businessCoordinates.lat !== 0 && (
+                        <p className="text-sm text-green-600 mt-2 flex items-center">
+                          <Check className="w-4 h-4 mr-1" />
+                          Boutique localisée
+                        </p>
+                      )}
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
