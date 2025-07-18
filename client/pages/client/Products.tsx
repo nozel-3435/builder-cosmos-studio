@@ -423,7 +423,7 @@ const Products = () => {
               <div className="flex justify-end mt-6">
                 <button
                   onClick={clearFilters}
-                  className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-gray-900"
+                  className="flex items-center space-x-2 px-4 py-2 text-muted-foreground hover:text-foreground"
                 >
                   <X className="w-4 h-4" />
                   <span>Effacer les filtres</span>
