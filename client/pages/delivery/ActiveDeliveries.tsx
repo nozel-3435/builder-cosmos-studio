@@ -66,6 +66,7 @@ interface ActiveDelivery {
 }
 
 const ActiveDeliveries = () => {
+  const navigate = useNavigate();
   const [activeDeliveries, setActiveDeliveries] = useState<ActiveDelivery[]>([
     {
       id: "DEL-2024-001",
