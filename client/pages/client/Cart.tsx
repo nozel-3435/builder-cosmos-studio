@@ -63,7 +63,16 @@ const Cart = () => {
   return (
     <div className="min-h-screen bg-linka-gray-50 py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Mon panier</h1>
+        <div className="flex items-center space-x-4 mb-8">
+          <button
+            onClick={() => navigate(-1)}
+            className="p-2 rounded-lg hover:bg-white transition-colors"
+            aria-label="Retour"
+          >
+            <ArrowLeft className="h-5 w-5 text-gray-600" />
+          </button>
+          <h1 className="text-3xl font-bold text-gray-900">Mon panier</h1>
+        </div>
 
         {cartItems.length === 0 ? (
           <div className="text-center py-12">
