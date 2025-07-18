@@ -81,7 +81,7 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
 
       case "none":
       default:
-        return {};
+        return { hover: undefined, tap: undefined };
     }
   };
 
