@@ -167,7 +167,7 @@ const Settings = () => {
                 return (
                   <div
                     key={themeOption.id}
-                    onClick={() => setTheme(themeOption.id)}
+                    onClick={() => handleThemeChange(themeOption.id)}
                     className={`p-3 rounded-lg border-2 cursor-pointer transition-all ${
                       theme === themeOption.id
                         ? "border-blue-500 bg-blue-50"
