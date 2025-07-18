@@ -302,9 +302,23 @@ export default function MapComponent({
 
   return (
     <div className="relative">
+      {/* Indicateur mode démonstration */}
+      {isDemoMode && (
+        <div className="absolute top-4 left-4 z-[1000] bg-yellow-100 border border-yellow-300 rounded-lg shadow-lg p-3">
+          <p className="text-sm text-yellow-800 font-medium">
+            🚧 Mode Démonstration
+          </p>
+          <p className="text-xs text-yellow-700 mt-1">
+            Configurez Supabase pour le mode production
+          </p>
+        </div>
+      )}
+
       {/* Bouton d'aide */}
       {showAddButton && (
-        <div className="absolute top-4 right-4 z-[1000] bg-white rounded-lg shadow-lg p-3">
+        <div
+          className={`absolute top-4 ${isDemoMode ? "right-4" : "right-4"} z-[1000] bg-white rounded-lg shadow-lg p-3`}
+        >
           <p className="text-sm text-gray-600 mb-2">
             <strong>💡 Comment utiliser la carte :</strong>
           </p>
@@ -312,6 +326,11 @@ export default function MapComponent({
             <li>• Cliquez sur la carte pour ajouter votre position</li>
             <li>• Utilisez les icônes pour filtrer par type</li>
             <li>• Cliquez sur un marqueur pour voir les détails</li>
+            {isDemoMode && (
+              <li className="text-yellow-600">
+                • Mode démo : actions simulées
+              </li>
+            )}
           </ul>
         </div>
       )}
