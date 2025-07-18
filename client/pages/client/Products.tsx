@@ -160,7 +160,7 @@ const Products = () => {
 
   const ProductCard = ({ product }: { product: Product }) => (
     <div
-      className={`bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300 group ${
+      className={`bg-card rounded-xl shadow-sm border border-border overflow-hidden hover:shadow-lg transition-all duration-300 group ${
         viewMode === "list" ? "flex" : ""
       }`}
     >
