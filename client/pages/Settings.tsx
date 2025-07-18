@@ -129,7 +129,7 @@ const Settings = () => {
               {languages.map((lang) => (
                 <div
                   key={lang.code}
-                  onClick={() => setLanguage(lang.code)}
+                  onClick={() => handleLanguageChange(lang.code)}
                   className={`p-3 rounded-lg border-2 cursor-pointer transition-all ${
                     language === lang.code
                       ? "border-blue-500 bg-blue-50"
