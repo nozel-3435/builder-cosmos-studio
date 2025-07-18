@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import { useStorytellingAnimation } from "../../hooks/useStorytellingAnimation";
 
 interface StorytellingLayoutProps {
   children: React.ReactNode;
@@ -11,14 +10,6 @@ const StorytellingLayout: React.FC<StorytellingLayoutProps> = ({
   children,
   className = "",
 }) => {
-  // Use the storytelling animation hook
-  const { enhanceElement } = useStorytellingAnimation({
-    enableHoverEffects: true,
-    enableScrollAnimations: true,
-    enableIconAnimations: true,
-    delay: 150,
-  });
-
   useEffect(() => {
     // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia(
@@ -31,49 +22,57 @@ const StorytellingLayout: React.FC<StorytellingLayoutProps> = ({
 
     // Minimal essential enhancements only
     const enhanceEssentialElements = () => {
-      // Only add basic hover effects to primary buttons
-      const primaryButtons = document.querySelectorAll(
-        'button[class*="bg-linka-green"], button[class*="bg-linka-orange"], .btn-primary',
-      );
-      primaryButtons.forEach((button) => {
-        if (!button.classList.contains("enhanced")) {
-          button.classList.add(
-            "enhanced",
-            "transition-transform",
-            "duration-200",
-          );
+      try {
+        // Only add basic hover effects to primary buttons
+        const primaryButtons = document.querySelectorAll(
+          'button[class*="bg-linka-green"], button[class*="bg-linka-orange"], .btn-primary',
+        );
+        primaryButtons.forEach((button) => {
+          if (!button.classList.contains("enhanced")) {
+            button.classList.add(
+              "enhanced",
+              "transition-transform",
+              "duration-200",
+            );
 
-          button.addEventListener("mouseenter", () => {
-            button.style.transform = "scale(1.02)";
-          });
+            button.addEventListener("mouseenter", () => {
+              (button as HTMLElement).style.transform = "scale(1.02)";
+            });
 
-          button.addEventListener("mouseleave", () => {
-            button.style.transform = "scale(1)";
-          });
-        }
-      });
+            button.addEventListener("mouseleave", () => {
+              (button as HTMLElement).style.transform = "scale(1)";
+            });
+          }
+        });
 
-      // Only add subtle hover to product cards
-      const productCards = document.querySelectorAll(
-        '.product-card, [class*="product"]',
-      );
-      productCards.forEach((card) => {
-        if (!card.classList.contains("enhanced") && card.children.length > 0) {
-          card.classList.add("enhanced", "transition-shadow", "duration-200");
+        // Only add subtle hover to product cards
+        const productCards = document.querySelectorAll(
+          '.product-card, [class*="product"]',
+        );
+        productCards.forEach((card) => {
+          if (
+            !card.classList.contains("enhanced") &&
+            card.children.length > 0
+          ) {
+            card.classList.add("enhanced", "transition-shadow", "duration-200");
 
-          card.addEventListener("mouseenter", () => {
-            card.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.1)";
-          });
+            card.addEventListener("mouseenter", () => {
+              (card as HTMLElement).style.boxShadow =
+                "0 4px 12px rgba(0, 0, 0, 0.1)";
+            });
 
-          card.addEventListener("mouseleave", () => {
-            card.style.boxShadow = "";
-          });
-        }
-      });
+            card.addEventListener("mouseleave", () => {
+              (card as HTMLElement).style.boxShadow = "";
+            });
+          }
+        });
+      } catch (error) {
+        console.warn("Enhancement error:", error);
+      }
     };
 
     // Run enhancement with minimal delay
-    const timer = setTimeout(enhanceEssentialElements, 50);
+    const timer = setTimeout(enhanceEssentialElements, 100);
 
     return () => {
       clearTimeout(timer);
@@ -84,7 +83,7 @@ const StorytellingLayout: React.FC<StorytellingLayoutProps> = ({
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.3 }}
       className={`storytelling-layout ${className}`}
     >
       {children}
