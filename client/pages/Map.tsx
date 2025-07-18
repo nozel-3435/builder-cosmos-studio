@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import KaraMap from "../components/maps/KaraMap";
+import MapComponent from "../components/MapComponent";
 import {
   MapPin,
   Store,
@@ -11,6 +12,8 @@ import {
   Star,
   Clock,
   Navigation,
+  Users,
+  Plus,
 } from "lucide-react";
 
 const Map = () => {
