@@ -54,7 +54,7 @@ const App = () => (
         <ErrorBoundary>
           <AuthErrorBoundary>
             <AuthProvider>
-              <div className="min-h-screen bg-linka-gray-50 relative">
+              <div className="min-h-screen bg-background relative">
                 <Header />
                 <main className="relative z-10">
                   <ErrorBoundary>
