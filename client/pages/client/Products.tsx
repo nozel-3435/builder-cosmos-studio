@@ -216,8 +216,10 @@ const Products = () => {
           </div>
           <div className="flex items-center">
             <Star className="w-4 h-4 text-yellow-400 fill-current" />
-            <span className="text-sm text-gray-600 ml-1">{product.rating}</span>
-            <span className="text-xs text-gray-400 ml-1">
+            <span className="text-sm text-muted-foreground ml-1">
+              {product.rating}
+            </span>
+            <span className="text-xs text-muted-foreground/70 ml-1">
               ({product.reviewCount})
             </span>
           </div>
