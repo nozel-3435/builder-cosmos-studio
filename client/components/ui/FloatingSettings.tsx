@@ -85,13 +85,8 @@ const FloatingSettings: React.FC<FloatingSettingsProps> = ({
 
   return (
     <>
-      {/* Floating Button */}
-      <motion.div
-        className={`fixed bottom-6 right-6 z-50 ${className}`}
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 1, duration: 0.3 }}
-      >
+            {/* Floating Button */}
+      <div className={`fixed bottom-6 right-6 z-50 ${className}`}>
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`
