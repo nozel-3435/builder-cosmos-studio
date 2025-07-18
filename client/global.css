@@ -226,31 +226,31 @@
   }
 
   .product-card {
-    @apply bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-blue-200;
+    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-400;
   }
 
   .price-tag {
-    @apply text-2xl font-bold text-blue-600;
+    @apply text-2xl font-bold text-blue-600 dark:text-blue-400;
   }
 
   .badge-success {
-    @apply bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium;
+    @apply bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium;
   }
 
   .badge-warning {
-    @apply bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium;
+    @apply bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded-full text-sm font-medium;
   }
 
   .badge-error {
-    @apply bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium;
+    @apply bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-3 py-1 rounded-full text-sm font-medium;
   }
 
   .input-modern {
-    @apply w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200 placeholder-gray-400;
+    @apply w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200 placeholder-gray-400 dark:placeholder-gray-500;
   }
 
   .nav-link {
-    @apply text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative;
+    @apply text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-200 relative;
   }
 
   .nav-link::after {
