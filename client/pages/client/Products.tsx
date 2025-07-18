@@ -245,14 +245,14 @@ const Products = () => {
   );
 
   return (
-    <div className="min-h-screen bg-linka-gray-50 py-8">
+    <div className="min-h-screen bg-background py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl font-bold text-foreground mb-4">
             Catalogue de produits
           </h1>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             {filteredProducts.length} produits disponibles
             {selectedCategory !== "all" &&
               ` dans ${categories.find((cat) => cat.id === selectedCategory)?.name}`}
