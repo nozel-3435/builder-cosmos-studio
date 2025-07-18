@@ -41,17 +41,30 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
+
   if (context === undefined) {
+    console.error("useAuth called outside AuthProvider");
     throw new Error("useAuth must be used within an AuthProvider");
   }
+
   // Additional safety check to ensure context methods exist
+  if (!context || typeof context !== "object") {
+    console.error("AuthContext is not an object:", context);
+    throw new Error("AuthContext is corrupted. Please refresh the page.");
+  }
+
   if (
     typeof context.login !== "function" ||
     typeof context.logout !== "function"
   ) {
-    console.error("AuthContext methods are not properly initialized");
+    console.error("AuthContext methods are not properly initialized:", {
+      login: typeof context.login,
+      logout: typeof context.logout,
+      context: context,
+    });
     throw new Error("AuthContext is corrupted. Please refresh the page.");
   }
+
   return context;
 };
 
