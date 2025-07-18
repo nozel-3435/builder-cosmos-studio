@@ -292,7 +292,7 @@ const FloatingSettings: React.FC<FloatingSettingsProps> = ({
                   </div>
                 </div>
               </div>
-            </motion.div>
+                        </div>
           </>
         )}
       </AnimatePresence>
