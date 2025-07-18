@@ -207,21 +207,30 @@ export default function MapComponent({
         is_active: true,
       };
 
-      if (editingLocation) {
-        // Mise à jour
-        const { error } = await supabase
-          .from("locations")
-          .update(locationData)
-          .eq("id", editingLocation.id);
-
-        if (error) throw error;
+      if (isDemoMode) {
+        // Mode démonstration
+        if (editingLocation) {
+          await demoLocationsService.update(locationData);
+        } else {
+          await demoLocationsService.insert([locationData]);
+        }
+        alert(
+          "Mode démonstration : Votre location a été simulée avec succès !",
+        );
       } else {
-        // Création
-        const { error } = await supabase
-          .from("locations")
-          .insert([locationData]);
-
-        if (error) throw error;
+        // Mode Supabase normal
+        if (editingLocation) {
+          const { error } = await supabase
+            .from("locations")
+            .update(locationData)
+            .eq("id", editingLocation.id);
+          if (error) throw error;
+        } else {
+          const { error } = await supabase
+            .from("locations")
+            .insert([locationData]);
+          if (error) throw error;
+        }
       }
 
       // Recharger les locations
