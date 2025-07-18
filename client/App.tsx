@@ -49,14 +49,16 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <AuthProvider>
-          <div className="min-h-screen bg-linka-gray-50 relative">
-            <Header />
-            <main className="relative z-10">
-              <MinimalPageTransition>
-                <StorytellingLayout>
-                  <Routes>
+            <BrowserRouter>
+        <ErrorBoundary>
+          <AuthProvider>
+            <div className="min-h-screen bg-linka-gray-50 relative">
+              <Header />
+              <main className="relative z-10">
+                <ErrorBoundary>
+                  <MinimalPageTransition>
+                    <StorytellingLayout>
+                      <Routes>
                     <Route path="/" element={<Index />} />
                     <Route path="/landing" element={<LandingPage />} />
 
