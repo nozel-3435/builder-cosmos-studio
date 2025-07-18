@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Settings,
   Globe,
@@ -13,6 +14,7 @@ import {
   Languages,
   Check,
   ChevronRight,
+  ArrowLeft,
 } from "lucide-react";
 
 const Settings = () => {
