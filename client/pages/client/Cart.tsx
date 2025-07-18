@@ -196,9 +196,12 @@ const Cart = () => {
                     </span>
                   </div>
                   <p className="text-sm text-gray-600 bg-linka-gray-50 p-3 rounded-lg">
-                    123 Rue de la République, Plateau, Abidjan
+                    {deliveryAddress}
                   </p>
-                  <button className="text-linka-green text-sm mt-2 hover:underline">
+                  <button
+                    onClick={() => setShowAddressModal(true)}
+                    className="text-linka-green text-sm mt-2 hover:underline"
+                  >
                     Modifier l'adresse
                   </button>
                 </div>
