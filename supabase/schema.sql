@@ -408,6 +408,94 @@ SELECT subchat, c.id FROM (VALUES
 ) AS sub(subchat) 
 CROSS JOIN categories c WHERE c.name = 'Mode & Vêtements';
 
+-- Table des localisations (pour la carte interactive)
+CREATE TABLE locations (
+    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+    role user_role NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    latitude DOUBLE PRECISION NOT NULL,
+    longitude DOUBLE PRECISION NOT NULL,
+    address TEXT,
+    phone VARCHAR(20),
+    description TEXT,
+    is_active BOOLEAN DEFAULT true,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Index pour optimiser les requêtes géographiques
+CREATE INDEX idx_locations_coordinates ON locations(latitude, longitude);
+CREATE INDEX idx_locations_role ON locations(role);
+CREATE INDEX idx_locations_active ON locations(is_active) WHERE is_active = true;
+
+-- Trigger pour auto-update des timestamps
+CREATE TRIGGER update_locations_updated_at BEFORE UPDATE ON locations
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+-- Politiques de sécurité RLS pour les locations
+ALTER TABLE locations ENABLE ROW LEVEL SECURITY;
+
+-- Tout le monde peut voir les locations actives
+CREATE POLICY "Tout le monde peut voir les locations actives" ON locations
+    FOR SELECT USING (is_active = true);
+
+-- Les utilisateurs peuvent gérer leurs propres locations
+CREATE POLICY "Les utilisateurs peuvent gérer leurs locations" ON locations
+    FOR ALL USING (auth.uid() = user_id);
+
+-- Fonction pour chercher des locations par proximité
+CREATE OR REPLACE FUNCTION find_nearby_locations(
+    center_lat DOUBLE PRECISION,
+    center_lng DOUBLE PRECISION,
+    radius_km DOUBLE PRECISION DEFAULT 10,
+    location_role user_role DEFAULT NULL
+)
+RETURNS TABLE (
+    id UUID,
+    name VARCHAR(255),
+    role user_role,
+    latitude DOUBLE PRECISION,
+    longitude DOUBLE PRECISION,
+    address TEXT,
+    phone VARCHAR(20),
+    description TEXT,
+    distance_km DOUBLE PRECISION
+) LANGUAGE SQL AS $$
+    SELECT
+        l.id,
+        l.name,
+        l.role,
+        l.latitude,
+        l.longitude,
+        l.address,
+        l.phone,
+        l.description,
+        (
+            6371 * acos(
+                cos(radians(center_lat))
+                * cos(radians(l.latitude))
+                * cos(radians(l.longitude) - radians(center_lng))
+                + sin(radians(center_lat))
+                * sin(radians(l.latitude))
+            )
+        ) as distance_km
+    FROM locations l
+    WHERE
+        l.is_active = true
+        AND (location_role IS NULL OR l.role = location_role)
+        AND (
+            6371 * acos(
+                cos(radians(center_lat))
+                * cos(radians(l.latitude))
+                * cos(radians(l.longitude) - radians(center_lng))
+                + sin(radians(center_lat))
+                * sin(radians(l.latitude))
+            )
+        ) <= radius_km
+    ORDER BY distance_km;
+$$;
+
 -- Fonctions utiles pour l'application
 CREATE OR REPLACE FUNCTION search_products(search_query TEXT)
 RETURNS TABLE (
