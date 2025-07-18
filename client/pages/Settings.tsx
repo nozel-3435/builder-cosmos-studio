@@ -70,6 +70,13 @@ const Settings = () => {
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
           <div className="flex items-center space-x-3">
+            <button
+              onClick={() => navigate(-1)}
+              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              aria-label="Retour"
+            >
+              <ArrowLeft className="h-5 w-5 text-gray-600" />
+            </button>
             <div className="p-2 bg-blue-100 rounded-lg">
               <Settings className="h-6 w-6 text-blue-600" />
             </div>
