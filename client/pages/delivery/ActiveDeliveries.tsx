@@ -16,6 +16,7 @@ import {
   DollarSign,
   Camera,
   RefreshCw,
+  Store,
 } from "lucide-react";
 
 interface ActiveDelivery {
