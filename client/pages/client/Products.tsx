@@ -319,7 +319,7 @@ const Products = () => {
             {/* Filter Toggle */}
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center space-x-2 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50"
+              className="flex items-center space-x-2 px-4 py-3 border border-input bg-background text-foreground rounded-lg hover:bg-muted/50"
             >
               <SlidersHorizontal className="w-4 h-4" />
               <span>Filtres</span>
