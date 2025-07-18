@@ -31,6 +31,27 @@ const Settings = () => {
   });
   const [sound, setSound] = useState(true);
 
+  // Charger les préférences au démarrage
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem("linka_language");
+    const savedTheme = localStorage.getItem("linka_theme");
+    const savedSound = localStorage.getItem("linka_sound");
+
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    }
+    if (savedTheme) {
+      setTheme(savedTheme);
+      // Appliquer le thème sombre si nécessaire
+      if (savedTheme === "dark") {
+        document.documentElement.classList.add("dark");
+      }
+    }
+    if (savedSound !== null) {
+      setSound(savedSound === "true");
+    }
+  }, []);
+
   const languages = [
     { code: "fr", name: "Français", flag: "🇫🇷" },
     { code: "en", name: "English", flag: "🇺🇸" },
