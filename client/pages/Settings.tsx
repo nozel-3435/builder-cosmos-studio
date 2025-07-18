@@ -227,7 +227,14 @@ const Settings = () => {
               <div className="flex items-center justify-between">
                 <span className="text-gray-700">Sons d'interface</span>
                 <button
-                  onClick={() => setSound(!sound)}
+                  onClick={() => {
+                    const newSoundState = !sound;
+                    setSound(newSoundState);
+                    localStorage.setItem(
+                      "linka_sound",
+                      newSoundState.toString(),
+                    );
+                  }}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                     sound ? "bg-blue-600" : "bg-gray-200"
                   }`}
