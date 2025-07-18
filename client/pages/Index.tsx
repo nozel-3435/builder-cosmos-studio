@@ -497,6 +497,92 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Carte Interactive Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Découvrez votre quartier
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Explorez les commerçants, livreurs et services disponibles à Kara.
+              Cliquez sur la carte pour ajouter votre position et connecter-vous
+              avec votre communauté locale.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div className="p-6 bg-gradient-to-r from-linka-green to-linka-orange text-white">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">
+                    Carte Interactive de Kara
+                  </h3>
+                  <p className="text-white/90">
+                    Connectez-vous avec votre communauté locale
+                  </p>
+                </div>
+                <MapPin className="w-12 h-12 text-white/80" />
+              </div>
+            </div>
+
+            <div className="p-6">
+              <MapComponent
+                height="500px"
+                center={[9.5511, 1.1901]} // Centre de Kara
+                zoom={13}
+                showAddButton={true}
+                filterByRole={null}
+              />
+            </div>
+
+            <div className="px-6 pb-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                <div className="text-center p-4 bg-blue-50 rounded-lg">
+                  <div className="w-8 h-8 bg-blue-500 rounded-full mx-auto mb-2 flex items-center justify-center">
+                    <span className="text-white text-sm">👤</span>
+                  </div>
+                  <h4 className="font-semibold text-gray-900">Clients</h4>
+                  <p className="text-sm text-gray-600">
+                    Points de rencontre et zones résidentielles
+                  </p>
+                </div>
+
+                <div className="text-center p-4 bg-green-50 rounded-lg">
+                  <div className="w-8 h-8 bg-green-500 rounded-full mx-auto mb-2 flex items-center justify-center">
+                    <span className="text-white text-sm">🏪</span>
+                  </div>
+                  <h4 className="font-semibold text-gray-900">Commerçants</h4>
+                  <p className="text-sm text-gray-600">
+                    Boutiques, marchés et services
+                  </p>
+                </div>
+
+                <div className="text-center p-4 bg-orange-50 rounded-lg">
+                  <div className="w-8 h-8 bg-orange-500 rounded-full mx-auto mb-2 flex items-center justify-center">
+                    <span className="text-white text-sm">🚚</span>
+                  </div>
+                  <h4 className="font-semibold text-gray-900">Livreurs</h4>
+                  <p className="text-sm text-gray-600">
+                    Services de livraison rapide
+                  </p>
+                </div>
+              </div>
+
+              <div className="text-center mt-6">
+                <Link
+                  to="/map"
+                  className="inline-flex items-center space-x-2 bg-linka-green text-white px-6 py-3 rounded-lg hover:bg-linka-green/90 transition-colors"
+                >
+                  <MapPin className="w-5 h-5" />
+                  <span>Voir la carte complète</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
