@@ -356,13 +356,13 @@ const Products = () => {
                 {/* Subcategory Filter */}
                 {subcategories.length > 0 && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Sous-catégorie
                     </label>
                     <select
                       value={selectedSubcategory}
                       onChange={(e) => setSelectedSubcategory(e.target.value)}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-linka-green"
+                      className="w-full bg-background text-foreground border border-input rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-linka-green"
                     >
                       <option value="all">Toutes</option>
                       {subcategories.map((sub) => (
