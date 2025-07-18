@@ -527,13 +527,16 @@ const HomePage = () => {
             </div>
 
             <div className="p-6">
-              <MapComponent
-                height="500px"
-                center={[9.5511, 1.1901]} // Centre de Kara
-                zoom={13}
-                showAddButton={true}
-                filterByRole={null}
-              />
+              {/* Wrap MapComponent in error boundary */}
+              <div className="map-container">
+                <MapComponent
+                  height="500px"
+                  center={[9.5511, 1.1901]} // Centre de Kara
+                  zoom={13}
+                  showAddButton={true}
+                  filterByRole={null}
+                />
+              </div>
             </div>
 
             <div className="px-6 pb-6">
