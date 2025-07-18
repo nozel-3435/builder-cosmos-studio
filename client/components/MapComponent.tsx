@@ -130,18 +130,40 @@ export default function MapComponent({
   const fetchLocations = async () => {
     setLoading(true);
     try {
-      let query = supabase.from("locations").select("*").eq("is_active", true);
+      let result;
 
-      if (filterByRole) {
-        query = query.eq("role", filterByRole);
+      if (isDemoMode) {
+        // Mode démonstration
+        result = await demoLocationsService.select();
+      } else {
+        // Mode Supabase normal
+        let query = supabase
+          .from("locations")
+          .select("*")
+          .eq("is_active", true);
+        if (filterByRole) {
+          query = query.eq("role", filterByRole);
+        }
+        result = await query;
       }
 
-      const { data, error } = await query;
+      if (result.error) throw result.error;
 
-      if (error) throw error;
-      setLocations(data || []);
+      let data = result.data || [];
+
+      // Filtrer par rôle en mode démonstration si nécessaire
+      if (isDemoMode && filterByRole) {
+        data = data.filter((location: any) => location.role === filterByRole);
+      }
+
+      setLocations(data);
     } catch (error) {
       console.error("Erreur lors du chargement des locations:", error);
+      // En cas d'erreur, utiliser les données de démonstration
+      if (!isDemoMode) {
+        const demoResult = await demoLocationsService.select();
+        setLocations(demoResult.data || []);
+      }
     } finally {
       setLoading(false);
     }
