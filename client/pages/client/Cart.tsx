@@ -217,33 +217,86 @@ const Cart = () => {
                     </span>
                   </div>
                   <div className="space-y-2">
-                    <label className="flex items-center space-x-3">
+                    <label className="flex items-center space-x-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
                       <input
                         type="radio"
                         name="payment"
-                        value="tmoney"
+                        value="mixx"
+                        checked={selectedPaymentMethod === "mixx"}
+                        onChange={(e) =>
+                          setSelectedPaymentMethod(e.target.value)
+                        }
                         className="text-linka-green"
-                        defaultChecked
                       />
-                      <span className="text-sm">TMoney</span>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded flex items-center justify-center">
+                          <span className="text-white text-xs font-bold">
+                            M
+                          </span>
+                        </div>
+                        <span className="text-sm font-medium">Mixx by Yas</span>
+                      </div>
                     </label>
-                    <label className="flex items-center space-x-3">
+
+                    <label className="flex items-center space-x-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
                       <input
                         type="radio"
                         name="payment"
                         value="flooz"
+                        checked={selectedPaymentMethod === "flooz"}
+                        onChange={(e) =>
+                          setSelectedPaymentMethod(e.target.value)
+                        }
                         className="text-linka-green"
                       />
-                      <span className="text-sm">Flooz</span>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
+                          <span className="text-white text-xs font-bold">
+                            F
+                          </span>
+                        </div>
+                        <span className="text-sm font-medium">Flooz</span>
+                      </div>
                     </label>
-                    <label className="flex items-center space-x-3">
+
+                    <label className="flex items-center space-x-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
                       <input
                         type="radio"
                         name="payment"
-                        value="card"
+                        value="tmoney"
+                        checked={selectedPaymentMethod === "tmoney"}
+                        onChange={(e) =>
+                          setSelectedPaymentMethod(e.target.value)
+                        }
                         className="text-linka-green"
                       />
-                      <span className="text-sm">Carte bancaire</span>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-8 h-8 bg-red-600 rounded flex items-center justify-center">
+                          <span className="text-white text-xs font-bold">
+                            T
+                          </span>
+                        </div>
+                        <span className="text-sm font-medium">TMoney</span>
+                      </div>
+                    </label>
+
+                    <label className="flex items-center space-x-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                      <input
+                        type="radio"
+                        name="payment"
+                        value="bank"
+                        checked={selectedPaymentMethod === "bank"}
+                        onChange={(e) =>
+                          setSelectedPaymentMethod(e.target.value)
+                        }
+                        className="text-linka-green"
+                      />
+                      <div className="flex items-center space-x-2">
+                        <CreditCard className="w-5 h-5 text-gray-600" />
+                        <span className="text-sm font-medium">
+                          Carte bancaire
+                        </span>
+                      </div>
                     </label>
                   </div>
                 </div>
