@@ -100,16 +100,25 @@ RETURNS TABLE (
     ORDER BY distance_km;
 $$;
 
--- Insérer quelques données de démonstration
+-- Insérer des données de démonstration pour Kara, Togo
 INSERT INTO locations (role, name, latitude, longitude, address, phone, description, is_active) VALUES
-('merchant', 'Boutique Kara Centre', 9.5511, 1.1901, 'Avenue de l''Indépendance, Centre-ville, Kara', '+228 90 12 34 56', 'Vêtements et accessoires de mode. Ouvert 8h-18h du lundi au samedi.', true),
-('merchant', 'Marché des Saveurs', 9.5525, 1.1885, 'Quartier Kpéwa, Kara', '+228 91 23 45 67', 'Produits alimentaires frais et locaux. Spécialités togolaises.', true),
-('merchant', 'Tech Solutions Kara', 9.5495, 1.1920, 'Zone Commerciale Tchré, Kara', '+228 92 34 56 78', 'Réparation et vente d''appareils électroniques. Service après-vente.', true),
-('merchant', 'Pharmacie Ramco', 9.5540, 1.1875, 'Carrefour Ramco, Kara', '+228 93 45 67 89', 'Pharmacie agréée. Médicaments et produits de santé. Garde 24h/24.', true),
-('delivery', 'Livreur Express Kara', 9.5515, 1.1895, 'Centre-ville, Kara', '+228 94 56 78 90', 'Service de livraison rapide. Moto et vélo disponibles.', true),
-('delivery', 'LinkaDrop Kpéwa', 9.5530, 1.1880, 'Quartier Kpéwa, Kara', '+228 95 67 89 01', 'Livraison dans tout Kara. Spécialisé produits frais.', true),
-('client', 'Point de rencontre Plateau', 9.5505, 1.1910, 'Plateau, Kara', '+228 96 78 90 12', 'Point de rencontre pour les clients du plateau.', true),
-('client', 'Zone résidentielle Tchré', 9.5485, 1.1925, 'Tchré, Kara', '+228 97 89 01 23', 'Zone résidentielle avec plusieurs clients actifs.', true)
+-- Commerçants de Kara
+('merchant', 'Boutique Kara Centre', 9.5511, 1.1901, 'Avenue de l''Indépendance, Centre-ville, Kara, Région de la Kara', '+228 90 12 34 56', 'Vêtements et accessoires de mode. Ouvert 8h-18h du lundi au samedi.', true),
+('merchant', 'Marché Central Kara', 9.5525, 1.1885, 'Quartier Kpéwa, Commune de Kara', '+228 91 23 45 67', 'Grand marché traditionnel. Produits locaux, céréales, légumes frais.', true),
+('merchant', 'Pharmacie Tchré', 9.5495, 1.1920, 'Quartier Tchré, Kara', '+228 92 34 56 78', 'Pharmacie moderne avec garde 24h/24. Médicaments et produits de santé.', true),
+('merchant', 'Restaurant Savana', 9.5540, 1.1875, 'Route de Bassar, Kara', '+228 93 45 67 89', 'Cuisine togolaise authentique. Spécialités du Nord-Togo.', true),
+('merchant', 'Atelier Mécanique Kara', 9.5480, 1.1940, 'Zone Artisanale, Quartier Tchré', '+228 98 12 34 56', 'Réparation automobile et moto. Pièces détachées disponibles.', true),
+('merchant', 'Boulangerie du Matin', 9.5520, 1.1890, 'Route Nationale, Centre-ville', '+228 99 23 45 67', 'Pain frais quotidien. Pâtisseries et viennoiseries.', true),
+
+-- Livreurs de Kara
+('delivery', 'LinkaDrop Kara', 9.5515, 1.1895, 'Centre-ville, Kara', '+228 94 56 78 90', 'Service de livraison rapide dans toute la ville de Kara. Moto et vélo.', true),
+('delivery', 'Express Kara Nord', 9.5530, 1.1880, 'Quartier Kpéwa, Kara', '+228 95 67 89 01', 'Livraison spécialisée pour les quartiers nord de Kara.', true),
+('delivery', 'Moto Rapide Tchré', 9.5490, 1.1930, 'Quartier Tchré, Kara', '+228 96 78 90 12', 'Livraison express quartier Tchré et environs.', true),
+
+-- Points clients et zones résidentielles
+('client', 'Zone Résidentielle Plateau', 9.5505, 1.1910, 'Plateau, Commune de Kara', '+228 97 89 01 23', 'Zone résidentielle calme avec plusieurs familles actives sur LinkaMarket.', true),
+('client', 'Quartier Lycée', 9.5485, 1.1925, 'Près du Lycée de Kara, Quartier Tchré', '+228 98 90 12 34', 'Zone étudiante avec forte demande de livraison et services.', true),
+('client', 'Résidence Kpéwa', 9.5535, 1.1870, 'Quartier Kpéwa Résidentiel', '+228 99 01 23 45', 'Zone résidentielle moderne avec accès facile aux commerçants.', true)
 ON CONFLICT DO NOTHING;
 
 COMMIT;
