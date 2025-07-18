@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Eye, EyeOff, Shield, Lock } from "lucide-react";
-import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 interface AdminLoginProps {
   onAuthenticated: () => void;
