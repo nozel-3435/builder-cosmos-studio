@@ -651,7 +651,7 @@ const EditableProfile = () => {
                   <MapPin className="w-4 h-4" />
                   <span>Utiliser ma position actuelle</span>
                 </button>
-                {formData.coordinates.lat !== 0 && (
+                {formData.coordinates && formData.coordinates.lat !== 0 && (
                   <p className="text-sm text-green-600 mt-2 flex items-center">
                     <Check className="w-4 h-4 mr-1" />
                     Position enregistrée
