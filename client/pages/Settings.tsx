@@ -64,6 +64,32 @@ const Settings = () => {
     }));
   };
 
+  const handleLanguageChange = (langCode: string) => {
+    setLanguage(langCode);
+    // Sauvegarder la langue dans le localStorage
+    localStorage.setItem("linka_language", langCode);
+    // Afficher une confirmation
+    alert(
+      `Langue changée vers : ${langCode === "fr" ? "Français" : "English"}`,
+    );
+  };
+
+  const handleThemeChange = (themeId: string) => {
+    setTheme(themeId);
+    // Sauvegarder le thème dans le localStorage
+    localStorage.setItem("linka_theme", themeId);
+    // Appliquer le thème au document
+    if (themeId === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    // Afficher une confirmation
+    alert(
+      `Thème changé vers : ${themeId === "light" ? "Clair" : themeId === "dark" ? "Sombre" : "Système"}`,
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
