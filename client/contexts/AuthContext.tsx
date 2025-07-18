@@ -44,6 +44,14 @@ export const useAuth = () => {
   if (context === undefined) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
+  // Additional safety check to ensure context methods exist
+  if (
+    typeof context.login !== "function" ||
+    typeof context.logout !== "function"
+  ) {
+    console.error("AuthContext methods are not properly initialized");
+    throw new Error("AuthContext is corrupted. Please refresh the page.");
+  }
   return context;
 };
 
