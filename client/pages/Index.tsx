@@ -530,8 +530,17 @@ const HomePage = () => {
             </div>
 
             <div className="p-6">
-              {/* Wrap MapComponent in error boundary */}
-              <div className="map-container">
+              {/* Wrap MapComponent in Suspense for lazy loading */}
+              <React.Suspense
+                fallback={
+                  <div className="h-[500px] bg-gray-100 rounded-lg flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-linka-green mx-auto mb-2"></div>
+                      <p className="text-gray-600">Chargement de la carte...</p>
+                    </div>
+                  </div>
+                }
+              >
                 <MapComponent
                   height="500px"
                   center={[9.5511, 1.1901]} // Centre de Kara
@@ -539,7 +548,7 @@ const HomePage = () => {
                   showAddButton={true}
                   filterByRole={null}
                 />
-              </div>
+              </React.Suspense>
             </div>
 
             <div className="px-6 pb-6">
