@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 
 const Settings = () => {
+  const navigate = useNavigate();
   const [language, setLanguage] = useState("fr");
   const [theme, setTheme] = useState("light");
   const [notifications, setNotifications] = useState({
