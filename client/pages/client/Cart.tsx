@@ -85,7 +85,10 @@ const Cart = () => {
             <p className="text-gray-600 mb-6">
               Ajoutez des produits pour commencer vos achats
             </p>
-            <button className="bg-linka-green text-white px-6 py-3 rounded-lg hover:bg-linka-green/90 transition-colors">
+            <button
+              onClick={() => navigate("/products")}
+              className="bg-linka-green text-white px-6 py-3 rounded-lg hover:bg-linka-green/90 transition-colors"
+            >
               Continuer mes achats
             </button>
           </div>
