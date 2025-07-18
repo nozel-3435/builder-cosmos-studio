@@ -593,7 +593,7 @@ export default function MapComponent({
       )}
 
       {/* Styles pour l'animation pulse */}
-      <style jsx>{`
+      <style>{`
         @keyframes pulse {
           0% {
             transform: scale(1);
