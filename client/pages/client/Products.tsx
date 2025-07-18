@@ -376,7 +376,7 @@ const Products = () => {
 
                 {/* Price Range */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Prix (FCFA)
                   </label>
                   <div className="flex space-x-2">
