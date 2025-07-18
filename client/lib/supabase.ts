@@ -1,11 +1,32 @@
 import { createClient } from "@supabase/supabase-js";
 
 // Configuration Supabase
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "YOUR_SUPABASE_URL";
-const supabaseAnonKey =
-  import.meta.env.VITE_SUPABASE_ANON_KEY || "YOUR_SUPABASE_ANON_KEY";
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Validation des variables d'environnement
+if (
+  !supabaseUrl ||
+  !supabaseAnonKey ||
+  supabaseUrl === "YOUR_SUPABASE_URL" ||
+  supabaseAnonKey === "YOUR_SUPABASE_ANON_KEY"
+) {
+  console.warn(
+    "⚠️ Variables d'environnement Supabase manquantes. Utilisation du mode démonstration.",
+  );
+}
+
+// Créer le client Supabase avec des valeurs par défaut valides si nécessaire
+const defaultUrl = "https://demo.supabase.co"; // URL valide par défaut
+const defaultKey =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDE3NjkzNDIsImV4cCI6MTk1NzM0NTM0Mn0.dc_X5iR_VP_qT0zsiyj_I_OZ2T9FtRU2BBNWN8Bu4GE"; // Clé de démo valide
+
+export const supabase = createClient(
+  supabaseUrl && supabaseUrl !== "YOUR_SUPABASE_URL" ? supabaseUrl : defaultUrl,
+  supabaseAnonKey && supabaseAnonKey !== "YOUR_SUPABASE_ANON_KEY"
+    ? supabaseAnonKey
+    : defaultKey,
+);
 
 // Types pour TypeScript
 export interface Database {
