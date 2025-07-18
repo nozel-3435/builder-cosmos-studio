@@ -269,12 +269,17 @@ export default function MapComponent({
     if (!confirm("Êtes-vous sûr de vouloir supprimer cette location ?")) return;
 
     try {
-      const { error } = await supabase
-        .from("locations")
-        .update({ is_active: false })
-        .eq("id", locationId);
-
-      if (error) throw error;
+      if (isDemoMode) {
+        // Mode démonstration
+        alert("Mode démonstration : Suppression simulée avec succès !");
+      } else {
+        // Mode Supabase normal
+        const { error } = await supabase
+          .from("locations")
+          .update({ is_active: false })
+          .eq("id", locationId);
+        if (error) throw error;
+      }
       await fetchLocations();
     } catch (error) {
       console.error("Erreur lors de la suppression:", error);
