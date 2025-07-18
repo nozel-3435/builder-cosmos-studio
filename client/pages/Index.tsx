@@ -541,13 +541,36 @@ const HomePage = () => {
                   </div>
                 }
               >
-                <MapComponent
-                  height="500px"
-                  center={[9.5511, 1.1901]} // Centre de Kara
-                  zoom={13}
-                  showAddButton={true}
-                  filterByRole={null}
-                />
+                <ErrorBoundary
+                  fallback={
+                    <div className="h-[500px] bg-blue-50 border border-blue-200 rounded-lg flex items-center justify-center">
+                      <div className="text-center">
+                        <MapPin className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+                        <h3 className="text-lg font-semibold text-blue-800 mb-2">
+                          Carte temporairement indisponible
+                        </h3>
+                        <p className="text-blue-600 text-sm mb-4">
+                          La carte interactive sera disponible bientôt
+                        </p>
+                        <Link
+                          to="/map"
+                          className="inline-flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+                        >
+                          <MapPin className="w-4 h-4" />
+                          <span>Voir la page carte</span>
+                        </Link>
+                      </div>
+                    </div>
+                  }
+                >
+                  <MapComponent
+                    height="500px"
+                    center={[9.5511, 1.1901]} // Centre de Kara
+                    zoom={13}
+                    showAddButton={true}
+                    filterByRole={null}
+                  />
+                </ErrorBoundary>
               </React.Suspense>
             </div>
 
