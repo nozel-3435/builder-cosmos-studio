@@ -390,6 +390,46 @@ export interface Database {
           quantity?: number;
         };
       };
+      locations: {
+        Row: {
+          id: string;
+          user_id?: string;
+          role: "client" | "merchant" | "delivery";
+          name: string;
+          latitude: number;
+          longitude: number;
+          address?: string;
+          phone?: string;
+          description?: string;
+          is_active: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id?: string;
+          role: "client" | "merchant" | "delivery";
+          name: string;
+          latitude: number;
+          longitude: number;
+          address?: string;
+          phone?: string;
+          description?: string;
+          is_active?: boolean;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          role?: "client" | "merchant" | "delivery";
+          name?: string;
+          latitude?: number;
+          longitude?: number;
+          address?: string;
+          phone?: string;
+          description?: string;
+          is_active?: boolean;
+        };
+      };
     };
     Views: {
       [_ in never]: never;
