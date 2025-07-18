@@ -99,6 +99,17 @@ const Map = () => {
               {/* View Mode Toggle */}
               <div className="flex bg-gray-100 rounded-lg p-1">
                 <button
+                  onClick={() => setViewMode("interactive")}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    viewMode === "interactive"
+                      ? "bg-white text-gray-900 shadow-sm"
+                      : "text-gray-600 hover:text-gray-900"
+                  }`}
+                >
+                  <Plus className="h-4 w-4 inline mr-1" />
+                  Interactive
+                </button>
+                <button
                   onClick={() => setViewMode("overview")}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     viewMode === "overview"
