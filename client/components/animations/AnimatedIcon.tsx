@@ -40,7 +40,7 @@ const AnimatedIcon: React.FC<AnimatedIconProps> = ({
             transition: {
               duration: 1.5,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
               delay,
             },
           },
@@ -49,7 +49,7 @@ const AnimatedIcon: React.FC<AnimatedIconProps> = ({
             transition: {
               duration: 0.6,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
             },
           },
         };
@@ -62,7 +62,7 @@ const AnimatedIcon: React.FC<AnimatedIconProps> = ({
             transition: {
               duration: 3,
               repeat: Infinity,
-              ease: "linear",
+              ease: "linear" as const,
               delay,
             },
           },
@@ -70,7 +70,7 @@ const AnimatedIcon: React.FC<AnimatedIconProps> = ({
             rotate: 360,
             transition: {
               duration: 0.8,
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
             },
           },
         };
@@ -83,7 +83,7 @@ const AnimatedIcon: React.FC<AnimatedIconProps> = ({
             transition: {
               duration: 2,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
               delay,
             },
           },
@@ -91,7 +91,7 @@ const AnimatedIcon: React.FC<AnimatedIconProps> = ({
             scale: 1.2,
             transition: {
               duration: 0.3,
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
             },
           },
         };
@@ -105,7 +105,7 @@ const AnimatedIcon: React.FC<AnimatedIconProps> = ({
               duration: 0.5,
               repeat: Infinity,
               repeatDelay: 3,
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
               delay,
             },
           },
@@ -113,7 +113,7 @@ const AnimatedIcon: React.FC<AnimatedIconProps> = ({
             x: [-2, 2, -2, 2, 0],
             transition: {
               duration: 0.4,
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
             },
           },
         };
@@ -126,7 +126,7 @@ const AnimatedIcon: React.FC<AnimatedIconProps> = ({
             transition: {
               duration: 3,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
               delay,
             },
           },
@@ -136,7 +136,7 @@ const AnimatedIcon: React.FC<AnimatedIconProps> = ({
             transition: {
               duration: 2,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
             },
           },
         };
@@ -150,7 +150,7 @@ const AnimatedIcon: React.FC<AnimatedIconProps> = ({
             scale: 1.1,
             transition: {
               duration: 0.2,
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
             },
           },
         };
