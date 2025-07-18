@@ -451,7 +451,7 @@ const Products = () => {
                 className={`px-4 py-2 text-sm rounded-full border transition-colors ${
                   selectedCategory === category.id
                     ? "border-linka-green bg-linka-green text-white"
-                    : "border-gray-300 hover:border-linka-green hover:text-linka-green"
+                    : "border-input text-foreground hover:border-linka-green hover:text-linka-green"
                 }`}
               >
                 {category.icon} {category.name}
