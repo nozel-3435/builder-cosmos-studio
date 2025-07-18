@@ -28,6 +28,96 @@ export const supabase = createClient(
     : defaultKey,
 );
 
+// Vérifier si on est en mode démonstration
+export const isDemoMode =
+  !supabaseUrl ||
+  !supabaseAnonKey ||
+  supabaseUrl === "YOUR_SUPABASE_URL" ||
+  supabaseAnonKey === "YOUR_SUPABASE_ANON_KEY" ||
+  supabaseUrl === defaultUrl;
+
+// Service de démonstration pour les locations
+export const demoLocationsService = {
+  async select() {
+    return {
+      data: [
+        {
+          id: "demo-1",
+          role: "merchant",
+          name: "Boutique Kara Centre",
+          latitude: 9.5511,
+          longitude: 1.1901,
+          address: "Avenue de l'Indépendance, Centre-ville, Kara",
+          phone: "+228 90 12 34 56",
+          description:
+            "Vêtements et accessoires de mode. Ouvert 8h-18h du lundi au samedi.",
+          is_active: true,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+          user_id: null,
+        },
+        {
+          id: "demo-2",
+          role: "merchant",
+          name: "Marché des Saveurs",
+          latitude: 9.5525,
+          longitude: 1.1885,
+          address: "Quartier Kpéwa, Kara",
+          phone: "+228 91 23 45 67",
+          description:
+            "Produits alimentaires frais et locaux. Spécialités togolaises.",
+          is_active: true,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+          user_id: null,
+        },
+        {
+          id: "demo-3",
+          role: "delivery",
+          name: "Livreur Express Kara",
+          latitude: 9.5515,
+          longitude: 1.1895,
+          address: "Centre-ville, Kara",
+          phone: "+228 94 56 78 90",
+          description: "Service de livraison rapide. Moto et vélo disponibles.",
+          is_active: true,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+          user_id: null,
+        },
+        {
+          id: "demo-4",
+          role: "client",
+          name: "Point de rencontre Plateau",
+          latitude: 9.5505,
+          longitude: 1.191,
+          address: "Plateau, Kara",
+          phone: "+228 96 78 90 12",
+          description: "Point de rencontre pour les clients du plateau.",
+          is_active: true,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+          user_id: null,
+        },
+      ],
+      error: null,
+    };
+  },
+
+  async insert(data: any[]) {
+    console.log("Mode démonstration: Simulation d'ajout de location", data);
+    return { data: null, error: null };
+  },
+
+  async update(data: any) {
+    console.log(
+      "Mode démonstration: Simulation de mise à jour de location",
+      data,
+    );
+    return { data: null, error: null };
+  },
+};
+
 // Types pour TypeScript
 export interface Database {
   public: {
