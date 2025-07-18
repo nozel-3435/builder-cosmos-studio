@@ -212,10 +212,7 @@ const AdminDashboard = () => {
                 <span>Actualiser</span>
               </button>
               <button
-                onClick={() => {
-                  logoutAdmin();
-                  window.location.href = "/";
-                }}
+                onClick={handleLogout}
                 className="flex items-center space-x-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
               >
                 <Shield className="w-4 h-4" />
