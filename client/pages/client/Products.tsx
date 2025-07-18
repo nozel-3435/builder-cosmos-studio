@@ -403,7 +403,7 @@ const Products = () => {
 
                 {/* Stock Filter */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Disponibilité
                   </label>
                   <label className="flex items-center space-x-2">
@@ -411,9 +411,9 @@ const Products = () => {
                       type="checkbox"
                       checked={inStockOnly}
                       onChange={(e) => setInStockOnly(e.target.checked)}
-                      className="rounded border-gray-300 text-linka-green focus:ring-linka-green"
+                      className="rounded border-input text-linka-green focus:ring-linka-green"
                     />
-                    <span className="text-sm text-gray-700">
+                    <span className="text-sm text-foreground">
                       En stock uniquement
                     </span>
                   </label>
