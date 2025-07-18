@@ -260,7 +260,7 @@ const Products = () => {
         </div>
 
         {/* Search and Controls */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+        <div className="bg-card rounded-xl shadow-sm border border-border p-6 mb-8">
           <div className="flex flex-col lg:flex-row gap-4 mb-6">
             {/* Search */}
             <div className="flex-1 relative">
