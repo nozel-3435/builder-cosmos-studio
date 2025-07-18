@@ -105,30 +105,16 @@ const FloatingSettings: React.FC<FloatingSettingsProps> = ({
       </div>
 
       {/* Settings Panel */}
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              className="fixed inset-0 bg-black/20 z-40"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
-            />
+            {isOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/20 z-40"
+            onClick={() => setIsOpen(false)}
+          />
 
-            {/* Panel */}
-            <motion.div
-              className="fixed bottom-24 right-6 w-80 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50 overflow-hidden"
-              initial={{
-                scale: 0,
-                opacity: 0,
-                transformOrigin: "bottom right",
-              }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            >
+          {/* Panel */}
+          <div className="fixed bottom-24 right-6 w-80 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50 overflow-hidden">
               {/* Header */}
               <div className="bg-linka-green text-white p-4">
                 <h3 className="text-lg font-semibold flex items-center gap-2">
