@@ -322,14 +322,100 @@ const Map = () => {
 
           {/* Map */}
           <div
-            className={`${listView ? "order-2" : "order-2"} h-[600px] bg-white rounded-lg shadow-sm overflow-hidden`}
+            className={`${listView ? "order-2" : "order-2"} ${viewMode === "interactive" ? "col-span-full" : ""}`}
           >
-            <KaraMap
-              viewMode={viewMode}
-              selectedMerchant={selectedMerchant}
-              showUserLocation={true}
-              onMerchantSelect={setSelectedMerchant}
-            />
+            {viewMode === "interactive" ? (
+              <div className="space-y-4">
+                <div className="bg-white rounded-lg shadow-sm p-6">
+                  <div className="mb-4">
+                    <h2 className="text-xl font-semibold text-gray-900 mb-2">
+                      Carte Interactive LinkaMarket
+                    </h2>
+                    <p className="text-gray-600">
+                      Cliquez sur la carte pour ajouter votre position et
+                      découvrir les commerçants, clients et livreurs autour de
+                      vous.
+                    </p>
+                  </div>
+
+                  {/* Filtres rapides pour la carte interactive */}
+                  <div className="flex items-center space-x-4 mb-4">
+                    <span className="text-sm font-medium text-gray-700">
+                      Afficher :
+                    </span>
+                    <button
+                      onClick={() => setSearchQuery("")}
+                      className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        searchQuery === ""
+                          ? "bg-blue-100 text-blue-700"
+                          : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      }`}
+                    >
+                      <Users className="h-4 w-4 inline mr-1" />
+                      Tous
+                    </button>
+                    <button
+                      onClick={() => setSearchQuery("merchant")}
+                      className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        searchQuery === "merchant"
+                          ? "bg-green-100 text-green-700"
+                          : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      }`}
+                    >
+                      <Store className="h-4 w-4 inline mr-1" />
+                      Commerçants
+                    </button>
+                    <button
+                      onClick={() => setSearchQuery("delivery")}
+                      className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        searchQuery === "delivery"
+                          ? "bg-orange-100 text-orange-700"
+                          : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      }`}
+                    >
+                      <Truck className="h-4 w-4 inline mr-1" />
+                      Livreurs
+                    </button>
+                    <button
+                      onClick={() => setSearchQuery("client")}
+                      className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        searchQuery === "client"
+                          ? "bg-blue-100 text-blue-700"
+                          : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      }`}
+                    >
+                      <Users className="h-4 w-4 inline mr-1" />
+                      Clients
+                    </button>
+                  </div>
+                </div>
+
+                <MapComponent
+                  height="650px"
+                  center={[9.5511, 1.1901]}
+                  zoom={13}
+                  showAddButton={true}
+                  filterByRole={
+                    searchQuery === "merchant"
+                      ? "merchant"
+                      : searchQuery === "delivery"
+                        ? "delivery"
+                        : searchQuery === "client"
+                          ? "client"
+                          : null
+                  }
+                />
+              </div>
+            ) : (
+              <div className="h-[600px] bg-white rounded-lg shadow-sm overflow-hidden">
+                <KaraMap
+                  viewMode={viewMode}
+                  selectedMerchant={selectedMerchant}
+                  showUserLocation={true}
+                  onMerchantSelect={setSelectedMerchant}
+                />
+              </div>
+            )}
           </div>
         </div>
 
