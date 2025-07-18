@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Minus, Plus, Trash2, CreditCard, MapPin } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import {
+  Minus,
+  Plus,
+  Trash2,
+  CreditCard,
+  MapPin,
+  ArrowLeft,
+} from "lucide-react";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([
