@@ -463,13 +463,13 @@ const Products = () => {
         {/* Products Grid/List */}
         {filteredProducts.length === 0 ? (
           <div className="text-center py-12">
-            <div className="w-24 h-24 bg-linka-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Search className="w-8 h-8 text-gray-400" />
+            <div className="w-24 h-24 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+              <Search className="w-8 h-8 text-muted-foreground" />
             </div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
+            <h2 className="text-xl font-semibold text-foreground mb-2">
               Aucun produit trouvé
             </h2>
-            <p className="text-gray-600 mb-6">
+            <p className="text-muted-foreground mb-6">
               Essayez de modifier vos critères de recherche
             </p>
             <button
