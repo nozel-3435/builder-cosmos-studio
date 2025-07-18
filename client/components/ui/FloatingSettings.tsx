@@ -85,7 +85,7 @@ const FloatingSettings: React.FC<FloatingSettingsProps> = ({
 
   return (
     <>
-            {/* Floating Button */}
+      {/* Floating Button */}
       <div className={`fixed bottom-6 right-6 z-50 ${className}`}>
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -102,7 +102,7 @@ const FloatingSettings: React.FC<FloatingSettingsProps> = ({
             <Settings className="w-6 h-6" />
           )}
         </button>
-      </motion.div>
+      </div>
 
       {/* Settings Panel */}
       <AnimatePresence>
