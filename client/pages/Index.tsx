@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { popularProducts, categories } from "@/data/products";
@@ -5,7 +6,6 @@ import AnimationWrapper from "../components/animations/AnimationWrapper";
 import AnimatedCard from "../components/animations/AnimatedCard";
 import InteractiveButton from "../components/animations/InteractiveButton";
 import AnimatedIcon from "../components/animations/AnimatedIcon";
-import MapComponent from "../components/MapComponent";
 import {
   Search,
   Store,
@@ -21,6 +21,9 @@ import {
   Heart,
   ShoppingCart,
 } from "lucide-react";
+
+// Lazy load MapComponent to avoid initial loading issues
+const MapComponent = React.lazy(() => import("../components/MapComponent"));
 
 const HomePage = () => {
   const { user } = useAuth();
