@@ -162,7 +162,7 @@ export default function MapComponent({
       // En cas d'erreur, utiliser les données de démonstration
       if (!isDemoMode) {
         const demoResult = await demoLocationsService.select();
-        setLocations(demoResult.data || []);
+        setLocations((demoResult.data || []) as Location[]);
       }
     } finally {
       setLoading(false);
@@ -179,7 +179,7 @@ export default function MapComponent({
     setEditingLocation(null);
     setFormData({
       name: "",
-      role: user?.role || "client",
+      role: (user?.role as "client" | "merchant" | "delivery") || "client",
       address: "",
       phone: user?.phone || "",
       description: "",
