@@ -197,6 +197,18 @@
   .border-gray-300 {
     @apply border-gray-300 dark:border-gray-600;
   }
+
+  .bg-linka-gray-50 {
+    @apply bg-linka-gray-50 dark:bg-gray-900;
+  }
+
+  .bg-linka-gray-100 {
+    @apply bg-linka-gray-100 dark:bg-gray-800;
+  }
+
+  .bg-linka-gray-200 {
+    @apply bg-linka-gray-200 dark:bg-gray-700;
+  }
 }
 
 /* LinkaMarket Custom Styles inspired by modern e-commerce */
