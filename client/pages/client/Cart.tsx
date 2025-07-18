@@ -367,6 +367,203 @@ const Cart = () => {
             </div>
           </div>
         )}
+
+        {/* Payment Modal */}
+        {showPaymentModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full max-h-screen overflow-y-auto">
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-xl font-semibold text-gray-900">
+                    Finaliser le paiement
+                  </h3>
+                  <button
+                    onClick={() => setShowPaymentModal(false)}
+                    className="text-gray-400 hover:text-gray-600"
+                  >
+                    ×
+                  </button>
+                </div>
+
+                {/* Order Summary */}
+                <div className="bg-gray-50 rounded-lg p-4 mb-6">
+                  <h4 className="font-medium text-gray-900 mb-3">
+                    Résumé de la commande
+                  </h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span>Sous-total</span>
+                      <span>{totalPrice.toLocaleString()} FCFA</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Livraison</span>
+                      <span>{deliveryFee.toLocaleString()} FCFA</span>
+                    </div>
+                    <div className="border-t pt-2 font-semibold">
+                      <div className="flex justify-between">
+                        <span>Total</span>
+                        <span className="text-linka-green">
+                          {finalTotal.toLocaleString()} FCFA
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Payment Method Details */}
+                {selectedPaymentMethod === "mixx" && (
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-3 p-4 bg-purple-50 rounded-lg">
+                      <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded flex items-center justify-center">
+                        <span className="text-white font-bold">M</span>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">
+                          Mixx by Yas
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          Paiement sécurisé
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Numéro de téléphone
+                      </label>
+                      <input
+                        type="tel"
+                        placeholder="+228 XX XX XX XX"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {selectedPaymentMethod === "flooz" && (
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-3 p-4 bg-blue-50 rounded-lg">
+                      <div className="w-10 h-10 bg-blue-600 rounded flex items-center justify-center">
+                        <span className="text-white font-bold">F</span>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">Flooz</h4>
+                        <p className="text-sm text-gray-600">Paiement mobile</p>
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Numéro Flooz
+                      </label>
+                      <input
+                        type="tel"
+                        placeholder="+228 XX XX XX XX"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {selectedPaymentMethod === "tmoney" && (
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-3 p-4 bg-red-50 rounded-lg">
+                      <div className="w-10 h-10 bg-red-600 rounded flex items-center justify-center">
+                        <span className="text-white font-bold">T</span>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">TMoney</h4>
+                        <p className="text-sm text-gray-600">Togocel Money</p>
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Numéro TMoney
+                      </label>
+                      <input
+                        type="tel"
+                        placeholder="+228 XX XX XX XX"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {selectedPaymentMethod === "bank" && (
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
+                      <CreditCard className="w-6 h-6 text-gray-600" />
+                      <div>
+                        <h4 className="font-medium text-gray-900">
+                          Carte bancaire
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          Visa, Mastercard acceptées
+                        </p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="col-span-2">
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Numéro de carte
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="1234 5678 9012 3456"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-linka-green focus:border-transparent"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Expiration
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="MM/AA"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-linka-green focus:border-transparent"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          CVV
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="123"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-linka-green focus:border-transparent"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Payment Actions */}
+                <div className="flex space-x-3 mt-6">
+                  <button
+                    onClick={() => setShowPaymentModal(false)}
+                    className="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Annuler
+                  </button>
+                  <button
+                    onClick={() => {
+                      // Simulate payment processing
+                      alert(
+                        `Paiement en cours via ${selectedPaymentMethod === "mixx" ? "Mixx by Yas" : selectedPaymentMethod === "flooz" ? "Flooz" : selectedPaymentMethod === "tmoney" ? "TMoney" : "Carte bancaire"}...`,
+                      );
+                      setShowPaymentModal(false);
+                    }}
+                    className="flex-1 px-4 py-3 bg-linka-green text-white rounded-lg hover:bg-linka-green/90 transition-colors font-semibold"
+                  >
+                    Payer {finalTotal.toLocaleString()} FCFA
+                  </button>
+                </div>
+
+                <p className="text-xs text-gray-500 mt-4 text-center">
+                  Paiement sécurisé • Vos données sont protégées
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
