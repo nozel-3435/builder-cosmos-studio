@@ -195,11 +195,13 @@ const Products = () => {
             {product.subcategory || product.category}
           </span>
         </div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-1 line-clamp-2">
+        <h3 className="text-lg font-semibold text-card-foreground mb-1 line-clamp-2">
           {product.name}
         </h3>
-        <p className="text-sm text-gray-600 mb-1">{product.store}</p>
-        <p className="text-xs text-gray-500 mb-3">{product.storeLocation}</p>
+        <p className="text-sm text-muted-foreground mb-1">{product.store}</p>
+        <p className="text-xs text-muted-foreground/80 mb-3">
+          {product.storeLocation}
+        </p>
 
         <div className="flex items-center justify-between mb-3">
           <div className="flex flex-col">
