@@ -48,6 +48,11 @@ const Cart = () => {
     setCartItems(cartItems.filter((item) => item.id !== id));
   };
 
+  const [showAddressModal, setShowAddressModal] = useState(false);
+  const [deliveryAddress, setDeliveryAddress] = useState(
+    "123 Rue de la République, Plateau, Abidjan",
+  );
+
   const totalPrice = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0,
