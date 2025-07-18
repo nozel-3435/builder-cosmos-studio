@@ -18,8 +18,8 @@ import {
 
 const Map = () => {
   const [viewMode, setViewMode] = useState<
-    "merchants" | "delivery" | "overview"
-  >("overview");
+    "merchants" | "delivery" | "overview" | "interactive"
+  >("interactive");
   const [selectedMerchant, setSelectedMerchant] = useState<number | null>(null);
   const [showFilters, setShowFilters] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
