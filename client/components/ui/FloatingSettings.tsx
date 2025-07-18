@@ -105,7 +105,7 @@ const FloatingSettings: React.FC<FloatingSettingsProps> = ({
       </div>
 
       {/* Settings Panel */}
-            {isOpen && (
+      {isOpen && (
         <>
           {/* Backdrop */}
           <div
@@ -115,30 +115,30 @@ const FloatingSettings: React.FC<FloatingSettingsProps> = ({
 
           {/* Panel */}
           <div className="fixed bottom-24 right-6 w-80 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50 overflow-hidden">
-              {/* Header */}
-              <div className="bg-linka-green text-white p-4">
-                <h3 className="text-lg font-semibold flex items-center gap-2">
-                  <Settings className="w-5 h-5" />
-                  Paramètres
-                </h3>
-              </div>
+            {/* Header */}
+            <div className="bg-linka-green text-white p-4">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <Settings className="w-5 h-5" />
+                Paramètres
+              </h3>
+            </div>
 
-              {/* Settings Content */}
-              <div className="p-4 space-y-6 max-h-96 overflow-y-auto">
-                {/* Language Selection */}
-                <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <Globe className="w-4 h-4 text-linka-green" />
-                    <span className="text-sm font-medium text-gray-700">
-                      Langue
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-1 gap-2">
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => updateSetting("language", lang.code)}
-                        className={`
+            {/* Settings Content */}
+            <div className="p-4 space-y-6 max-h-96 overflow-y-auto">
+              {/* Language Selection */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Globe className="w-4 h-4 text-linka-green" />
+                  <span className="text-sm font-medium text-gray-700">
+                    Langue
+                  </span>
+                </div>
+                <div className="grid grid-cols-1 gap-2">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => updateSetting("language", lang.code)}
+                      className={`
                           flex items-center gap-3 p-3 rounded-lg border transition-colors
                           ${
                             settings.language === lang.code
@@ -146,30 +146,30 @@ const FloatingSettings: React.FC<FloatingSettingsProps> = ({
                               : "border-gray-200 hover:border-gray-300"
                           }
                         `}
-                      >
-                        <span className="text-lg">{lang.flag}</span>
-                        <span className="font-medium">{lang.name}</span>
-                      </button>
-                    ))}
-                  </div>
+                    >
+                      <span className="text-lg">{lang.flag}</span>
+                      <span className="font-medium">{lang.name}</span>
+                    </button>
+                  ))}
                 </div>
+              </div>
 
-                {/* Theme Selection */}
-                <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <Palette className="w-4 h-4 text-linka-green" />
-                    <span className="text-sm font-medium text-gray-700">
-                      Thème
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-3 gap-2">
-                    {themes.map((theme) => {
-                      const Icon = theme.icon;
-                      return (
-                        <button
-                          key={theme.value}
-                          onClick={() => updateSetting("theme", theme.value)}
-                          className={`
+              {/* Theme Selection */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Palette className="w-4 h-4 text-linka-green" />
+                  <span className="text-sm font-medium text-gray-700">
+                    Thème
+                  </span>
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                  {themes.map((theme) => {
+                    const Icon = theme.icon;
+                    return (
+                      <button
+                        key={theme.value}
+                        onClick={() => updateSetting("theme", theme.value)}
+                        className={`
                             flex flex-col items-center gap-2 p-3 rounded-lg border transition-colors
                             ${
                               settings.theme === theme.value
@@ -177,125 +177,124 @@ const FloatingSettings: React.FC<FloatingSettingsProps> = ({
                                 : "border-gray-200 hover:border-gray-300"
                             }
                           `}
-                        >
-                          <Icon className="w-5 h-5" />
-                          <span className="text-xs font-medium">
-                            {theme.name}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
+                      >
+                        <Icon className="w-5 h-5" />
+                        <span className="text-xs font-medium">
+                          {theme.name}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
+              </div>
 
-                {/* Toggle Settings */}
-                <div className="space-y-4">
-                  {/* Sound */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      {settings.sound ? (
-                        <Volume2 className="w-4 h-4 text-linka-green" />
-                      ) : (
-                        <VolumeX className="w-4 h-4 text-gray-400" />
-                      )}
-                      <span className="text-sm font-medium text-gray-700">
-                        Sons
-                      </span>
-                    </div>
-                    <button
-                      onClick={() => updateSetting("sound", !settings.sound)}
-                      className={`
+              {/* Toggle Settings */}
+              <div className="space-y-4">
+                {/* Sound */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    {settings.sound ? (
+                      <Volume2 className="w-4 h-4 text-linka-green" />
+                    ) : (
+                      <VolumeX className="w-4 h-4 text-gray-400" />
+                    )}
+                    <span className="text-sm font-medium text-gray-700">
+                      Sons
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => updateSetting("sound", !settings.sound)}
+                    className={`
                         relative w-11 h-6 rounded-full transition-colors
                         ${settings.sound ? "bg-linka-green" : "bg-gray-300"}
                       `}
-                    >
-                      <div
-                        className={`
+                  >
+                    <div
+                      className={`
                           absolute top-1 w-4 h-4 bg-white rounded-full transition-transform
                           ${settings.sound ? "translate-x-6" : "translate-x-1"}
                         `}
-                      />
-                    </button>
-                  </div>
+                    />
+                  </button>
+                </div>
 
-                  {/* Notifications */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      {settings.notifications ? (
-                        <Bell className="w-4 h-4 text-linka-green" />
-                      ) : (
-                        <BellOff className="w-4 h-4 text-gray-400" />
-                      )}
-                      <span className="text-sm font-medium text-gray-700">
-                        Notifications
-                      </span>
-                    </div>
-                    <button
-                      onClick={() =>
-                        updateSetting("notifications", !settings.notifications)
-                      }
-                      className={`
+                {/* Notifications */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    {settings.notifications ? (
+                      <Bell className="w-4 h-4 text-linka-green" />
+                    ) : (
+                      <BellOff className="w-4 h-4 text-gray-400" />
+                    )}
+                    <span className="text-sm font-medium text-gray-700">
+                      Notifications
+                    </span>
+                  </div>
+                  <button
+                    onClick={() =>
+                      updateSetting("notifications", !settings.notifications)
+                    }
+                    className={`
                         relative w-11 h-6 rounded-full transition-colors
                         ${settings.notifications ? "bg-linka-green" : "bg-gray-300"}
                       `}
-                    >
-                      <div
-                        className={`
+                  >
+                    <div
+                      className={`
                           absolute top-1 w-4 h-4 bg-white rounded-full transition-transform
                           ${settings.notifications ? "translate-x-6" : "translate-x-1"}
                         `}
-                      />
-                    </button>
-                  </div>
+                    />
+                  </button>
+                </div>
 
-                  {/* Animations */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <motion.div
-                        animate={settings.animations ? { rotate: 360 } : {}}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      >
-                        <Settings className="w-4 h-4 text-linka-green" />
-                      </motion.div>
-                      <span className="text-sm font-medium text-gray-700">
-                        Animations
-                      </span>
-                    </div>
-                    <button
-                      onClick={() =>
-                        updateSetting("animations", !settings.animations)
-                      }
-                      className={`
+                {/* Animations */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <motion.div
+                      animate={settings.animations ? { rotate: 360 } : {}}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                    >
+                      <Settings className="w-4 h-4 text-linka-green" />
+                    </motion.div>
+                    <span className="text-sm font-medium text-gray-700">
+                      Animations
+                    </span>
+                  </div>
+                  <button
+                    onClick={() =>
+                      updateSetting("animations", !settings.animations)
+                    }
+                    className={`
                         relative w-11 h-6 rounded-full transition-colors
                         ${settings.animations ? "bg-linka-green" : "bg-gray-300"}
                       `}
-                    >
-                      <div
-                        className={`
+                  >
+                    <div
+                      className={`
                           absolute top-1 w-4 h-4 bg-white rounded-full transition-transform
                           ${settings.animations ? "translate-x-6" : "translate-x-1"}
                         `}
-                      />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Version Info */}
-                <div className="pt-4 border-t border-gray-200">
-                  <div className="text-center text-xs text-gray-500">
-                    <p>LinkaMarket v1.0.0</p>
-                    <p>Made with ❤️ en Côte d'Ivoire</p>
-                  </div>
+                    />
+                  </button>
                 </div>
               </div>
-                        </div>
-          </>
-        )}
-      </AnimatePresence>
+
+              {/* Version Info */}
+              <div className="pt-4 border-t border-gray-200">
+                <div className="text-center text-xs text-gray-500">
+                  <p>LinkaMarket v1.0.0</p>
+                  <p>Made with ❤️ en Côte d'Ivoire</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };
