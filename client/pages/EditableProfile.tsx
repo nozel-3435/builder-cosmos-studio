@@ -166,19 +166,50 @@ const EditableProfile = () => {
     const savedUser = localStorage.getItem("linka_user");
     if (savedUser) {
       const userData = JSON.parse(savedUser);
-      setFormData(userData);
-      setProfileImage(userData.profileImage);
+      setFormData((prev) => ({
+        ...prev,
+        ...userData,
+        // Ensure coordinates are always properly initialized
+        coordinates: userData.coordinates || { lat: 0, lng: 0 },
+        businessCoordinates: userData.businessCoordinates || { lat: 0, lng: 0 },
+        bankAccount: userData.bankAccount || {
+          accountName: "",
+          accountNumber: "",
+          bankName: "",
+          iban: "",
+        },
+        workingHours: userData.workingHours || {
+          start: "08:00",
+          end: "20:00",
+        },
+        preferences: userData.preferences || {
+          notifications: true,
+          marketing: false,
+          language: "fr",
+          currency: "FCFA",
+        },
+        operatingHours: userData.operatingHours || {
+          monday: { open: "08:00", close: "18:00", closed: false },
+          tuesday: { open: "08:00", close: "18:00", closed: false },
+          wednesday: { open: "08:00", close: "18:00", closed: false },
+          thursday: { open: "08:00", close: "18:00", closed: false },
+          friday: { open: "08:00", close: "18:00", closed: false },
+          saturday: { open: "08:00", close: "18:00", closed: false },
+          sunday: { open: "08:00", close: "18:00", closed: true },
+        },
+      }));
+      setProfileImage(userData.profileImage || "");
     } else if (user) {
       // Load from context
-      setFormData({
-        ...formData,
+      setFormData((prev) => ({
+        ...prev,
         firstName: user.name?.split(" ")[0] || "",
         lastName: user.name?.split(" ")[1] || "",
         email: user.email || "",
         phone: user.phone || "",
         profileImage: user.avatar || "",
-      });
-      setProfileImage(user.avatar);
+      }));
+      setProfileImage(user.avatar || "");
     }
   }, [user]);
 
