@@ -236,7 +236,7 @@ const Products = () => {
           className={`w-full flex items-center justify-center space-x-2 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
             product.inStock
               ? "bg-linka-green text-white hover:bg-linka-green/90"
-              : "bg-gray-100 text-gray-400 cursor-not-allowed"
+              : "bg-muted text-muted-foreground cursor-not-allowed"
           }`}
         >
           <ShoppingCart className="w-4 h-4" />
