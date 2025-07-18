@@ -12,7 +12,7 @@ import {
   Bell,
   BellOff,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+// Removed framer-motion to prevent Context issues
 
 interface FloatingSettingsProps {
   className?: string;
