@@ -52,6 +52,8 @@ const Cart = () => {
   const [deliveryAddress, setDeliveryAddress] = useState(
     "123 Rue de la République, Plateau, Abidjan",
   );
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("mixx");
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   const totalPrice = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
