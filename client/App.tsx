@@ -51,8 +51,9 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <ErrorBoundary>
-          <AuthProvider>
+                <ErrorBoundary>
+          <AuthErrorBoundary>
+            <AuthProvider>
             <div className="min-h-screen bg-linka-gray-50 relative">
               <Header />
               <main className="relative z-10">
