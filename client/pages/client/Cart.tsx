@@ -301,7 +301,10 @@ const Cart = () => {
                   </div>
                 </div>
 
-                <button className="w-full bg-linka-green text-white py-3 rounded-lg font-semibold hover:bg-linka-green/90 transition-colors">
+                <button
+                  onClick={() => setShowPaymentModal(true)}
+                  className="w-full bg-linka-green text-white py-3 rounded-lg font-semibold hover:bg-linka-green/90 transition-colors"
+                >
                   Passer la commande
                 </button>
 
