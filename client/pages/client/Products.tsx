@@ -336,13 +336,13 @@ const Products = () => {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 {/* Category Filter */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Catégorie
                   </label>
                   <select
                     value={selectedCategory}
                     onChange={(e) => handleCategoryChange(e.target.value)}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-linka-green"
+                    className="w-full bg-background text-foreground border border-input rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-linka-green"
                   >
                     <option value="all">Toutes les catégories</option>
                     {categories.map((category) => (
