@@ -98,7 +98,7 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
       transition: {
         duration: 0.6,
         delay,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: "easeOut" as const,
       },
     },
   };
@@ -111,8 +111,8 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
       variants={initialVariants}
-      whileHover={hoverVariants.hover}
-      whileTap={hoverVariants.tap}
+      whileHover={hoverVariants.hover || undefined}
+      whileTap={hoverVariants.tap || undefined}
       onClick={clickable ? onClick : undefined}
       className={`
         relative bg-white rounded-lg overflow-hidden transition-all duration-300
