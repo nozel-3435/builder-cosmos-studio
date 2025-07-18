@@ -8,7 +8,7 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { supabase } from "@/lib/supabase";
+import { supabase, isDemoMode, demoLocationsService } from "@/lib/supabase";
 import { useAuth } from "@/contexts/AuthContext";
 import { Database } from "@/lib/supabase";
 import {
