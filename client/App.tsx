@@ -57,10 +57,8 @@ const App = () => (
               <div className="min-h-screen bg-background relative">
                 <Header />
                 <main className="relative z-10">
-                  <ErrorBoundary>
-                    <MinimalPageTransition>
-                      <StorytellingLayout>
-                        <Routes>
+                                    <ErrorBoundary>
+                    <Routes>
                           <Route path="/" element={<Index />} />
                           <Route path="/landing" element={<LandingPage />} />
 
