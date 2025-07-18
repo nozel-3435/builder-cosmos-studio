@@ -281,7 +281,7 @@ const Products = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-linka-green focus:border-transparent"
+                className="appearance-none bg-background text-foreground border border-input rounded-lg px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-linka-green focus:border-transparent"
               >
                 <option value="popular">Plus populaires</option>
                 <option value="price-asc">Prix croissant</option>
