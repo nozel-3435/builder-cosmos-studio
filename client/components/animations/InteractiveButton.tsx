@@ -48,7 +48,7 @@ const InteractiveButton: React.FC<InteractiveButtonProps> = ({
       scale: 1.02,
       y: -2,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 400,
         damping: 17,
       },
@@ -65,7 +65,7 @@ const InteractiveButton: React.FC<InteractiveButtonProps> = ({
       x: "100%",
       transition: {
         duration: 0.6,
-        ease: "easeInOut",
+        ease: "easeInOut" as const,
       },
     },
   };
