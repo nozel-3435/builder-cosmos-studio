@@ -309,7 +309,7 @@ const Products = () => {
                 className={`p-3 rounded-lg ${
                   viewMode === "list"
                     ? "bg-linka-green text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    : "bg-muted text-muted-foreground hover:bg-muted/80"
                 }`}
               >
                 <List className="w-5 h-5" />
