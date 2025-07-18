@@ -6,6 +6,7 @@ import AnimationWrapper from "../components/animations/AnimationWrapper";
 import AnimatedCard from "../components/animations/AnimatedCard";
 import InteractiveButton from "../components/animations/InteractiveButton";
 import AnimatedIcon from "../components/animations/AnimatedIcon";
+import ErrorBoundary from "../components/ErrorBoundary";
 import {
   Search,
   Store,
