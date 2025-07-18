@@ -181,5 +181,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     updateProfile,
   };
 
+  // Validate value before providing
+  if (!value || typeof value !== "object") {
+    console.error("AuthContext value is invalid:", value);
+    return <div>AuthContext Error: Please refresh the page</div>;
+  }
+
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
