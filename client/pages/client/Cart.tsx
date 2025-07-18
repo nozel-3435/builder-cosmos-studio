@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
