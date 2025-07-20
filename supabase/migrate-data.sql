@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 -- Script de migration avec données de démonstration pour Kara, Togo
 -- À exécuter dans l'éditeur SQL de Supabase après avoir créé le schéma principal
+=======
+ALTER TABLE profiles DROP CONSTRAINT IF EXISTS profiles_id_fkey;
+
+-- Script de migration des données LinkaMarket vers Supabase
+-- Exécutez ce script après avoir créé le schéma de base
+>>>>>>> 104b1abdeb48af5e35342a61bf7633702c41919e
 
 -- Insérer les données de démonstration pour les locations de Kara
 INSERT INTO locations (role, name, latitude, longitude, address, phone, description, is_active) VALUES
