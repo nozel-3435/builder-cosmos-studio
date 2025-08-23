@@ -100,7 +100,7 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="bg-white">
+    <div className="bg-linka-green-50">
       {/* Hero Section */}
       <section className="relative pt-16 pb-20 overflow-hidden">
         {/* Background Image */}
