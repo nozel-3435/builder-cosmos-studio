@@ -32,11 +32,14 @@ const SpecializedRegister: React.FC<SpecializedRegisterProps> = ({
   initialUserType = "client",
 }) => {
   const navigate = useNavigate();
+  const { register } = useAuth();
   const [userType, setUserType] = useState(initialUserType);
   const [step, setStep] = useState(1);
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [showVerification, setShowVerification] = useState(false);
+  const [registeredEmail, setRegisteredEmail] = useState("");
 
   const [formData, setFormData] = useState({
     // Basic Info (All users)
