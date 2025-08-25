@@ -16,6 +16,8 @@ import NotFound from "./pages/NotFound";
 // Create placeholder pages for routes
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
+import ForgotPassword from "./pages/auth/ForgotPassword";
+import ResetPassword from "./pages/auth/ResetPassword";
 import Profile from "./pages/Profile";
 import Products from "./pages/client/Products";
 import Cart from "./pages/client/Cart";
