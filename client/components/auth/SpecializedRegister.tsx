@@ -283,38 +283,67 @@ const SpecializedRegister: React.FC<SpecializedRegisterProps> = ({
     setIsLoading(true);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Store user data in localStorage for demo
-      const userData = {
-        ...formData,
-        userType,
-        id: Date.now().toString(),
-        createdAt: new Date().toISOString(),
+      const registerData = {
+        email: formData.email,
+        password: formData.password,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        role: userType as any,
+        phone: formData.phone,
+        businessName: formData.businessName,
+        businessAddress: formData.businessAddress,
+        businessDescription: formData.businessDescription,
+        vehicleType: formData.vehicleType,
+        deliveryZone: formData.availableAreas.join(", "),
       };
 
-      localStorage.setItem("linka_user", JSON.stringify(userData));
+      const result = await register(registerData);
 
-      // Navigate to appropriate dashboard
-      switch (userType) {
-        case "merchant":
-          navigate("/merchant");
-          break;
-        case "delivery":
-          navigate("/delivery");
-          break;
-        case "admin":
-          navigate("/admin");
-          break;
-        default:
-          navigate("/");
+      if (result.requiresVerification) {
+        setRegisteredEmail(formData.email);
+        setShowVerification(true);
+        toast.success("Compte créé ! Veuillez vérifier votre email.");
+      } else {
+        toast.success("Compte créé avec succès !");
+        // Navigate to appropriate dashboard
+        switch (userType) {
+          case "merchant":
+            navigate("/merchant");
+            break;
+          case "delivery":
+            navigate("/delivery");
+            break;
+          case "admin":
+            navigate("/admin");
+            break;
+          default:
+            navigate("/");
+        }
       }
     } catch (error) {
       console.error("Registration error:", error);
-      alert("Erreur lors de l'inscription. Veuillez réessayer.");
+      const message = error instanceof Error ? error.message : "Erreur lors de l'inscription. Veuillez réessayer.";
+      toast.error(message);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleEmailVerified = () => {
+    toast.success("Email vérifié ! Bienvenue sur LinkaMarket !");
+    // Navigate to appropriate dashboard
+    switch (userType) {
+      case "merchant":
+        navigate("/merchant");
+        break;
+      case "delivery":
+        navigate("/delivery");
+        break;
+      case "admin":
+        navigate("/admin");
+        break;
+      default:
+        navigate("/");
     }
   };
 
