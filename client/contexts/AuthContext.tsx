@@ -5,36 +5,21 @@ import {
   useEffect,
   ReactNode,
 } from "react";
+import { authService, type AuthUser, type RegisterData, type UserRole } from "@/services/auth";
 
-export type UserRole = "client" | "merchant" | "delivery" | "admin";
-
-export interface User {
-  id: string;
-  email: string;
-  name: string;
-  role: UserRole;
-  avatar?: string;
-  phone?: string;
-  // Role-specific fields
-  businessName?: string; // For merchants
-  businessAddress?: string; // For merchants
-  vehicleType?: string; // For delivery drivers
-  deliveryZone?: string; // For delivery drivers
-}
+export type { UserRole, AuthUser as User };
 
 export interface AuthContextType {
-  user: User | null;
+  user: AuthUser | null;
   isLoading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  register: (
-    email: string,
-    password: string,
-    name: string,
-    role: UserRole,
-    additionalData?: Partial<User>,
-  ) => Promise<void>;
-  logout: () => void;
-  updateProfile: (data: Partial<User>) => Promise<void>;
+  login: (email: string, password: string) => Promise<{ requiresVerification?: boolean }>;
+  register: (data: RegisterData) => Promise<{ requiresVerification: boolean }>;
+  sendVerificationCode: (email: string) => Promise<{ code: string }>;
+  verifyEmail: (email: string, code: string) => Promise<boolean>;
+  resetPassword: (email: string) => Promise<void>;
+  updatePassword: (newPassword: string) => Promise<void>;
+  logout: () => Promise<void>;
+  updateProfile: (data: Partial<AuthUser>) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
