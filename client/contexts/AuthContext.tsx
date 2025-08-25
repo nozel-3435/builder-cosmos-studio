@@ -100,6 +100,26 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       // Simulate API call - In real app, this would be replaced with actual API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
+      // Check for admin credentials
+      if (email === "NOZIMA" && password === "TOUT2000@") {
+        const adminUser: User = {
+          id: "admin-nozima",
+          email: "admin@linkamarket.com",
+          name: "NOZIMA",
+          role: "admin",
+          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=admin",
+        };
+
+        setUser(adminUser);
+        localStorage.setItem("linka_user", JSON.stringify(adminUser));
+
+        // Set admin session for admin routes
+        sessionStorage.setItem("admin_authenticated", "true");
+        sessionStorage.setItem("admin_timestamp", Date.now().toString());
+
+        return;
+      }
+
       // Mock user data based on email for demo
       const mockUser: User = {
         id: Math.random().toString(36).substr(2, 9),
