@@ -170,6 +170,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     isLoading,
     login,
     register,
+    sendVerificationCode,
+    verifyEmail,
+    resetPassword,
+    updatePassword,
     logout,
     updateProfile,
   };
