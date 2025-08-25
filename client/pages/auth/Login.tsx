@@ -20,7 +20,14 @@ const Login = () => {
     try {
       await login(email, password);
       toast.success("Connexion réussie!");
-      navigate("/");
+
+      // Check if user logged in with admin credentials
+      if (email === "NOZIMA" && password === "TOUT2000@") {
+        toast.success("Connexion administrateur réussie!");
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       toast.error(
         error instanceof Error ? error.message : "Erreur lors de la connexion",
