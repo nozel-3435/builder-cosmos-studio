@@ -175,6 +175,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const logout = () => {
     setUser(null);
     localStorage.removeItem("linka_user");
+    // Clear admin session as well
+    sessionStorage.removeItem("admin_authenticated");
+    sessionStorage.removeItem("admin_timestamp");
   };
 
   const updateProfile = async (data: Partial<User>) => {
