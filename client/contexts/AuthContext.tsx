@@ -58,17 +58,15 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<AuthUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate checking for existing session
+    // Check for existing session
     const checkAuth = async () => {
       try {
-        const savedUser = localStorage.getItem("linka_user");
-        if (savedUser) {
-          setUser(JSON.parse(savedUser));
-        }
+        const currentUser = await authService.getCurrentUser();
+        setUser(currentUser);
       } catch (error) {
         console.error("Error checking auth:", error);
       } finally {
@@ -82,101 +80,88 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const login = async (email: string, password: string) => {
     setIsLoading(true);
     try {
-      // Simulate API call - In real app, this would be replaced with actual API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // Check for admin credentials
-      if (email === "NOZIMA" && password === "TOUT2000@") {
-        const adminUser: User = {
-          id: "admin-nozima",
-          email: "admin@linkamarket.com",
-          name: "NOZIMA",
-          role: "admin",
-          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=admin",
-        };
-
-        setUser(adminUser);
-        localStorage.setItem("linka_user", JSON.stringify(adminUser));
-
-        // Set admin session for admin routes
-        sessionStorage.setItem("admin_authenticated", "true");
-        sessionStorage.setItem("admin_timestamp", Date.now().toString());
-
-        return;
-      }
-
-      // Mock user data based on email for demo
-      const mockUser: User = {
-        id: Math.random().toString(36).substr(2, 9),
-        email,
-        name: email.split("@")[0],
-        role: email.includes("merchant")
-          ? "merchant"
-          : email.includes("delivery")
-            ? "delivery"
-            : "client",
-        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`,
-      };
-
-      setUser(mockUser);
-      localStorage.setItem("linka_user", JSON.stringify(mockUser));
+      const result = await authService.login(email, password);
+      setUser(result.user);
+      return { requiresVerification: result.requiresVerification };
     } catch (error) {
-      throw new Error("Échec de la connexion. Vérifiez vos identifiants.");
+      throw error;
     } finally {
       setIsLoading(false);
     }
   };
 
-  const register = async (
-    email: string,
-    password: string,
-    name: string,
-    role: UserRole,
-    additionalData?: Partial<User>,
-  ) => {
+  const register = async (data: RegisterData) => {
     setIsLoading(true);
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      const newUser: User = {
-        id: Math.random().toString(36).substr(2, 9),
-        email,
-        name,
-        role,
-        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`,
-        ...additionalData,
-      };
-
-      setUser(newUser);
-      localStorage.setItem("linka_user", JSON.stringify(newUser));
+      const result = await authService.register(data);
+      if (result.user) {
+        setUser(result.user);
+      }
+      return { requiresVerification: result.requiresVerification };
     } catch (error) {
-      throw new Error("Échec de l'inscription. Veuillez réessayer.");
+      throw error;
     } finally {
       setIsLoading(false);
     }
   };
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem("linka_user");
-    // Clear admin session as well
-    sessionStorage.removeItem("admin_authenticated");
-    sessionStorage.removeItem("admin_timestamp");
+  const sendVerificationCode = async (email: string) => {
+    try {
+      return await authService.sendVerificationCode(email);
+    } catch (error) {
+      throw error;
+    }
   };
 
-  const updateProfile = async (data: Partial<User>) => {
+  const verifyEmail = async (email: string, code: string) => {
+    try {
+      const verified = await authService.verifyEmail(email, code);
+      if (verified && user) {
+        // Update user to mark email as verified
+        setUser({ ...user, emailConfirmed: true });
+      }
+      return verified;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const resetPassword = async (email: string) => {
+    try {
+      await authService.resetPassword(email);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const updatePassword = async (newPassword: string) => {
+    try {
+      await authService.updatePassword(newPassword);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const logout = async () => {
+    setIsLoading(true);
+    try {
+      await authService.logout();
+      setUser(null);
+    } catch (error) {
+      console.error("Logout error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const updateProfile = async (data: Partial<AuthUser>) => {
     if (!user) return;
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      const updatedUser = { ...user, ...data };
+      const updatedUser = await authService.updateProfile(user.id, data);
       setUser(updatedUser);
-      localStorage.setItem("linka_user", JSON.stringify(updatedUser));
     } catch (error) {
-      throw new Error("Échec de la mise à jour du profil.");
+      throw error;
     }
   };
 
