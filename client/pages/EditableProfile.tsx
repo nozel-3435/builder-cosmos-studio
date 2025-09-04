@@ -102,18 +102,15 @@ const EditableProfile = () => {
   });
 
   const communes = [
-    "Abobo",
-    "Adjamé",
-    "Attécoubé",
-    "Cocody",
-    "Koumassi",
-    "Marcory",
+    "Centre-ville",
+    "Kpéwa",
     "Plateau",
-    "Port-Bouët",
-    "Treichville",
-    "Yopougon",
-    "Bingerville",
-    "Songon",
+    "Tchré",
+    "Kara Nord",
+    "Kara Sud",
+    "Zongo",
+    "Tchitchao",
+    "Pya",
   ];
 
   const businessTypes = [
@@ -161,7 +158,7 @@ const EditableProfile = () => {
     { key: "sunday", label: "Dimanche" },
   ];
 
-  useEffect(() => {
+    useEffect(() => {
     // Load user data from localStorage (in real app, from API)
     const savedUser = localStorage.getItem("linka_user");
     if (savedUser) {
@@ -213,7 +210,7 @@ const EditableProfile = () => {
     }
   }, [user]);
 
-  const handleInputChange = (
+    const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >,
@@ -649,7 +646,7 @@ const EditableProfile = () => {
                     name="city"
                     value={formData.city}
                     onChange={handleInputChange}
-                    placeholder="Abidjan"
+                    placeholder="Kara"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-linka-green focus:border-transparent"
                   />
                 </div>
