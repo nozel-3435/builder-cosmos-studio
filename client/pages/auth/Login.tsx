@@ -16,10 +16,19 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
 
+    const trimmed = email.trim();
+    if (trimmed !== "NOZIMA") {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(trimmed)) {
+        toast.error("Veuillez saisir une adresse e-mail valide.");
+        return;
+      }
+    }
+
+    setIsLoading(true);
     try {
-      await login(email, password);
+      await login(trimmed, password);
       toast.success("Connexion réussie!");
 
       const isAdmin = sessionStorage.getItem("admin_authenticated") === "true";
