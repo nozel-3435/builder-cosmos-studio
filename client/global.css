@@ -23,7 +23,7 @@
     --popover-foreground: 222.2 84% 4.9%;
 
     /* LinkaMarket primary colors using green */
-    --primary: 142 69% 58%; /* #6FCF97 converted to HSL */
+    --primary: 204 68% 41%; /* brand blue based on new logo */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 240 4.8% 95.9%;
@@ -33,7 +33,7 @@
     --muted-foreground: 0 0% 45.1%;
 
     /* LinkaMarket accent colors using orange */
-    --accent: 25 89% 62%; /* #F2994A converted to HSL */
+    --accent: 2 72% 57%; /* brand red based on new logo */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -41,18 +41,18 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 142 69% 58%;
+    --ring: 204 68% 41%;
 
     --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 142 69% 58%;
+    --sidebar-primary: 204 68% 41%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 142 69% 58%;
+    --sidebar-ring: 204 68% 41%;
   }
 
   .dark {
@@ -65,7 +65,7 @@
     --popover: 217.2 32.6% 17.5%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 142 69% 58%; /* Keep LinkaMarket green in dark mode */
+    --primary: 204 68% 41%; /* Keep brand blue in dark mode */
     --primary-foreground: 222.2 84% 4.9%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -74,7 +74,7 @@
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 25 89% 62%; /* Keep LinkaMarket orange in dark mode */
+    --accent: 2 72% 57%; /* Keep brand red in dark mode */
     --accent-foreground: 222.2 84% 4.9%;
 
     --destructive: 0 62.8% 50.6%;
@@ -82,15 +82,15 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 142 69% 58%;
+    --ring: 204 68% 41%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 142 69% 58%;
+    --sidebar-primary: 204 68% 41%;
     --sidebar-primary-foreground: 240 5.9% 10%;
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 142 69% 58%;
+    --sidebar-ring: 204 68% 41%;
   }
 }
 
@@ -362,12 +362,12 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #6fcf97, #f2994a);
+    background: linear-gradient(180deg, #1e6f9f, #e53935);
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #5bb882, #e8873f);
+    background: linear-gradient(180deg, #195f86, #c62828);
   }
 
   /* Advanced Storytelling Animations */
@@ -382,7 +382,7 @@
 
   .storytelling-card:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(111, 207, 151, 0.2);
+    box-shadow: 0 20px 40px rgba(30, 111, 159, 0.2);
   }
 
   .storytelling-button {
@@ -546,11 +546,11 @@
 
   /* Focus states for accessibility */
   .storytelling-button:focus-visible {
-    outline: 2px solid #6fcf97;
+    outline: 2px solid #1e6f9f;
     outline-offset: 2px;
   }
 
   .storytelling-card:focus-within {
-    box-shadow: 0 0 0 2px #6fcf97;
+    box-shadow: 0 0 0 2px #1e6f9f;
   }
 }
