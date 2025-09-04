@@ -114,7 +114,7 @@ const FloatingSettings: React.FC<FloatingSettingsProps> = ({
           />
 
           {/* Panel */}
-          <div className="fixed bottom-24 right-6 w-80 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50 overflow-hidden">
+          <div className="fixed bottom-24 right-6 w-80 bg-background text-foreground rounded-2xl shadow-2xl border border-border z-50 overflow-hidden">
             {/* Header */}
             <div className="bg-linka-green text-white p-4">
               <h3 className="text-lg font-semibold flex items-center gap-2">
