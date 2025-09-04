@@ -12,9 +12,10 @@ const AdminRouteWrapper: React.FC<AdminRouteWrapperProps> = ({ children }) => {
   useEffect(() => {
     const checkAdminAuth = () => {
       const isAuthenticated = sessionStorage.getItem("admin_authenticated");
+      const isVerified = sessionStorage.getItem("admin_verified");
       const timestamp = sessionStorage.getItem("admin_timestamp");
 
-      if (isAuthenticated && timestamp) {
+      if (isAuthenticated && isVerified === "true" && timestamp) {
         // Check if session is still valid (24 hours)
         const sessionAge = Date.now() - parseInt(timestamp);
         const maxAge = 24 * 60 * 60 * 1000; // 24 hours
@@ -24,6 +25,7 @@ const AdminRouteWrapper: React.FC<AdminRouteWrapperProps> = ({ children }) => {
         } else {
           // Clear expired session
           sessionStorage.removeItem("admin_authenticated");
+          sessionStorage.removeItem("admin_verified");
           sessionStorage.removeItem("admin_timestamp");
           setIsAdminAuthenticated(false);
         }
