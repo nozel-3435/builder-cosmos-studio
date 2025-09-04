@@ -658,7 +658,7 @@ const HomePage = () => {
               <ul className="space-y-2 text-gray-400">
                 <li>Centre d'aide</li>
                 <li>Contact</li>
-                <li>FAQ</li>
+                <li><Link to="/faq" className="hover:text-white">FAQ</Link></li>
               </ul>
             </div>
 
