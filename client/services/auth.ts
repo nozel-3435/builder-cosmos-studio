@@ -329,12 +329,23 @@ export const authService = {
 
     try {
       const { data, error } = await supabase.auth.getUser();
-      
-      if (error || !data.user) {
-        return null;
-      }
+      if (error || !data.user) return null;
 
-      return await this.getUserProfile(data.user.id);
+      try {
+        return await this.getUserProfile(data.user.id);
+      } catch (e) {
+        const meta: any = data.user.user_metadata || {};
+        return {
+          id: data.user.id,
+          email: data.user.email || "",
+          name: meta.full_name || meta.name || "",
+          role: (meta.role as UserRole) || "client",
+          avatar: meta.avatar_url,
+          phone: meta.phone,
+          emailConfirmed: Boolean(data.user.email_confirmed_at),
+          profileCompleted: false,
+        };
+      }
     } catch (error) {
       console.error("Get current user error:", error);
       return null;
