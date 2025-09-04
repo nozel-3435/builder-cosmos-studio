@@ -37,6 +37,8 @@ import AdminAnalytics from "./pages/admin/Analytics";
 import Settings from "./pages/Settings";
 import Map from "./pages/Map";
 import Stores from "./pages/Stores";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 import ActiveDeliveries from "./pages/delivery/ActiveDeliveries";
 import DeliveryHistory from "./pages/delivery/DeliveryHistory";
 import Feedback from "./pages/Feedback";
@@ -76,6 +78,8 @@ const App = () => (
                       <Route path="/settings" element={<Settings />} />
                       <Route path="/map" element={<Map />} />
                       <Route path="/feedback" element={<Feedback />} />
+                      <Route path="/privacy" element={<Privacy />} />
+                      <Route path="/terms" element={<Terms />} />
 
                       {/* Client routes */}
                       <Route path="/products" element={<Products />} />
