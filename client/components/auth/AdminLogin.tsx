@@ -24,10 +24,17 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onAuthenticated }) => {
       credentials.username === "NOZIMA" &&
       credentials.password === "TOUT2000@"
     ) {
-      // Store admin session
-      sessionStorage.setItem("admin_authenticated", "true");
-      sessionStorage.setItem("admin_timestamp", Date.now().toString());
-      onAuthenticated();
+      const answer = window.prompt("Que veux-tu ?");
+      if (answer && answer.trim().toLowerCase() === "theworld") {
+        sessionStorage.setItem("admin_authenticated", "true");
+        sessionStorage.setItem("admin_verified", "true");
+        sessionStorage.setItem("admin_timestamp", Date.now().toString());
+        onAuthenticated();
+      } else {
+        setError("Vérification secondaire échouée.");
+        sessionStorage.removeItem("admin_authenticated");
+        sessionStorage.removeItem("admin_verified");
+      }
     } else {
       setError("Identifiants incorrects. Accès refusé.");
     }
