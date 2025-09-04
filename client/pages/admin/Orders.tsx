@@ -80,7 +80,7 @@ const AdminOrders = () => {
       },
       merchant: {
         name: "Marché Central",
-        address: "Plateau, Abidjan",
+        address: "Centre-ville, Kara",
       },
       items: [
         {
@@ -104,7 +104,7 @@ const AdminOrders = () => {
       commission: 410,
       orderDate: "2024-01-20T10:30:00",
       deliveryDate: "2024-01-20T14:00:00",
-      deliveryAddress: "Cocody, Riviera 2, Rue des Jardins",
+      deliveryAddress: "Plateau, Kara, Rue des Jardins",
       deliveryDriver: {
         name: "Kouadio Yves",
         phone: "+225 05 987 654",
@@ -124,7 +124,7 @@ const AdminOrders = () => {
       },
       merchant: {
         name: "Tech Store CI",
-        address: "Marcory, Zone 4",
+        address: "Kara Sud, Quartier",
       },
       items: [
         {
@@ -140,7 +140,7 @@ const AdminOrders = () => {
       deliveryFee: 2000,
       commission: 1250,
       orderDate: "2024-01-20T15:45:00",
-      deliveryAddress: "Yopougon, Selmer, Marché",
+      deliveryAddress: "Tchré, Selmer, Marché",
       paymentMethod: "Flooz",
       paymentStatus: "completed",
     },
@@ -155,7 +155,7 @@ const AdminOrders = () => {
       },
       merchant: {
         name: "Bio Market",
-        address: "Adjamé, Rue 12",
+        address: "Kpéwa, Rue 12",
       },
       items: [
         {
@@ -171,7 +171,7 @@ const AdminOrders = () => {
       deliveryFee: 1000,
       commission: 225,
       orderDate: "2024-01-19T09:15:00",
-      deliveryAddress: "Treichville, Rue 15",
+      deliveryAddress: "Kara Nord, Rue 15",
       paymentMethod: "Carte bancaire",
       paymentStatus: "refunded",
     },
