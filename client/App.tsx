@@ -29,6 +29,7 @@ import Inventory from "./pages/merchant/Inventory";
 import MyStore from "./pages/merchant/MyStore";
 import DeliveryDashboard from "./pages/delivery/Dashboard";
 import AdminDashboard from "./pages/admin/Dashboard";
+import AdminVerify from "./pages/admin/AdminVerify";
 import AdminUsers from "./pages/admin/Users";
 import AdminProducts from "./pages/admin/Products";
 import AdminOrders from "./pages/admin/Orders";
@@ -115,6 +116,7 @@ const App = () => (
                       />
 
                       {/* Admin routes */}
+                      <Route path="/admin/verify" element={<AdminVerify />} />
                       <Route path="/admin" element={<AdminDashboard />} />
                       <Route path="/admin/users" element={<AdminUsers />} />
                       <Route
