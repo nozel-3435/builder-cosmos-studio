@@ -63,7 +63,7 @@ const Login = () => {
         </div>
 
         <div className="bg-white rounded-xl shadow-lg p-8">
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form noValidate className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="email"
