@@ -42,6 +42,7 @@ import Terms from "./pages/Terms";
 import ActiveDeliveries from "./pages/delivery/ActiveDeliveries";
 import DeliveryHistory from "./pages/delivery/DeliveryHistory";
 import Feedback from "./pages/Feedback";
+import FAQ from "./pages/FAQ";
 import EditableProfile from "./pages/EditableProfile";
 import MinimalPageTransition from "./components/animations/MinimalPageTransition";
 import StorytellingLayout from "./components/animations/StorytellingLayout";
@@ -78,6 +79,7 @@ const App = () => (
                       <Route path="/settings" element={<Settings />} />
                       <Route path="/map" element={<Map />} />
                       <Route path="/feedback" element={<Feedback />} />
+                      <Route path="/faq" element={<FAQ />} />
                       <Route path="/privacy" element={<Privacy />} />
                       <Route path="/terms" element={<Terms />} />
 
