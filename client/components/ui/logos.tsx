@@ -208,17 +208,11 @@ export const FaviconLogo: React.FC<{ size?: number }> = ({ size = 32 }) => {
         <rect x="7" y="4" width="2" height="4" rx="1" fill="white" />
         <rect x="10" y="4" width="2" height="4" rx="1" fill="white" />
         <rect x="13" y="4" width="2" height="4" rx="1" fill="white" />
-        {/* L letter */}
-        <text
-          x="16"
-          y="14"
-          fontSize="8"
-          fontWeight="bold"
-          fill="white"
-          textAnchor="middle"
-        >
-          L
-        </text>
+        {/* Simple cart icon */}
+        <rect x="3" y="11" width="14" height="6" rx="2" fill="white" fillOpacity="0.9" />
+        <circle cx="7" cy="19" r="2" fill="white" />
+        <circle cx="15" cy="19" r="2" fill="white" />
+        <rect x="2" y="6" width="3" height="6" rx="1" fill="white" />
       </g>
     </svg>
   );

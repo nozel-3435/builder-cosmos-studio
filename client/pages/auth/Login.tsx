@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Mail, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
+import { LinkaMarketLogo } from "@/components/ui/logos";
 import { toast } from "sonner";
 import BackButton from "@/components/ui/BackButton";
 
@@ -51,12 +52,7 @@ const Login = () => {
         </div>
         <div className="text-center">
           <Link to="/" className="inline-flex items-center space-x-2 mb-8">
-            <div className="w-10 h-10 bg-gradient-to-br from-linka-green to-linka-orange rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold">L</span>
-            </div>
-            <span className="text-2xl font-bold text-gray-900">
-              Linka<span className="text-linka-green">Market</span>
-            </span>
+            <LinkaMarketLogo size="md" variant="full" />
           </Link>
           <h2 className="text-3xl font-bold text-gray-900">
             Connectez-vous à votre compte

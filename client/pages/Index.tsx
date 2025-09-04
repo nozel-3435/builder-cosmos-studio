@@ -628,12 +628,8 @@ const HomePage = () => {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-linka-green to-linka-orange rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">L</span>
-                </div>
-                <span className="text-xl font-bold">
-                  Linka<span className="text-linka-green">Market</span>
-                </span>
+                <img src="https://cdn.builder.io/api/v1/image/assets%2Fd9c69c3f1ccd486d8ee7f60471ffc975%2F239198e82d8f4671bfb3d9caaade0653?format=webp&width=128" alt="Logo" className="w-8 h-8 object-contain" />
+                <span className="text-xl font-bold">Linka<span className="text-linka-green">Market</span></span>
               </div>
               <p className="text-gray-400">
                 La plateforme qui révolutionne le commerce local
