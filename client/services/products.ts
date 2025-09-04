@@ -1,5 +1,5 @@
 import { supabase, isDemoMode } from "@/lib/supabase";
-import type { Database } from "@/lib/supabase";
+import { supabase, isDemoMode, type Database } from "@/lib/supabase";
 
 export type Product = Database['public']['Tables']['products']['Row'] & {
   category_name?: string;
@@ -143,7 +143,7 @@ const demoProducts: Product[] = [
 const demoCategories = [
   { id: "cat-electronics", name: "Électronique", icon: "📱" },
   { id: "cat-food", name: "Alimentaire", icon: "🍽️" },
-  { id: "cat-fashion", name: "Mode & Vêtements", icon: "���" },
+  { id: "cat-fashion", name: "Mode & Vêtements", icon: "👗" },
   { id: "cat-home", name: "Maison & Décoration", icon: "🏠" },
   { id: "cat-beauty", name: "Santé & Beauté", icon: "💊" }
 ];
@@ -507,7 +507,7 @@ export const productsService = {
   },
 
   // Private helper methods for demo mode
-  private getProductsDemo(filters: ProductFilter): { data: Product[]; count: number } {
+  getProductsDemo(filters: ProductFilter): { data: Product[]; count: number } {
     let filteredProducts = [...demoProducts];
 
     // Apply filters
@@ -568,7 +568,7 @@ export const productsService = {
     };
   },
 
-  private searchProductsDemo(query: string, filters: Omit<ProductFilter, 'search'>): { data: Product[]; count: number } {
+  searchProductsDemo(query: string, filters: Omit<ProductFilter, 'search'>): { data: Product[]; count: number } {
     return this.getProductsDemo({ ...filters, search: query });
   }
 };
