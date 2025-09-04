@@ -153,18 +153,15 @@ const SpecializedRegister: React.FC<SpecializedRegisterProps> = ({
   ];
 
   const communes = [
-    "Abobo",
-    "Adjamé",
-    "Attécoubé",
-    "Cocody",
-    "Koumassi",
-    "Marcory",
+    "Centre-ville",
+    "Kpéwa",
     "Plateau",
-    "Port-Bouët",
-    "Treichville",
-    "Yopougon",
-    "Bingerville",
-    "Songon",
+    "Tchré",
+    "Kara Nord",
+    "Kara Sud",
+    "Zongo",
+    "Tchitchao",
+    "Pya",
   ];
 
   const handleInputChange = (
@@ -591,7 +588,7 @@ const SpecializedRegister: React.FC<SpecializedRegisterProps> = ({
             name="city"
             value={formData.city}
             onChange={handleInputChange}
-            placeholder="Abidjan"
+            placeholder="Kara"
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-linka-green focus:border-transparent"
             required
           />
