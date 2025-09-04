@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import { LinkaMarketLogo } from "@/components/ui/logos";
 import {
   ShoppingBag,
   Menu,
@@ -80,24 +81,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="w-10 h-10 bg-gradient-to-br from-linka-green to-linka-orange rounded-lg flex items-center justify-center"
-            >
-              <ShoppingBag className="h-5 w-5 text-white" />
-            </motion.div>
-            <span
-              className={`text-xl font-bold transition-colors ${
-                isScrolled ? "text-gray-900" : "text-white drop-shadow-md"
-              }`}
-            >
-              LinkaMarket
-            </span>
+            <LinkaMarketLogo size="md" variant="full" theme={isScrolled ? "light" : "dark"} />
           </Link>
 
           {/* Desktop Navigation */}
