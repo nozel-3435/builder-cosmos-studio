@@ -171,6 +171,13 @@
   }
 }
 
+@layer base {
+  input, textarea, select {
+    @apply bg-card text-foreground border-border placeholder:text-muted-foreground;
+  }
+  input::placeholder, textarea::placeholder { color: hsl(var(--muted-foreground)); }
+}
+
 /* LinkaMarket Custom Styles inspired by modern e-commerce */
 @layer components {
   .btn-primary {
