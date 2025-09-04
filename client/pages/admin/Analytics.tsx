@@ -55,9 +55,9 @@ const AdminAnalytics = () => {
         { name: "Huile de palme bio", sales: 234, revenue: 234000 },
       ],
       regions: [
-        { name: "Plateau", orders: 342, revenue: 4100000 },
-        { name: "Cocody", orders: 289, revenue: 3200000 },
-        { name: "Yopougon", orders: 267, revenue: 2890000 },
+        { name: "Centre-ville", orders: 342, revenue: 4100000 },
+        { name: "Plateau", orders: 289, revenue: 3200000 },
+        { name: "Kpéwa", orders: 267, revenue: 2890000 },
       ],
     },
   };
