@@ -1,0 +1,20 @@
+{
+  "name": "LinkaMarket",
+  "short_name": "Linka",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1E6F9F",
+  "icons": [
+    {
+      "src": "https://cdn.builder.io/api/v1/image/assets%2Fd9c69c3f1ccd486d8ee7f60471ffc975%2F239198e82d8f4671bfb3d9caaade0653?format=webp&width=192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.builder.io/api/v1/image/assets%2Fd9c69c3f1ccd486d8ee7f60471ffc975%2F239198e82d8f4671bfb3d9caaade0653?format=webp&width=512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
