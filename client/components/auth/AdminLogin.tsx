@@ -25,16 +25,11 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onAuthenticated }) => {
       credentials.password === "TOUT2000@"
     ) {
       const answer = window.prompt("Que veux-tu ?");
-      if (answer && answer.trim().toLowerCase() === "theworld") {
-        sessionStorage.setItem("admin_authenticated", "true");
-        sessionStorage.setItem("admin_verified", "true");
-        sessionStorage.setItem("admin_timestamp", Date.now().toString());
-        onAuthenticated();
-      } else {
-        setError("Vérification secondaire échouée.");
-        sessionStorage.removeItem("admin_authenticated");
-        sessionStorage.removeItem("admin_verified");
-      }
+      // Première étape réussie: on passe à la page de vérification
+      sessionStorage.setItem("admin_authenticated", "true");
+      sessionStorage.removeItem("admin_verified");
+      sessionStorage.setItem("admin_timestamp", Date.now().toString());
+      window.location.href = "/admin/verify";
     } else {
       setError("Identifiants incorrects. Accès refusé.");
     }
