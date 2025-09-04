@@ -33,17 +33,7 @@ const Login = () => {
 
       const isAdmin = sessionStorage.getItem("admin_authenticated") === "true";
       if (isAdmin) {
-        const answer = window.prompt("Que veux-tu ?");
-        if (answer && answer.trim().toLowerCase() === "theworld") {
-          sessionStorage.setItem("admin_verified", "true");
-          toast.success("Connexion administrateur réussie!");
-          navigate("/admin");
-        } else {
-          sessionStorage.removeItem("admin_authenticated");
-          sessionStorage.removeItem("admin_verified");
-          toast.error("Vérification secondaire échouée.");
-          navigate("/");
-        }
+        navigate("/admin/verify");
       } else {
         navigate("/");
       }
