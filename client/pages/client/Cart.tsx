@@ -50,7 +50,7 @@ const Cart = () => {
 
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [deliveryAddress, setDeliveryAddress] = useState(
-    "123 Rue de la République, Plateau, Abidjan",
+    "123 Rue de la République, Centre-ville, Kara",
   );
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("mixx");
   const [showPaymentModal, setShowPaymentModal] = useState(false);
