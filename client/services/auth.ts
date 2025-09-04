@@ -1,5 +1,5 @@
 import { supabase, isDemoMode } from "@/lib/supabase";
-import type { Database } from "@/lib/supabase";
+import { supabase, isDemoMode, type Database } from "@/lib/supabase";
 
 export type UserRole = "client" | "merchant" | "delivery" | "admin";
 
@@ -367,7 +367,7 @@ export const authService = {
   },
 
   // Private helper methods
-  private async getUserProfile(userId: string): Promise<AuthUser> {
+  async getUserProfile(userId: string): Promise<AuthUser> {
     const { data, error } = await supabase
       .from('profiles')
       .select('*')
@@ -381,7 +381,7 @@ export const authService = {
     return this.mapProfileToAuthUser(data);
   },
 
-  private async createProfile(userId: string, userData: RegisterData): Promise<AuthUser> {
+  async createProfile(userId: string, userData: RegisterData): Promise<AuthUser> {
     const { data, error } = await supabase
       .from('profiles')
       .insert({
@@ -406,7 +406,7 @@ export const authService = {
     return this.mapProfileToAuthUser(data);
   },
 
-  private mapProfileToAuthUser(profile: any): AuthUser {
+  mapProfileToAuthUser(profile: any): AuthUser {
     return {
       id: profile.id,
       email: profile.email,
@@ -423,7 +423,7 @@ export const authService = {
     };
   },
 
-  private async loginDemo(email: string, password: string): Promise<LoginResponse> {
+  async loginDemo(email: string, password: string): Promise<LoginResponse> {
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -445,7 +445,7 @@ export const authService = {
     return { user: mockUser };
   },
 
-  private async registerDemo(userData: RegisterData): Promise<{ user: AuthUser; requiresVerification: boolean }> {
+  async registerDemo(userData: RegisterData): Promise<{ user: AuthUser; requiresVerification: boolean }> {
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 1000));
 
