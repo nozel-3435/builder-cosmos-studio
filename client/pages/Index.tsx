@@ -735,8 +735,13 @@ const HomePage = () => {
             </div>
           </div>
 
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400 space-y-2">
             <p>&copy; 2024 LinkaMarket. Tous droits réservés.</p>
+            <div className="space-x-4 text-sm">
+              <Link to="/privacy" className="hover:text-white underline">Politique de confidentialité</Link>
+              <span>•</span>
+              <Link to="/terms" className="hover:text-white underline">Conditions d’utilisation</Link>
+            </div>
           </div>
         </div>
       </footer>
