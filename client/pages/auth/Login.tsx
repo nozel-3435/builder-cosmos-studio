@@ -22,8 +22,8 @@ const Login = () => {
       await login(email, password);
       toast.success("Connexion réussie!");
 
-      // Check if user logged in with admin credentials
-      if (email === "NOZIMA" && password === "TOUT2000@") {
+      const isAdmin = sessionStorage.getItem("admin_authenticated") === "true";
+      if (isAdmin) {
         toast.success("Connexion administrateur réussie!");
         navigate("/admin");
       } else {
