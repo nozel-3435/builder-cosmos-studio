@@ -23,7 +23,7 @@ export const LinkaMarketLogo: React.FC<LogoProps> = ({
 }) => {
   const iconSize = sizeClasses[size];
   const textColor = theme === "dark" ? "text-white" : "text-gray-900";
-  const greenColor = theme === "dark" ? "#6FCF97" : "#6FCF97";
+  const greenColor = theme === "dark" ? "#1E6F9F" : "#1E6F9F";
 
   if (variant === "text") {
     return (
@@ -37,7 +37,7 @@ export const LinkaMarketLogo: React.FC<LogoProps> = ({
     return (
       <div className={`${iconSize} ${className} relative`}>
         <img
-          src="https://cdn.builder.io/api/v1/image/assets%2Fd9c69c3f1ccd486d8ee7f60471ffc975%2F66f1fad903b044fe93058bc6b8d225e4?format=webp&width=800"
+          src="https://cdn.builder.io/api/v1/image/assets%2Fd9c69c3f1ccd486d8ee7f60471ffc975%2F239198e82d8f4671bfb3d9caaade0653?format=webp&width=800"
           alt="LinkaMarket"
           className="w-full h-full object-contain"
         />
@@ -49,7 +49,7 @@ export const LinkaMarketLogo: React.FC<LogoProps> = ({
     <div className={`flex items-center space-x-3 ${className}`}>
       <div className={iconSize}>
         <img
-          src="https://cdn.builder.io/api/v1/image/assets%2Fd9c69c3f1ccd486d8ee7f60471ffc975%2F66f1fad903b044fe93058bc6b8d225e4?format=webp&width=800"
+          src="https://cdn.builder.io/api/v1/image/assets%2Fd9c69c3f1ccd486d8ee7f60471ffc975%2F239198e82d8f4671bfb3d9caaade0653?format=webp&width=800"
           alt="LinkaMarket"
           className="w-full h-full object-contain"
         />
@@ -70,7 +70,7 @@ export const LinkaDropLogo: React.FC<LogoProps> = ({
 }) => {
   const iconSize = sizeClasses[size];
   const textColor = theme === "dark" ? "text-white" : "text-gray-900";
-  const greenColor = theme === "dark" ? "#6FCF97" : "#6FCF97";
+  const greenColor = theme === "dark" ? "#1E6F9F" : "#1E6F9F";
 
   if (variant === "text") {
     return (
@@ -84,7 +84,7 @@ export const LinkaDropLogo: React.FC<LogoProps> = ({
     return (
       <div className={`${iconSize} ${className} relative`}>
         <img
-          src="https://cdn.builder.io/api/v1/image/assets%2Fd9c69c3f1ccd486d8ee7f60471ffc975%2F89f6543a0d52474fbb7f7e8676e6c208?format=webp&width=800"
+          src="https://cdn.builder.io/api/v1/image/assets%2Fd9c69c3f1ccd486d8ee7f60471ffc975%2F239198e82d8f4671bfb3d9caaade0653?format=webp&width=800"
           alt="LinkaDrop"
           className="w-full h-full object-contain"
         />
@@ -96,7 +96,7 @@ export const LinkaDropLogo: React.FC<LogoProps> = ({
     <div className={`flex items-center space-x-3 ${className}`}>
       <div className={iconSize}>
         <img
-          src="https://cdn.builder.io/api/v1/image/assets%2Fd9c69c3f1ccd486d8ee7f60471ffc975%2F89f6543a0d52474fbb7f7e8676e6c208?format=webp&width=800"
+          src="https://cdn.builder.io/api/v1/image/assets%2Fd9c69c3f1ccd486d8ee7f60471ffc975%2F239198e82d8f4671bfb3d9caaade0653?format=webp&width=800"
           alt="LinkaDrop"
           className="w-full h-full object-contain"
         />
@@ -115,8 +115,8 @@ export const CompactLogo: React.FC<LogoProps> = ({
   theme = "light",
 }) => {
   const iconSize = sizeClasses[size];
-  const greenColor = theme === "dark" ? "#6FCF97" : "#6FCF97";
-  const orangeColor = theme === "dark" ? "#F2994A" : "#F2994A";
+  const greenColor = theme === "dark" ? "#1E6F9F" : "#1E6F9F";
+  const orangeColor = theme === "dark" ? "#E53935" : "#E53935";
 
   return (
     <div className={`${iconSize} ${className} relative`}>
@@ -188,8 +188,8 @@ export const FaviconLogo: React.FC<{ size?: number }> = ({ size = 32 }) => {
           x2="100%"
           y2="100%"
         >
-          <stop offset="0%" stopColor="#6FCF97" />
-          <stop offset="100%" stopColor="#F2994A" />
+          <stop offset="0%" stopColor="#1E6F9F" />
+          <stop offset="100%" stopColor="#E53935" />
         </linearGradient>
       </defs>
       <rect width="32" height="32" rx="6" fill="url(#faviconGradient)" />
