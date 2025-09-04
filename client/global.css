@@ -94,6 +94,25 @@
   }
 }
 
+/* Dark mode overrides for legacy classes */
+@layer utilities {
+  .dark .bg-white { @apply bg-card; }
+  .dark .bg-gray-50 { @apply bg-muted; }
+  .dark .bg-gray-100 { @apply bg-muted; }
+  .dark .text-black { @apply text-foreground; }
+  .dark .text-gray-900 { @apply text-foreground; }
+  .dark .text-gray-800 { @apply text-foreground; }
+  .dark .text-gray-700 { @apply text-foreground; }
+  .dark .text-gray-600 { @apply text-muted-foreground; }
+  .dark .text-gray-500 { @apply text-muted-foreground; }
+  .dark .border-gray-100 { @apply border-border; }
+  .dark .border-gray-200 { @apply border-border; }
+  .dark .border-gray-300 { @apply border-border; }
+  .dark .hover\:bg-gray-50:hover { @apply bg-muted; }
+  .dark input::placeholder,
+  .dark textarea::placeholder { color: hsl(var(--muted-foreground)); }
+}
+
 /* Leaflet Map Styles */
 .leaflet-container {
   font-family: inherit;
