@@ -47,7 +47,7 @@ const MyStore = () => {
       description:
         user?.businessDescription ||
         "Votre boutique sur LinkaMarket - Découvrez nos produits de qualité",
-      address: user?.businessAddress || "Abidjan, Côte d'Ivoire",
+      address: user?.businessAddress || "Kara, Togo",
       phone: user?.businessPhone || user?.phone || "+225 XX XX XX XX",
       email: user?.email || "",
       avatar: `https://api.dicebear.com/7.x/initials/svg?seed=${user?.businessName}&backgroundColor=6FCF97`,
