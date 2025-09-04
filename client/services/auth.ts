@@ -106,7 +106,6 @@ export const authService = {
     }
 
     try {
-      // Create auth user
       const { data, error } = await supabase.auth.signUp({
         email: userData.email,
         password: userData.password,
@@ -114,8 +113,8 @@ export const authService = {
           data: {
             full_name: `${userData.firstName} ${userData.lastName}`,
             role: userData.role,
-          }
-        }
+          },
+        },
       });
 
       if (error) {
@@ -126,16 +125,35 @@ export const authService = {
         throw new Error("Erreur lors de la création du compte");
       }
 
-      // Create profile
-      const profile = await this.createProfile(data.user.id, userData);
-      
-      return { 
+      // Try to create profile; gracefully fallback if schema/policies are missing
+      let profile: AuthUser | null = null;
+      try {
+        profile = await this.createProfile(data.user.id, userData);
+      } catch (e: any) {
+        console.warn("Profile creation failed, falling back to minimal user:", e?.message || e);
+        profile = {
+          id: data.user.id,
+          email: data.user.email || userData.email,
+          name: `${userData.firstName} ${userData.lastName}`.trim(),
+          role: userData.role,
+          phone: userData.phone,
+          businessName: userData.businessName,
+          businessAddress: userData.businessAddress,
+          vehicleType: userData.vehicleType,
+          deliveryZone: userData.deliveryZone,
+          emailConfirmed: Boolean(data.user.email_confirmed_at),
+          profileCompleted: false,
+        };
+      }
+
+      return {
         user: profile,
-        requiresVerification: !data.user.email_confirmed_at 
+        requiresVerification: !data.user.email_confirmed_at,
       };
-    } catch (error) {
+    } catch (error: any) {
       console.error("Registration error:", error);
-      throw new Error("Échec de l'inscription. Veuillez réessayer.");
+      const msg = typeof error?.message === "string" ? error.message : "Échec de l'inscription. Veuillez réessayer.";
+      throw new Error(msg);
     }
   },
 
