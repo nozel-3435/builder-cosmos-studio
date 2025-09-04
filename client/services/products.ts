@@ -1,4 +1,3 @@
-import { supabase, isDemoMode } from "@/lib/supabase";
 import { supabase, isDemoMode, type Database } from "@/lib/supabase";
 
 export type Product = Database['public']['Tables']['products']['Row'] & {
