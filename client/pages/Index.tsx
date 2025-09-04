@@ -656,7 +656,7 @@ const HomePage = () => {
             <div>
               <h4 className="font-semibold mb-4">Support</h4>
               <ul className="space-y-2 text-gray-400">
-                <li>Centre d'aide</li>
+                <li><Link to="/help" className="hover:text-white">Centre d'aide</Link></li>
                 <li>Contact</li>
                 <li><Link to="/faq" className="hover:text-white">FAQ</Link></li>
               </ul>
