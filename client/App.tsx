@@ -26,6 +26,7 @@ import Favorites from "./pages/client/Favorites";
 import Orders from "./pages/client/Orders";
 import MerchantDashboard from "./pages/merchant/Dashboard";
 import AddProduct from "./pages/merchant/AddProduct";
+import MerchantOrders from "./pages/merchant/Orders";
 import Inventory from "./pages/merchant/Inventory";
 import MyStore from "./pages/merchant/MyStore";
 import DeliveryDashboard from "./pages/delivery/Dashboard";
@@ -104,14 +105,7 @@ const App = () => (
                         element={<Inventory />}
                       />
                       <Route path="/merchant/store" element={<MyStore />} />
-                      <Route
-                        path="/merchant/orders"
-                        element={
-                          <div className="p-8 text-center">
-                            Commandes Reçues - À implémenter
-                          </div>
-                        }
-                      />
+                      <Route path="/merchant/orders" element={<MerchantOrders />} />
 
                       {/* Delivery routes */}
                       <Route path="/delivery" element={<DeliveryDashboard />} />
