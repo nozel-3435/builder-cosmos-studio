@@ -182,12 +182,11 @@ export default function MapComponent({
 
       setLocations(data);
     } catch (error) {
-      console.error("Erreur lors du chargement des locations:", error);
-      // En cas d'erreur, utiliser les données de démonstration
-      if (!isDemoMode) {
-        const demoResult = await demoLocationsService.select();
-        setLocations((demoResult.data || []) as Location[]);
-      }
+      const message = (error as any)?.message ?? String(error);
+      console.error("Erreur lors du chargement des locations:", message);
+      // Toujours utiliser les données de démonstration en cas d'erreur
+      const demoResult = await demoLocationsService.select();
+      setLocations((demoResult.data || []) as Location[]);
     } finally {
       setLoading(false);
     }
