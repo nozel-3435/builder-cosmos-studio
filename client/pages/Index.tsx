@@ -144,7 +144,7 @@ const HomePage = () => {
                         to="/products"
                         className="bg-linka-green text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-linka-green/90 transition-all duration-300 shadow-lg hover:shadow-xl"
                       >
-                        Explorer les produits
+                        {t("home.ctaExplore")}
                       </Link>
                     )}
                     {user.role === "merchant" && (
