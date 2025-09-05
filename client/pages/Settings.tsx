@@ -16,6 +16,7 @@ import {
   ChevronRight,
   ArrowLeft,
 } from "lucide-react";
+import i18n from "@/lib/i18n";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -88,10 +89,7 @@ const Settings = () => {
   const handleLanguageChange = (langCode: string) => {
     setLanguage(langCode);
     localStorage.setItem("linka_language", langCode);
-    try {
-      const { i18n } = require("react-i18next");
-      i18n.changeLanguage(langCode);
-    } catch {}
+    i18n.changeLanguage(langCode);
     alert(
       `Langue changée vers : ${langCode === "fr" ? "Français" : "English"}`,
     );
