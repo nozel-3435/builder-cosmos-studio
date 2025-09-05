@@ -515,9 +515,7 @@ const HomePage = () => {
               {t("map.discoverTitle")}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Explorez les commerçants, livreurs et services disponibles à Kara.
-              Cliquez sur la carte pour ajouter votre position et connecter-vous
-              avec votre communauté locale.
+              {t("map.discoverSubtitle")}
             </p>
           </div>
 
