@@ -20,6 +20,7 @@ const resources = {
         myProducts: "Mes produits",
         myStore: "Ma boutique",
         deliveryDashboard: "Tableau de bord",
+        myDeliveries: "Mes livraisons",
         activeDeliveries: "Livraisons actives",
         history: "Historique",
         admin: "Administration",
@@ -29,6 +30,8 @@ const resources = {
         register: "S'inscrire",
         profile: "Mon profil",
         logout: "Déconnexion",
+        about: "À propos",
+        contact: "Contact",
       },
       roles: {
         client: "Client",
@@ -65,6 +68,7 @@ const resources = {
         myProducts: "My products",
         myStore: "My store",
         deliveryDashboard: "Dashboard",
+        myDeliveries: "My deliveries",
         activeDeliveries: "Active deliveries",
         history: "History",
         admin: "Administration",
@@ -74,6 +78,8 @@ const resources = {
         register: "Sign up",
         profile: "My profile",
         logout: "Logout",
+        about: "About",
+        contact: "Contact",
       },
       roles: {
         client: "Customer",
