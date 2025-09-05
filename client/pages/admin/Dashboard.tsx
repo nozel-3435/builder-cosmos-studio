@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import AdvancedCharts from "@/components/admin/AdvancedCharts";
+import AdvancedCharts from "@/components/admin/AdvancedCharts";
 import BackButton from "@/components/ui/BackButton";
 import AdminRouteWrapper from "@/components/admin/AdminRouteWrapper";
 import { products } from "@/data/products";
@@ -409,12 +410,8 @@ const AdminDashboard = () => {
                 </div>
               </div>
 
-              <div className="h-64 bg-linka-gray-50 rounded-lg flex items-center justify-center">
-                <div className="text-center text-gray-500">
-                  <BarChart3 className="w-12 h-12 mx-auto mb-2" />
-                  <p>Graphiques analytiques</p>
-                  <p className="text-sm">À implémenter avec Chart.js</p>
-                </div>
+              <div className="mt-6">
+                <AdvancedCharts />
               </div>
             </div>
 
