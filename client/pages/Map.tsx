@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import KaraMap from "../components/maps/KaraMap";
 import MapComponent from "../components/MapComponent";
 import {
@@ -20,6 +21,7 @@ const Map = () => {
   const [viewMode, setViewMode] = useState<
     "merchants" | "delivery" | "overview" | "interactive"
   >("interactive");
+  const navigate = useNavigate();
   const [selectedMerchant, setSelectedMerchant] = useState<number | null>(null);
   const [showFilters, setShowFilters] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -307,7 +309,7 @@ const Map = () => {
                           className="ml-4 px-3 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors"
                           onClick={(e) => {
                             e.stopPropagation();
-                            // Navigate to store
+                            navigate("/stores");
                           }}
                         >
                           Voir
