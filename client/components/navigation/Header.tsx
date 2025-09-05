@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { LinkaMarketLogo } from "@/components/ui/logos";
@@ -19,6 +20,7 @@ import {
 
 export const Header = () => {
   const { user, logout } = useAuth();
+  const { t } = useTranslation();
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
@@ -26,45 +28,45 @@ export const Header = () => {
   const getNavigationItems = () => {
     if (!user) {
       return [
-        { href: "/", label: "Accueil", icon: null },
-        { href: "/products", label: "Produits", icon: null },
-        { href: "/stores", label: "Boutiques", icon: null },
+        { href: "/", label: t("nav.home"), icon: null },
+        { href: "/products", label: t("nav.products"), icon: null },
+        { href: "/stores", label: t("nav.stores"), icon: null },
       ];
     }
 
     switch (user.role) {
       case "client":
         return [
-          { href: "/", label: "Accueil", icon: null },
-          { href: "/products", label: "Produits", icon: Search },
-          { href: "/stores", label: "Boutiques", icon: Store },
-          { href: "/favorites", label: "Favoris", icon: Heart },
-          { href: "/orders", label: "Commandes", icon: Package },
+          { href: "/", label: t("nav.home"), icon: null },
+          { href: "/products", label: t("nav.products"), icon: Search },
+          { href: "/stores", label: t("nav.stores"), icon: Store },
+          { href: "/favorites", label: t("nav.favorites"), icon: Heart },
+          { href: "/orders", label: t("nav.orders"), icon: Package },
         ];
       case "merchant":
         return [
-          { href: "/merchant", label: "Tableau de bord", icon: BarChart3 },
-          { href: "/merchant/products", label: "Mes produits", icon: Package },
-          { href: "/merchant/orders", label: "Commandes", icon: ShoppingCart },
-          { href: "/merchant/store", label: "Ma boutique", icon: Store },
+          { href: "/merchant", label: t("nav.dashboard"), icon: BarChart3 },
+          { href: "/merchant/products", label: t("nav.myProducts"), icon: Package },
+          { href: "/merchant/orders", label: t("nav.orders"), icon: ShoppingCart },
+          { href: "/merchant/store", label: t("nav.myStore"), icon: Store },
         ];
       case "delivery":
         return [
-          { href: "/delivery", label: "Tableau de bord", icon: Truck },
+          { href: "/delivery", label: t("nav.deliveryDashboard"), icon: Truck },
           {
             href: "/delivery/active",
-            label: "Livraisons actives",
+            label: t("nav.activeDeliveries"),
             icon: MapPin,
           },
-          { href: "/delivery/history", label: "Historique", icon: Package },
+          { href: "/delivery/history", label: t("nav.history"), icon: Package },
         ];
       case "admin":
         return [
-          { href: "/admin", label: "Administration", icon: BarChart3 },
-          { href: "/admin/users", label: "Utilisateurs", icon: User },
-          { href: "/admin/products", label: "Produits", icon: Package },
-          { href: "/admin/orders", label: "Commandes", icon: ShoppingCart },
-          { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
+          { href: "/admin", label: t("nav.admin"), icon: BarChart3 },
+          { href: "/admin/users", label: t("nav.users"), icon: User },
+          { href: "/admin/products", label: t("nav.products"), icon: Package },
+          { href: "/admin/orders", label: t("nav.orders"), icon: ShoppingCart },
+          { href: "/admin/analytics", label: t("nav.analytics"), icon: BarChart3 },
         ];
       default:
         return [];
@@ -145,12 +147,12 @@ export const Header = () => {
                       </p>
                       <p className="text-xs text-gray-500 capitalize">
                         {user.role === "client"
-                          ? "Client"
+                          ? t("roles.client")
                           : user.role === "merchant"
-                            ? "Commerçant"
+                            ? t("roles.merchant")
                             : user.role === "delivery"
-                              ? "Livreur"
-                              : "Administrateur"}
+                              ? t("roles.delivery")
+                              : t("roles.admin")}
                       </p>
                     </div>
                     <Link
@@ -159,7 +161,7 @@ export const Header = () => {
                       onClick={() => setIsProfileMenuOpen(false)}
                     >
                       <User className="w-4 h-4" />
-                      <span>Mon profil</span>
+                      <span>{t("nav.profile")}</span>
                     </Link>
                     <button
                       onClick={() => {
@@ -169,7 +171,7 @@ export const Header = () => {
                       className="flex items-center space-x-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                     >
                       <LogOut className="w-4 h-4" />
-                      <span>Déconnexion</span>
+                      <span>{t("nav.logout")}</span>
                     </button>
                   </div>
                 )}
@@ -180,13 +182,13 @@ export const Header = () => {
                   to="/login"
                   className="text-sm font-medium text-gray-700 hover:text-linka-green"
                 >
-                  Connexion
+                  {t("nav.login")}
                 </Link>
                 <Link
                   to="/register"
                   className="bg-linka-green text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-linka-green/90 transition-colors"
                 >
-                  S'inscrire
+                  {t("nav.register")}
                 </Link>
               </div>
             )}
