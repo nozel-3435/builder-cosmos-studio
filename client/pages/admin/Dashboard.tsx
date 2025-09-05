@@ -1,7 +1,6 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import AdvancedCharts from "@/components/admin/AdvancedCharts";
-import AdvancedCharts from "@/components/admin/AdvancedCharts";
 import BackButton from "@/components/ui/BackButton";
 import AdminRouteWrapper from "@/components/admin/AdminRouteWrapper";
 import { products } from "@/data/products";
