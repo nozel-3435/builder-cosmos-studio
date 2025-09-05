@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useAuth } from "@/contexts/AuthContext";
 import { popularProducts, categories } from "@/data/products";
 import AnimationWrapper from "../components/animations/AnimationWrapper";
@@ -28,6 +29,7 @@ const MapComponent = React.lazy(() => import("../components/MapComponent"));
 
 const HomePage = () => {
   const { user } = useAuth();
+  const { t } = useTranslation();
 
   const features = [
     {
@@ -118,21 +120,21 @@ const HomePage = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-                Bienvenue sur <span className="text-gradient">Linka</span>
+                {t("home.heroTitlePrefix")}
+                <span className="text-gradient">Linka</span>
                 <span className="text-linka-orange">Market</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                La plateforme qui connecte clients, commerçants et livreurs pour
-                une expérience d'achat moderne et fluide
+                {t("home.heroSubtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 {!user ? (
                   <>
                     <Link to="/register" className="btn-primary text-lg">
-                      Commencer maintenant
+                      {t("home.ctaStart")}
                     </Link>
                     <Link to="/products" className="btn-secondary text-lg">
-                      Explorer les produits
+                      {t("home.ctaExplore")}
                     </Link>
                   </>
                 ) : (
@@ -510,7 +512,7 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Découvrez votre quartier
+              {t("map.discoverTitle")}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Explorez les commerçants, livreurs et services disponibles à Kara.
@@ -524,10 +526,10 @@ const HomePage = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-xl font-semibold mb-2">
-                    Carte Interactive de Kara
+                    {t("map.bannerTitle")}
                   </h3>
                   <p className="text-white/90">
-                    Connectez-vous avec votre communauté locale
+                    {t("map.bannerSubtitle")}
                   </p>
                 </div>
                 <MapPin className="w-12 h-12 text-white/80" />
@@ -618,7 +620,7 @@ const HomePage = () => {
                   className="inline-flex items-center space-x-2 bg-linka-green text-white px-6 py-3 rounded-lg hover:bg-linka-green/90 transition-colors"
                 >
                   <MapPin className="w-5 h-5" />
-                  <span>Voir la carte complète</span>
+                  <span>{t("map.seeFullMap")}</span>
                 </Link>
               </div>
             </div>
