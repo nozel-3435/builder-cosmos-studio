@@ -42,6 +42,15 @@ const FloatingSettings: React.FC<FloatingSettingsProps> = ({
   useEffect(() => {
     localStorage.setItem("linka_settings", JSON.stringify(settings));
 
+    // Apply language
+    try {
+      const { i18n } = require("react-i18next");
+      if (settings.language) {
+        i18n.changeLanguage(settings.language);
+        localStorage.setItem("linka_language", settings.language);
+      }
+    } catch {}
+
     // Apply theme
     if (settings.theme === "dark") {
       document.documentElement.classList.add("dark");
