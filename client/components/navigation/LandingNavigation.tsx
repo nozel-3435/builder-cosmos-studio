@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { LinkaMarketLogo } from "@/components/ui/logos";
 import {
@@ -28,6 +29,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
   onLanguageChange,
   onThemeChange,
 }) => {
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProductsMenuOpen, setIsProductsMenuOpen] = useState(false);
@@ -96,7 +98,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
                     : "text-white hover:text-linka-green/70"
                 }`}
               >
-                <span>Produits</span>
+                <span>{t("nav.products")}</span>
                 <ChevronDown className="h-4 w-4" />
               </button>
 
@@ -149,7 +151,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
                   : "text-white hover:text-blue-200"
               }`}
             >
-              À propos
+              {t("nav.about")}
             </a>
 
             <a
@@ -160,7 +162,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
                   : "text-white hover:text-blue-200"
               }`}
             >
-              Contact
+              {t("nav.contact")}
             </a>
           </div>
 
@@ -219,13 +221,13 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
                     : "text-white hover:text-linka-green/70"
                 }`}
               >
-                Connexion
+                {t("nav.login")}
               </Link>
               <Link
                 to="/register"
                 className="bg-gradient-to-r from-linka-green to-linka-orange text-white px-6 py-2 rounded-lg font-medium hover:from-green-600 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                S'inscrire
+                {t("nav.register")}
               </Link>
             </div>
 
@@ -283,13 +285,13 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
                   href="#about"
                   className="block px-3 py-2 text-gray-700 hover:text-linka-green font-medium"
                 >
-                  À propos
+                  {t("nav.about")}
                 </a>
                 <a
                   href="#contact"
                   className="block px-3 py-2 text-gray-700 hover:text-linka-green font-medium"
                 >
-                  Contact
+                  {t("nav.contact")}
                 </a>
 
                 {/* Mobile CTA */}
@@ -298,13 +300,13 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
                     to="/login"
                     className="block w-full text-center px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium"
                   >
-                    Connexion
+                    {t("nav.login")}
                   </Link>
                   <Link
                     to="/register"
                     className="block w-full text-center bg-gradient-to-r from-linka-green to-linka-orange text-white px-4 py-2 rounded-lg font-medium"
                   >
-                    S'inscrire
+                    {t("nav.register")}
                   </Link>
                 </div>
               </div>
