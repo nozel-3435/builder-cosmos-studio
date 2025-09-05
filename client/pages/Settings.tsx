@@ -87,9 +87,11 @@ const Settings = () => {
 
   const handleLanguageChange = (langCode: string) => {
     setLanguage(langCode);
-    // Sauvegarder la langue dans le localStorage
     localStorage.setItem("linka_language", langCode);
-    // Afficher une confirmation
+    try {
+      const { i18n } = require("react-i18next");
+      i18n.changeLanguage(langCode);
+    } catch {}
     alert(
       `Langue changée vers : ${langCode === "fr" ? "Français" : "English"}`,
     );
