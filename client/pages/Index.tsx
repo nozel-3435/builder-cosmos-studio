@@ -152,7 +152,7 @@ const HomePage = () => {
                         to="/merchant"
                         className="bg-linka-green text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-linka-green/90 transition-all duration-300 shadow-lg hover:shadow-xl"
                       >
-                        Tableau de bord
+                        {t("nav.dashboard")}
                       </Link>
                     )}
                     {user.role === "delivery" && (
@@ -160,7 +160,7 @@ const HomePage = () => {
                         to="/delivery"
                         className="bg-linka-green text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-linka-green/90 transition-all duration-300 shadow-lg hover:shadow-xl"
                       >
-                        Mes livraisons
+                        {t("nav.myDeliveries")}
                       </Link>
                     )}
                   </>
