@@ -79,7 +79,7 @@ const App = () => (
                         path="/editable-profile"
                         element={<EditableProfile />}
                       />
-                      <Route path="/settings" element={<Settings />} />
+                      <Route path="/settings" element={<SettingsPage />} />
                       <Route path="/map" element={<Map />} />
                       <Route path="/feedback" element={<Feedback />} />
                       <Route path="/help" element={<HelpCenter />} />
