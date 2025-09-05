@@ -116,9 +116,9 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
                       {products.map((product) => {
                         const IconComponent = product.icon;
                         return (
-                          <a
+                          <Link
                             key={product.name}
-                            href="#"
+                            to={product.name === "LinkaMarket" ? "/products" : product.name === "LinkaDrop" ? "/delivery" : product.name === "LinkaPharma" ? "/stores" : "/help"}
                             className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group"
                           >
                             <div className="p-2 bg-gray-100 rounded-lg group-hover:bg-white">
@@ -134,7 +134,7 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
                                 {product.description}
                               </div>
                             </div>
-                          </a>
+                          </Link>
                         );
                       })}
                     </div>
@@ -265,16 +265,16 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
                     {products.map((product) => {
                       const IconComponent = product.icon;
                       return (
-                        <a
+                        <Link
                           key={product.name}
-                          href="#"
+                          to={product.name === "LinkaMarket" ? "/products" : product.name === "LinkaDrop" ? "/delivery" : product.name === "LinkaPharma" ? "/stores" : "/help"}
                           className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-100 transition-colors"
                         >
                           <IconComponent
                             className={`h-4 w-4 ${product.color}`}
                           />
                           <span className="text-gray-700">{product.name}</span>
-                        </a>
+                        </Link>
                       );
                     })}
                   </div>
