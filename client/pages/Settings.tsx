@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  Settings,
+  Settings as SettingsIcon,
   Globe,
   Palette,
   Bell,
@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import i18n from "@/lib/i18n";
 
-const Settings = () => {
+const SettingsPage = () => {
   const navigate = useNavigate();
   const [language, setLanguage] = useState("fr");
   const [theme, setTheme] = useState("light");
@@ -125,7 +125,7 @@ const Settings = () => {
               <ArrowLeft className="h-5 w-5 text-gray-600" />
             </button>
             <div className="p-2 bg-blue-100 rounded-lg">
-              <Settings className="h-6 w-6 text-blue-600" />
+              <SettingsIcon className="h-6 w-6 text-blue-600" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Paramètres</h1>
@@ -486,4 +486,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default SettingsPage;
