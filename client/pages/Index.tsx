@@ -170,8 +170,12 @@ const HomePage = () => {
             <div className="mt-16 flex justify-center">
               <div className="relative">
                 <div className="w-80 h-80 bg-gradient-to-br from-linka-green to-linka-orange rounded-full flex items-center justify-center shadow-2xl">
-                  <div className="w-64 h-64 bg-white rounded-full flex items-center justify-center">
-                    <ShoppingBag className="w-32 h-32 text-linka-green" />
+                  <div className="w-64 h-64 bg-white rounded-full flex items-center justify-center overflow-hidden">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2Fd9c69c3f1ccd486d8ee7f60471ffc975%2Fb1a95393feb14114bcbb0b7b3f798e7a?format=webp&width=800"
+                      alt="Panier LinkaMarket"
+                      className="w-56 h-56 object-contain"
+                    />
                   </div>
                 </div>
                 <div className="absolute -top-8 -left-8 w-16 h-16 bg-linka-orange rounded-full flex items-center justify-center shadow-lg">

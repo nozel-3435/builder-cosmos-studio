@@ -53,22 +53,17 @@ Astuce: exécutez `node verify-supabase.js` pour confirmer que l’app sortira d
 
 Ouvrez l’éditeur SQL de votre projet Supabase et exécutez, dans cet ordre:
 
+Option A (recommandé) — Fichier unique:
+
+1. `supabase/full_setup.sql`
+   - Tout-en-un: schéma, fonctions, triggers, RLS, `verification_codes`, `locations`, données de démonstration de Kara et index. Exécutez ce seul fichier.
+
+Option B — Fichiers séparés (ancien mode):
 1. `supabase/schema.sql`
-   - Crée extensions, types (ENUM), tables de base (profiles, products, orders, …), fonctions et triggers
-   - Crée aussi la table `locations` et active RLS avec politiques de lecture/écriture
-
 2. `supabase/migrations/001_add_locations_table.sql`
-   - Sécurise la création de `locations` si elle n’existe pas, ajoute index, trigger, fonction `find_nearby_locations`
-   - Ajoute un lot de données de démonstration centrées sur Kara
-
 3. `supabase/verification_codes_table.sql`
-   - Crée la table `verification_codes` (utilisée par le flux de vérification mail)
-
 4. `supabase/linkamarket_policies.sql`
-   - Réapplique/normalise les politiques RLS (profils, produits, commandes, etc.)
-
-5. (Optionnel) `supabase/migrate-data.sql`
-   - Ajoute d’autres données de démonstration pour Kara (complément)
+5. `supabase/migrate-data.sql`
 
 > Important: assurez-vous que l’extension `uuid-ossp` est activée et que le schéma `auth` existe (créé automatiquement par Supabase). Le trigger `on_auth_user_created` crée un profil dans `profiles` pour chaque nouvel utilisateur.
 
@@ -131,7 +126,7 @@ Ouvrez l’éditeur SQL de votre projet Supabase et exécutez, dans cet ordre:
 
 - Carte: `client/components/MapComponent.tsx`, `client/pages/Map.tsx`, `client/pages/Index.tsx`
 - Client/démo Supabase: `client/lib/supabase.ts`
-- Scripts SQL: `supabase/schema.sql`, `supabase/migrations/001_add_locations_table.sql`, `supabase/verification_codes_table.sql`, `supabase/linkamarket_policies.sql`, `supabase/migrate-data.sql`
+- Scripts SQL: `supabase/full_setup.sql` (tout-en-un) — ou, alternativement: `supabase/schema.sql`, `supabase/migrations/001_add_locations_table.sql`, `supabase/verification_codes_table.sql`, `supabase/linkamarket_policies.sql`, `supabase/migrate-data.sql`
 - Vérification: `verify-supabase.js`
 
 ---
