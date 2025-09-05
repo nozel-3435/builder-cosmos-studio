@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import i18n from "@/lib/i18n";
 import {
   Settings,
   Globe,
@@ -43,13 +44,10 @@ const FloatingSettings: React.FC<FloatingSettingsProps> = ({
     localStorage.setItem("linka_settings", JSON.stringify(settings));
 
     // Apply language
-    try {
-      const { i18n } = require("react-i18next");
-      if (settings.language) {
-        i18n.changeLanguage(settings.language);
-        localStorage.setItem("linka_language", settings.language);
-      }
-    } catch {}
+    if (settings.language) {
+      i18n.changeLanguage(settings.language);
+      localStorage.setItem("linka_language", settings.language);
+    }
 
     // Apply theme
     if (settings.theme === "dark") {
