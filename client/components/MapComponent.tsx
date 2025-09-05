@@ -20,6 +20,7 @@ import {
   Edit3,
   Trash2,
   Plus,
+  Navigation,
 } from "lucide-react";
 
 // Fix pour les icônes par défaut de Leaflet
@@ -121,6 +122,29 @@ export default function MapComponent({
     phone: "",
     description: "",
   });
+
+  const mapRef = useRef<L.Map | null>(null);
+
+  const handleLocate = () => {
+    if (!mapRef.current) return;
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords }) => {
+          mapRef.current!.setView([coords.latitude, coords.longitude], 16);
+        },
+        () => {
+          alert("Impossible d'obtenir votre position");
+        },
+      );
+    } else {
+      alert("Géolocalisation non supportée par votre navigateur");
+    }
+  };
+
+  const handleReset = () => {
+    if (!mapRef.current) return;
+    mapRef.current.setView(center as any, zoom);
+  };
 
   // Charger les locations existantes
   useEffect(() => {
@@ -341,6 +365,9 @@ export default function MapComponent({
         zoom={zoom}
         style={{ height, width: "100%" }}
         className="rounded-lg shadow-lg"
+        whenCreated={(map) => {
+          mapRef.current = map;
+        }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -449,6 +476,26 @@ export default function MapComponent({
           </Marker>
         )}
       </MapContainer>
+
+      {/* Contrôles de carte */}
+      <div className="absolute bottom-4 right-4 z-[1000] bg-white rounded-lg shadow-lg p-2">
+        <div className="flex flex-col space-y-2">
+          <button
+            onClick={handleLocate}
+            className="p-2 hover:bg-gray-100 rounded"
+            title="Ma position"
+          >
+            <Navigation className="w-4 h-4 text-gray-600" />
+          </button>
+          <button
+            onClick={handleReset}
+            className="p-2 hover:bg-gray-100 rounded"
+            title="Recentrer"
+          >
+            <MapPin className="w-4 h-4 text-gray-600" />
+          </button>
+        </div>
+      </div>
 
       {/* Légende */}
       <div className="mt-4 flex items-center justify-center space-x-6 text-sm">
