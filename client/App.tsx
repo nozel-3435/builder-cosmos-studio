@@ -36,7 +36,7 @@ import AdminUsers from "./pages/admin/Users";
 import AdminProducts from "./pages/admin/Products";
 import AdminOrders from "./pages/admin/Orders";
 import AdminAnalytics from "./pages/admin/Analytics";
-import Settings from "./pages/Settings";
+import SettingsPage from "./pages/Settings";
 import Map from "./pages/Map";
 import Stores from "./pages/Stores";
 import Privacy from "./pages/Privacy";
