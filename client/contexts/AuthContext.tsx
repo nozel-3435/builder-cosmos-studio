@@ -12,8 +12,8 @@ export type { UserRole, AuthUser as User };
 export interface AuthContextType {
   user: AuthUser | null;
   isLoading: boolean;
-  login: (email: string, password: string) => Promise<{ requiresVerification?: boolean }>;
-  register: (data: RegisterData) => Promise<{ requiresVerification: boolean }>;
+  login: (email: string, password: string) => Promise<{ user?: AuthUser; requiresVerification?: boolean }>;
+  register: (data: RegisterData) => Promise<{ requiresVerification: boolean; user?: AuthUser }>;
   sendVerificationCode: (email: string) => Promise<{ code: string }>;
   verifyEmail: (email: string, code: string) => Promise<boolean>;
   resetPassword: (email: string) => Promise<void>;
@@ -82,7 +82,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       const result = await authService.login(email, password);
       setUser(result.user);
-      return { requiresVerification: result.requiresVerification };
+      return { user: result.user, requiresVerification: result.requiresVerification };
     } catch (error) {
       throw error;
     } finally {
