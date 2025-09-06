@@ -8,7 +8,7 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { supabase, isDemoMode, demoLocationsService } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/contexts/AuthContext";
 import { Database } from "@/lib/supabase";
 import {
@@ -154,39 +154,20 @@ export default function MapComponent({
   const fetchLocations = async () => {
     setLoading(true);
     try {
-      let result;
-
-      if (isDemoMode) {
-        // Mode démonstration
-        result = await demoLocationsService.select();
-      } else {
-        // Mode Supabase normal
-        let query = supabase
-          .from("locations")
-          .select("*")
-          .eq("is_active", true);
-        if (filterByRole) {
-          query = query.eq("role", filterByRole);
-        }
-        result = await query;
+      let query = supabase
+        .from("locations")
+        .select("*")
+        .eq("is_active", true);
+      if (filterByRole) {
+        query = query.eq("role", filterByRole);
       }
-
-      if (result.error) throw result.error;
-
-      let data = result.data || [];
-
-      // Filtrer par rôle en mode démonstration si nécessaire
-      if (isDemoMode && filterByRole) {
-        data = data.filter((location: any) => location.role === filterByRole);
-      }
-
-      setLocations(data);
+      const { data, error } = await query;
+      if (error) throw error;
+      setLocations((data as any) || []);
     } catch (error) {
       const message = (error as any)?.message ?? String(error);
       console.error("Erreur lors du chargement des locations:", message);
-      // Toujours utiliser les données de démonstration en cas d'erreur
-      const demoResult = await demoLocationsService.select();
-      setLocations((demoResult.data || []) as Location[]);
+      setLocations([]);
     } finally {
       setLoading(false);
     }
@@ -292,17 +273,11 @@ export default function MapComponent({
     if (!confirm("Êtes-vous sûr de vouloir supprimer cette location ?")) return;
 
     try {
-      if (isDemoMode) {
-        // Mode démonstration
-        alert("Mode démonstration : Suppression simulée avec succès !");
-      } else {
-        // Mode Supabase normal
-        const { error } = await supabase
-          .from("locations")
-          .update({ is_active: false })
-          .eq("id", locationId);
-        if (error) throw error;
-      }
+      const { error } = await supabase
+        .from("locations")
+        .update({ is_active: false })
+        .eq("id", locationId);
+      if (error) throw error;
       await fetchLocations();
     } catch (error) {
       console.error("Erreur lors de la suppression:", error);
@@ -325,22 +300,10 @@ export default function MapComponent({
 
   return (
     <div className="relative">
-      {/* Indicateur mode démonstration */}
-      {isDemoMode && (
-        <div className="absolute top-4 left-4 z-[1000] bg-yellow-100 border border-yellow-300 rounded-lg shadow-lg p-3">
-          <p className="text-sm text-yellow-800 font-medium">
-            🚧 Mode Démonstration
-          </p>
-          <p className="text-xs text-yellow-700 mt-1">
-            Configurez Supabase pour le mode production
-          </p>
-        </div>
-      )}
-
       {/* Bouton d'aide */}
       {showAddButton && (
         <div
-          className={`absolute top-4 ${isDemoMode ? "right-4" : "right-4"} z-[1000] bg-white rounded-lg shadow-lg p-3`}
+          className={`absolute top-4 right-4 z-[1000] bg-white rounded-lg shadow-lg p-3`}
         >
           <p className="text-sm text-gray-600 mb-2">
             <strong>💡 Comment utiliser la carte :</strong>
@@ -349,11 +312,6 @@ export default function MapComponent({
             <li>• Cliquez sur la carte pour ajouter votre position</li>
             <li>• Utilisez les icônes pour filtrer par type</li>
             <li>• Cliquez sur un marqueur pour voir les détails</li>
-            {isDemoMode && (
-              <li className="text-yellow-600">
-                • Mode démo : actions simulées
-              </li>
-            )}
           </ul>
         </div>
       )}
@@ -364,8 +322,8 @@ export default function MapComponent({
         zoom={zoom}
         style={{ height, width: "100%" }}
         className="rounded-lg shadow-lg"
-        whenCreated={(map) => {
-          mapRef.current = map;
+        whenReady={(e) => {
+          mapRef.current = e.target as any;
         }}
       >
         <TileLayer
