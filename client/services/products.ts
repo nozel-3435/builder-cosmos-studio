@@ -1,4 +1,4 @@
-import { supabase, isDemoMode, type Database } from "@/lib/supabase";
+import { supabase, type Database } from "@/lib/supabase";
 
 export type Product = Database['public']['Tables']['products']['Row'] & {
   category_name?: string;
@@ -53,109 +53,13 @@ export interface UpdateProductData extends Partial<CreateProductData> {
 }
 
 // Demo data for non-Supabase mode
-const demoProducts: Product[] = [
-  {
-    id: "demo-1",
-    name: "Smartphone Samsung Galaxy A54",
-    description: "Smartphone dernière génération avec appareil photo 50MP, 128GB de stockage et batterie longue durée.",
-    price: 85000,
-    original_price: 95000,
-    image_url: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400",
-    gallery_images: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400"],
-    category_id: "cat-electronics",
-    subcategory_id: "subcat-phones",
-    merchant_id: "merchant-1",
-    in_stock: true,
-    stock_quantity: 15,
-    tags: ["smartphone", "samsung", "android", "photo"],
-    is_popular: true,
-    is_featured: false,
-    discount_percentage: 10,
-    weight: 0.2,
-    dimensions: "15x7x0.8 cm",
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-    category_name: "Électronique",
-    category_icon: "📱",
-    subcategory_name: "Smartphones",
-    store_name: "TechZone Kara",
-    store_location: "Centre-ville, Kara",
-    average_rating: 4.5,
-    review_count: 23,
-    favorite_count: 45
-  },
-  {
-    id: "demo-2",
-    name: "Riz jasmin parfumé 25kg",
-    description: "Riz jasmin de qualité supérieure, importé de Thaïlande. Parfait pour vos repas familiaux.",
-    price: 12500,
-    image_url: "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=400",
-    category_id: "cat-food",
-    subcategory_id: "subcat-cereals",
-    merchant_id: "merchant-2",
-    in_stock: true,
-    stock_quantity: 50,
-    tags: ["riz", "céréales", "25kg", "thaïlande"],
-    is_popular: true,
-    is_featured: true,
-    weight: 25,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-    category_name: "Alimentaire",
-    category_icon: "🍽️",
-    subcategory_name: "Céréales & Légumineuses",
-    store_name: "Marché Central",
-    store_location: "Quartier Kpéwa, Kara",
-    average_rating: 4.8,
-    review_count: 67,
-    favorite_count: 89
-  },
-  {
-    id: "demo-3",
-    name: "Robe Wax africaine",
-    description: "Belle robe en tissu wax authentique, taille unique, parfaite pour les occasions spéciales.",
-    price: 15000,
-    original_price: 18000,
-    image_url: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400",
-    category_id: "cat-fashion",
-    subcategory_id: "subcat-women",
-    merchant_id: "merchant-3",
-    in_stock: true,
-    stock_quantity: 8,
-    tags: ["robe", "wax", "africaine", "femme"],
-    is_popular: false,
-    is_featured: true,
-    discount_percentage: 17,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-    category_name: "Mode & Vêtements",
-    category_icon: "👗",
-    subcategory_name: "Vêtements Femme",
-    store_name: "Boutique Elegance",
-    store_location: "Avenue de l'Indépendance, Kara",
-    average_rating: 4.3,
-    review_count: 12,
-    favorite_count: 28
-  }
-];
 
-const demoCategories = [
-  { id: "cat-electronics", name: "Électronique", icon: "📱" },
-  { id: "cat-food", name: "Alimentaire", icon: "🍽️" },
-  { id: "cat-fashion", name: "Mode & Vêtements", icon: "👗" },
-  { id: "cat-home", name: "Maison & Décoration", icon: "🏠" },
-  { id: "cat-beauty", name: "Santé & Beauté", icon: "💊" }
-];
 
 export const productsService = {
   /**
    * Get all products with filters and pagination
    */
   async getProducts(filters: ProductFilter = {}): Promise<{ data: Product[]; count: number }> {
-    if (isDemoMode) {
-      return this.getProductsDemo(filters);
-    }
-
     try {
       let query = supabase
         .from('products_with_stats')
@@ -241,10 +145,6 @@ export const productsService = {
    * Get a single product by ID
    */
   async getProduct(id: string): Promise<Product | null> {
-    if (isDemoMode) {
-      return demoProducts.find(p => p.id === id) || null;
-    }
-
     try {
       const { data, error } = await supabase
         .from('products_with_stats')
@@ -270,10 +170,6 @@ export const productsService = {
    * Search products with full-text search
    */
   async searchProducts(query: string, filters: Omit<ProductFilter, 'search'> = {}): Promise<{ data: Product[]; count: number }> {
-    if (isDemoMode) {
-      return this.searchProductsDemo(query, filters);
-    }
-
     try {
       const { data, error } = await supabase
         .rpc('search_products', { search_query: query });
@@ -346,20 +242,6 @@ export const productsService = {
    * Create a new product (for merchants)
    */
   async createProduct(productData: CreateProductData): Promise<Product> {
-    if (isDemoMode) {
-      const newProduct: Product = {
-        ...productData,
-        id: `demo-${Date.now()}`,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-        average_rating: 0,
-        review_count: 0,
-        favorite_count: 0
-      };
-      demoProducts.push(newProduct);
-      return newProduct;
-    }
-
     try {
       const { data, error } = await supabase
         .from('products')
@@ -382,21 +264,6 @@ export const productsService = {
    * Update a product
    */
   async updateProduct(updateData: UpdateProductData): Promise<Product> {
-    if (isDemoMode) {
-      const index = demoProducts.findIndex(p => p.id === updateData.id);
-      if (index === -1) {
-        throw new Error("Produit non trouvé");
-      }
-      
-      const updatedProduct = {
-        ...demoProducts[index],
-        ...updateData,
-        updated_at: new Date().toISOString()
-      };
-      demoProducts[index] = updatedProduct;
-      return updatedProduct;
-    }
-
     try {
       const { id, ...updates } = updateData;
       
@@ -422,14 +289,6 @@ export const productsService = {
    * Delete a product
    */
   async deleteProduct(id: string): Promise<void> {
-    if (isDemoMode) {
-      const index = demoProducts.findIndex(p => p.id === id);
-      if (index !== -1) {
-        demoProducts.splice(index, 1);
-      }
-      return;
-    }
-
     try {
       const { error } = await supabase
         .from('products')
@@ -449,10 +308,6 @@ export const productsService = {
    * Get all categories
    */
   async getCategories(): Promise<Array<{ id: string; name: string; icon: string; description?: string }>> {
-    if (isDemoMode) {
-      return demoCategories;
-    }
-
     try {
       const { data, error } = await supabase
         .from('categories')
@@ -474,19 +329,6 @@ export const productsService = {
    * Get subcategories for a category
    */
   async getSubcategories(categoryId: string): Promise<Array<{ id: string; name: string; category_id: string }>> {
-    if (isDemoMode) {
-      // Return demo subcategories based on category
-      const subcategories = [
-        { id: "subcat-phones", name: "Smartphones", category_id: "cat-electronics" },
-        { id: "subcat-computers", name: "Ordinateurs", category_id: "cat-electronics" },
-        { id: "subcat-cereals", name: "Céréales & Légumineuses", category_id: "cat-food" },
-        { id: "subcat-fruits", name: "Fruits & Légumes", category_id: "cat-food" },
-        { id: "subcat-women", name: "Vêtements Femme", category_id: "cat-fashion" },
-        { id: "subcat-men", name: "Vêtements Homme", category_id: "cat-fashion" }
-      ];
-      return subcategories.filter(s => s.category_id === categoryId);
-    }
-
     try {
       const { data, error } = await supabase
         .from('subcategories')
@@ -505,69 +347,5 @@ export const productsService = {
     }
   },
 
-  // Private helper methods for demo mode
-  getProductsDemo(filters: ProductFilter): { data: Product[]; count: number } {
-    let filteredProducts = [...demoProducts];
-
-    // Apply filters
-    if (filters.category) {
-      filteredProducts = filteredProducts.filter(p => p.category_id === filters.category);
-    }
-
-    if (filters.search) {
-      const searchLower = filters.search.toLowerCase();
-      filteredProducts = filteredProducts.filter(p =>
-        p.name.toLowerCase().includes(searchLower) ||
-        p.description.toLowerCase().includes(searchLower) ||
-        p.tags?.some(tag => tag.toLowerCase().includes(searchLower))
-      );
-    }
-
-    if (filters.priceMin !== undefined) {
-      filteredProducts = filteredProducts.filter(p => p.price >= filters.priceMin!);
-    }
-
-    if (filters.priceMax !== undefined) {
-      filteredProducts = filteredProducts.filter(p => p.price <= filters.priceMax!);
-    }
-
-    if (filters.inStock !== undefined) {
-      filteredProducts = filteredProducts.filter(p => p.in_stock === filters.inStock);
-    }
-
-    if (filters.isPopular !== undefined) {
-      filteredProducts = filteredProducts.filter(p => p.is_popular === filters.isPopular);
-    }
-
-    if (filters.isFeatured !== undefined) {
-      filteredProducts = filteredProducts.filter(p => p.is_featured === filters.isFeatured);
-    }
-
-    // Apply sorting
-    if (filters.sortBy) {
-      filteredProducts.sort((a, b) => {
-        const aVal = filters.sortBy === 'rating' ? (a.average_rating || 0) : (a as any)[filters.sortBy!];
-        const bVal = filters.sortBy === 'rating' ? (b.average_rating || 0) : (b as any)[filters.sortBy!];
-        
-        if (filters.sortOrder === 'desc') {
-          return bVal > aVal ? 1 : -1;
-        }
-        return aVal > bVal ? 1 : -1;
-      });
-    }
-
-    // Apply pagination
-    const offset = filters.offset || 0;
-    const limit = filters.limit || filteredProducts.length;
-    const paginatedProducts = filteredProducts.slice(offset, offset + limit);
-
-    return {
-      data: paginatedProducts,
-      count: filteredProducts.length
-    };
-  },
-
-  searchProductsDemo(query: string, filters: Omit<ProductFilter, 'search'>): { data: Product[]; count: number } {
-    return this.getProductsDemo({ ...filters, search: query });
-  }
+  // Demo helper methods removed
 };
