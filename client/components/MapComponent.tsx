@@ -211,30 +211,17 @@ export default function MapComponent({
         is_active: true,
       };
 
-      if (isDemoMode) {
-        // Mode démonstration
-        if (editingLocation) {
-          await demoLocationsService.update(locationData);
-        } else {
-          await demoLocationsService.insert([locationData]);
-        }
-        alert(
-          "Mode démonstration : Votre location a été simulée avec succès !",
-        );
+      if (editingLocation) {
+        const { error } = await supabase
+          .from("locations")
+          .update(locationData)
+          .eq("id", editingLocation.id);
+        if (error) throw error;
       } else {
-        // Mode Supabase normal
-        if (editingLocation) {
-          const { error } = await supabase
-            .from("locations")
-            .update(locationData)
-            .eq("id", editingLocation.id);
-          if (error) throw error;
-        } else {
-          const { error } = await supabase
-            .from("locations")
-            .insert([locationData]);
-          if (error) throw error;
-        }
+        const { error } = await supabase
+          .from("locations")
+          .insert([locationData]);
+        if (error) throw error;
       }
 
       // Recharger les locations

@@ -52,98 +52,44 @@ export interface UpdateProductData extends Partial<CreateProductData> {
   id: string;
 }
 
-// Demo data for non-Supabase mode
-
-
 export const productsService = {
-  /**
-   * Get all products with filters and pagination
-   */
   async getProducts(filters: ProductFilter = {}): Promise<{ data: Product[]; count: number }> {
     try {
       let query = supabase
         .from('products_with_stats')
         .select('*', { count: 'exact' });
 
-      // Apply filters
-      if (filters.category) {
-        query = query.eq('category_id', filters.category);
-      }
+      if (filters.category) query = query.eq('category_id', filters.category);
+      if (filters.subcategory) query = query.eq('subcategory_id', filters.subcategory);
+      if (filters.merchantId) query = query.eq('merchant_id', filters.merchantId);
+      if (filters.priceMin !== undefined) query = query.gte('price', filters.priceMin);
+      if (filters.priceMax !== undefined) query = query.lte('price', filters.priceMax);
+      if (filters.inStock !== undefined) query = query.eq('in_stock', filters.inStock);
+      if (filters.isPopular !== undefined) query = query.eq('is_popular', filters.isPopular);
+      if (filters.isFeatured !== undefined) query = query.eq('is_featured', filters.isFeatured);
+      if (filters.search) query = query.or(`name.ilike.%${filters.search}%,description.ilike.%${filters.search}%,tags.cs.{${filters.search}}`);
+      if (filters.tags && filters.tags.length > 0) query = query.overlaps('tags', filters.tags);
 
-      if (filters.subcategory) {
-        query = query.eq('subcategory_id', filters.subcategory);
-      }
-
-      if (filters.merchantId) {
-        query = query.eq('merchant_id', filters.merchantId);
-      }
-
-      if (filters.priceMin !== undefined) {
-        query = query.gte('price', filters.priceMin);
-      }
-
-      if (filters.priceMax !== undefined) {
-        query = query.lte('price', filters.priceMax);
-      }
-
-      if (filters.inStock !== undefined) {
-        query = query.eq('in_stock', filters.inStock);
-      }
-
-      if (filters.isPopular !== undefined) {
-        query = query.eq('is_popular', filters.isPopular);
-      }
-
-      if (filters.isFeatured !== undefined) {
-        query = query.eq('is_featured', filters.isFeatured);
-      }
-
-      if (filters.search) {
-        query = query.or(`name.ilike.%${filters.search}%,description.ilike.%${filters.search}%,tags.cs.{${filters.search}}`);
-      }
-
-      if (filters.tags && filters.tags.length > 0) {
-        query = query.overlaps('tags', filters.tags);
-      }
-
-      // Apply sorting
       if (filters.sortBy) {
         const column = filters.sortBy === 'rating' ? 'average_rating' : filters.sortBy;
         query = query.order(column, { ascending: filters.sortOrder === 'asc' });
       } else {
-        // Default sorting: popular first, then by creation date
-        query = query.order('is_popular', { ascending: false })
-                    .order('created_at', { ascending: false });
+        query = query.order('is_popular', { ascending: false }).order('created_at', { ascending: false });
       }
 
-      // Apply pagination
-      if (filters.limit) {
-        query = query.limit(filters.limit);
-      }
-
-      if (filters.offset) {
-        query = query.range(filters.offset, filters.offset + (filters.limit || 20) - 1);
-      }
+      if (filters.limit) query = query.limit(filters.limit);
+      if (filters.offset) query = query.range(filters.offset, filters.offset + (filters.limit || 20) - 1);
 
       const { data, error, count } = await query;
+      if (error) throw new Error(error.message);
 
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      return { 
-        data: data || [], 
-        count: count || 0 
-      };
+      return { data: (data as any) || [], count: count || 0 };
     } catch (error) {
-      console.error("Get products error:", error);
-      throw new Error("Erreur lors de la récupération des produits");
+      console.error('Get products error:', error);
+      throw new Error('Erreur lors de la récupération des produits');
     }
   },
 
-  /**
-   * Get a single product by ID
-   */
   async getProduct(id: string): Promise<Product | null> {
     try {
       const { data, error } = await supabase
@@ -153,94 +99,47 @@ export const productsService = {
         .single();
 
       if (error) {
-        if (error.code === 'PGRST116') {
-          return null; // Product not found
-        }
+        if ((error as any).code === 'PGRST116') return null;
         throw new Error(error.message);
       }
-
-      return data;
+      return data as any;
     } catch (error) {
-      console.error("Get product error:", error);
-      throw new Error("Erreur lors de la récupération du produit");
+      console.error('Get product error:', error);
+      throw new Error('Erreur lors de la récupération du produit');
     }
   },
 
-  /**
-   * Search products with full-text search
-   */
-  async searchProducts(query: string, filters: Omit<ProductFilter, 'search'> = {}): Promise<{ data: Product[]; count: number }> {
+  async searchProducts(queryText: string, filters: Omit<ProductFilter, 'search'> = {}): Promise<{ data: Product[]; count: number }> {
     try {
-      const { data, error } = await supabase
-        .rpc('search_products', { search_query: query });
+      const { data, error } = await supabase.rpc('search_products', { search_query: queryText });
+      if (error) throw new Error(error.message);
 
-      if (error) {
-        throw new Error(error.message);
-      }
+      let filtered = (data as any[]) || [];
+      if (filters.category) filtered = filtered.filter((p: any) => p.category_id === filters.category);
+      if (filters.priceMin !== undefined) filtered = filtered.filter((p: any) => p.price >= filters.priceMin!);
+      if (filters.priceMax !== undefined) filtered = filtered.filter((p: any) => p.price <= filters.priceMax!);
 
-      // Apply additional filters if needed
-      let filteredData = data || [];
-
-      if (filters.category) {
-        filteredData = filteredData.filter((p: any) => p.category_id === filters.category);
-      }
-
-      if (filters.priceMin !== undefined) {
-        filteredData = filteredData.filter((p: any) => p.price >= filters.priceMin!);
-      }
-
-      if (filters.priceMax !== undefined) {
-        filteredData = filteredData.filter((p: any) => p.price <= filters.priceMax!);
-      }
-
-      return { 
-        data: filteredData, 
-        count: filteredData.length 
-      };
+      return { data: filtered as any, count: filtered.length };
     } catch (error) {
-      console.error("Search products error:", error);
-      throw new Error("Erreur lors de la recherche");
+      console.error('Search products error:', error);
+      throw new Error('Erreur lors de la recherche');
     }
   },
 
-  /**
-   * Get products by category
-   */
   async getProductsByCategory(categoryId: string, filters: Omit<ProductFilter, 'category'> = {}): Promise<{ data: Product[]; count: number }> {
     return this.getProducts({ ...filters, category: categoryId });
   },
 
-  /**
-   * Get popular products
-   */
   async getPopularProducts(limit: number = 10): Promise<Product[]> {
-    const result = await this.getProducts({ 
-      isPopular: true, 
-      inStock: true,
-      limit,
-      sortBy: 'created_at',
-      sortOrder: 'desc'
-    });
+    const result = await this.getProducts({ isPopular: true, inStock: true, limit, sortBy: 'created_at', sortOrder: 'desc' });
     return result.data;
   },
 
-  /**
-   * Get featured products
-   */
   async getFeaturedProducts(limit: number = 8): Promise<Product[]> {
-    const result = await this.getProducts({ 
-      isFeatured: true, 
-      inStock: true,
-      limit,
-      sortBy: 'created_at',
-      sortOrder: 'desc'
-    });
+    const result = await this.getProducts({ isFeatured: true, inStock: true, limit, sortBy: 'created_at', sortOrder: 'desc' });
     return result.data;
   },
 
-  /**
-   * Create a new product (for merchants)
-   */
   async createProduct(productData: CreateProductData): Promise<Product> {
     try {
       const { data, error } = await supabase
@@ -248,86 +147,52 @@ export const productsService = {
         .insert(productData)
         .select()
         .single();
-
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      return data;
+      if (error) throw new Error(error.message);
+      return data as any;
     } catch (error) {
-      console.error("Create product error:", error);
-      throw new Error("Erreur lors de la création du produit");
+      console.error('Create product error:', error);
+      throw new Error('Erreur lors de la création du produit');
     }
   },
 
-  /**
-   * Update a product
-   */
   async updateProduct(updateData: UpdateProductData): Promise<Product> {
     try {
       const { id, ...updates } = updateData;
-      
       const { data, error } = await supabase
         .from('products')
         .update(updates)
         .eq('id', id)
         .select()
         .single();
-
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      return data;
+      if (error) throw new Error(error.message);
+      return data as any;
     } catch (error) {
-      console.error("Update product error:", error);
-      throw new Error("Erreur lors de la mise à jour du produit");
+      console.error('Update product error:', error);
+      throw new Error('Erreur lors de la mise à jour du produit');
     }
   },
 
-  /**
-   * Delete a product
-   */
   async deleteProduct(id: string): Promise<void> {
     try {
-      const { error } = await supabase
-        .from('products')
-        .delete()
-        .eq('id', id);
-
-      if (error) {
-        throw new Error(error.message);
-      }
+      const { error } = await supabase.from('products').delete().eq('id', id);
+      if (error) throw new Error(error.message);
     } catch (error) {
-      console.error("Delete product error:", error);
-      throw new Error("Erreur lors de la suppression du produit");
+      console.error('Delete product error:', error);
+      throw new Error('Erreur lors de la suppression du produit');
     }
   },
 
-  /**
-   * Get all categories
-   */
   async getCategories(): Promise<Array<{ id: string; name: string; icon: string; description?: string }>> {
     try {
-      const { data, error } = await supabase
-        .from('categories')
-        .select('*')
-        .order('name');
-
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      return data || [];
+      const { data, error } = await supabase.from('categories').select('*').order('name');
+      if (error) throw new Error(error.message);
+      return (data as any) || [];
     } catch (error) {
-      console.error("Get categories error:", error);
-      throw new Error("Erreur lors de la récupération des catégories");
+      console.error('Get categories error:', error);
+      throw new Error('Erreur lors de la récupération des catégories');
     }
   },
 
-  /**
-   * Get subcategories for a category
-   */
   async getSubcategories(categoryId: string): Promise<Array<{ id: string; name: string; category_id: string }>> {
     try {
       const { data, error } = await supabase
@@ -335,17 +200,11 @@ export const productsService = {
         .select('*')
         .eq('category_id', categoryId)
         .order('name');
-
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      return data || [];
+      if (error) throw new Error(error.message);
+      return (data as any) || [];
     } catch (error) {
-      console.error("Get subcategories error:", error);
-      throw new Error("Erreur lors de la récupération des sous-catégories");
+      console.error('Get subcategories error:', error);
+      throw new Error('Erreur lors de la récupération des sous-catégories');
     }
   },
-
-  // Demo helper methods removed
 };

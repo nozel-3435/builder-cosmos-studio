@@ -9,7 +9,6 @@ export interface AuthUser {
   role: UserRole;
   avatar?: string;
   phone?: string;
-  // Role-specific fields
   businessName?: string;
   businessAddress?: string;
   vehicleType?: string;
@@ -25,7 +24,6 @@ export interface RegisterData {
   lastName: string;
   role: UserRole;
   phone?: string;
-  // Role-specific data
   businessName?: string;
   businessAddress?: string;
   businessDescription?: string;
@@ -38,315 +36,148 @@ export interface LoginResponse {
   requiresVerification?: boolean;
 }
 
-
 export const authService = {
-  /**
-   * Login user with email/password
-   */
   async login(email: string, password: string): Promise<LoginResponse> {
-    // Check for admin credentials first
-    if (email === "NOZIMA" && password === "TOUT2000@") {
-      const adminUser: AuthUser = {
-        id: "admin-nozima",
-        email: "admin@linkamarket.com",
-        name: "NOZIMA",
-        role: "admin",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=admin",
-        emailConfirmed: true,
-        profileCompleted: true,
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) throw new Error(error.message);
+    if (!data.user) throw new Error("Aucun utilisateur trouvé");
+
+    const profile = await this.getUserProfile(data.user.id).catch(() => {
+      const meta: any = data.user.user_metadata || {};
+      const fallback: AuthUser = {
+        id: data.user.id,
+        email: data.user.email || email,
+        name: meta.full_name || meta.name || email.split("@")[0],
+        role: (meta.role as UserRole) || "client",
+        avatar: meta.avatar_url,
+        phone: meta.phone,
+        emailConfirmed: Boolean(data.user.email_confirmed_at),
+        profileCompleted: false,
       };
+      return fallback;
+    });
 
-      // Store admin session
-      sessionStorage.setItem("admin_authenticated", "true");
-      sessionStorage.setItem("admin_timestamp", Date.now().toString());
-      
-      return { user: adminUser };
-    }
-
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      if (!data.user) {
-        throw new Error("Aucun utilisateur trouvé");
-      }
-
-      // Get user profile
-      const profile = await this.getUserProfile(data.user.id);
-      
-      return { 
-        user: profile,
-        requiresVerification: !data.user.email_confirmed_at 
-      };
-    } catch (error) {
-      console.error("Login error:", error);
-      throw new Error("Échec de la connexion. Vérifiez vos identifiants.");
-    }
+    return { user: profile, requiresVerification: !data.user.email_confirmed_at };
   },
 
-  /**
-   * Register new user
-   */
   async register(userData: RegisterData): Promise<{ user?: AuthUser; requiresVerification: boolean }> {
+    const { data, error } = await supabase.auth.signUp({
+      email: userData.email,
+      password: userData.password,
+      options: {
+        data: { full_name: `${userData.firstName} ${userData.lastName}`, role: userData.role },
+      },
+    });
+    if (error) throw new Error(error.message);
+    if (!data.user) throw new Error("Erreur lors de la création du compte");
+
+    let profile: AuthUser | null = null;
     try {
-      const { data, error } = await supabase.auth.signUp({
-        email: userData.email,
-        password: userData.password,
-        options: {
-          data: {
-            full_name: `${userData.firstName} ${userData.lastName}`,
-            role: userData.role,
-          },
-        },
-      });
-
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      if (!data.user) {
-        throw new Error("Erreur lors de la création du compte");
-      }
-
-      // Try to create profile; gracefully fallback if schema/policies are missing
-      let profile: AuthUser | null = null;
-      try {
-        profile = await this.createProfile(data.user.id, userData);
-      } catch (e: any) {
-        console.warn("Profile creation failed, falling back to minimal user:", e?.message || e);
-        profile = {
-          id: data.user.id,
-          email: data.user.email || userData.email,
-          name: `${userData.firstName} ${userData.lastName}`.trim(),
-          role: userData.role,
-          phone: userData.phone,
-          businessName: userData.businessName,
-          businessAddress: userData.businessAddress,
-          vehicleType: userData.vehicleType,
-          deliveryZone: userData.deliveryZone,
-          emailConfirmed: Boolean(data.user.email_confirmed_at),
-          profileCompleted: false,
-        };
-      }
-
-      return {
-        user: profile,
-        requiresVerification: !data.user.email_confirmed_at,
+      profile = await this.createProfile(data.user.id, userData);
+    } catch (e: any) {
+      profile = {
+        id: data.user.id,
+        email: data.user.email || userData.email,
+        name: `${userData.firstName} ${userData.lastName}`.trim(),
+        role: userData.role,
+        phone: userData.phone,
+        businessName: userData.businessName,
+        businessAddress: userData.businessAddress,
+        vehicleType: userData.vehicleType,
+        deliveryZone: userData.deliveryZone,
+        emailConfirmed: Boolean(data.user.email_confirmed_at),
+        profileCompleted: false,
       };
-    } catch (error: any) {
-      console.error("Registration error:", error);
-      const msg = typeof error?.message === "string" ? error.message : "Échec de l'inscription. Veuillez réessayer.";
-      throw new Error(msg);
     }
+
+    return { user: profile!, requiresVerification: !data.user.email_confirmed_at };
   },
 
-  /**
-   * Send email verification code
-   */
   async sendVerificationCode(email: string): Promise<{ code: string }> {
-    try {
-      // In a real implementation, you would send an email with a code
-      // For now, we'll generate a code and store it in Supabase
-      const code = Math.random().toString().slice(2, 10); // 8 digits
-      
-      // Store verification code in a custom table or use Supabase functions
-      const { error } = await supabase
-        .from('verification_codes')
-        .upsert({
-          email,
-          code,
-          expires_at: new Date(Date.now() + 10 * 60 * 1000).toISOString(), // 10 minutes
-          used: false
-        });
-
-      if (error && !error.message.includes('does not exist')) {
-        throw error;
-      }
-
-      // In production, send email here
-      console.log(`Verification code for ${email}: ${code}`);
-      
-      return { code };
-    } catch (error) {
-      console.error("Send verification error:", error);
-      throw new Error("Erreur lors de l'envoi du code de vérification");
-    }
+    const code = Math.random().toString().slice(2, 10);
+    const { error } = await supabase.from('verification_codes').upsert({
+      email,
+      code,
+      expires_at: new Date(Date.now() + 10 * 60 * 1000).toISOString(),
+      used: false,
+    });
+    if (error && !String(error.message).includes('does not exist')) throw error;
+    // Send email via provider here in production
+    console.log(`Verification code for ${email}: ${code}`);
+    return { code };
   },
 
-  /**
-   * Verify email with code
-   */
   async verifyEmail(email: string, code: string): Promise<boolean> {
-    try {
-      // In a real implementation, verify against stored code
-      const { data, error } = await supabase
-        .from('verification_codes')
-        .select('*')
-        .eq('email', email)
-        .eq('code', code)
-        .eq('used', false)
-        .single();
-
-      if (error || !data) {
-        return false;
-      }
-
-      // Check if code has expired
-      if (new Date(data.expires_at) < new Date()) {
-        return false;
-      }
-
-      // Mark code as used
-      await supabase
-        .from('verification_codes')
-        .update({ used: true })
-        .eq('id', data.id);
-
-      // Update user email_confirmed_at if auth user exists
-      const { data: authUser } = await supabase.auth.getUser();
-      if (authUser.user && authUser.user.email === email) {
-        // You might need to use Supabase admin functions to update email_confirmed_at
-      }
-
-      return true;
-    } catch (error) {
-      console.error("Verify email error:", error);
-      return false;
-    }
+    const { data, error } = await supabase
+      .from('verification_codes')
+      .select('*')
+      .eq('email', email)
+      .eq('code', code)
+      .eq('used', false)
+      .single();
+    if (error || !data) return false;
+    if (new Date(data.expires_at) < new Date()) return false;
+    await supabase.from('verification_codes').update({ used: true }).eq('id', data.id);
+    return true;
   },
 
-  /**
-   * Reset password
-   */
   async resetPassword(email: string): Promise<void> {
-    try {
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/reset-password`,
-      });
-
-      if (error) {
-        throw new Error(error.message);
-      }
-    } catch (error) {
-      console.error("Reset password error:", error);
-      throw new Error("Erreur lors de la réinitialisation du mot de passe");
-    }
+    const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/reset-password` });
+    if (error) throw new Error(error.message);
   },
 
-  /**
-   * Update password with reset token
-   */
   async updatePassword(newPassword: string): Promise<void> {
-    try {
-      const { error } = await supabase.auth.updateUser({
-        password: newPassword
-      });
-
-      if (error) {
-        throw new Error(error.message);
-      }
-    } catch (error) {
-      console.error("Update password error:", error);
-      throw new Error("Erreur lors de la mise à jour du mot de passe");
-    }
+    const { error } = await supabase.auth.updateUser({ password: newPassword });
+    if (error) throw new Error(error.message);
   },
 
-  /**
-   * Logout user
-   */
   async logout(): Promise<void> {
-    // Clear admin session
-    sessionStorage.removeItem("admin_authenticated");
-    sessionStorage.removeItem("admin_timestamp");
-    
-    try {
-      const { error } = await supabase.auth.signOut();
-      if (error) {
-        console.error("Logout error:", error);
-      }
-    } catch (error) {
-      console.error("Logout error:", error);
-    }
+    const { error } = await supabase.auth.signOut();
+    if (error) console.error('Logout error:', error);
   },
 
-  /**
-   * Get current user session
-   */
   async getCurrentUser(): Promise<AuthUser | null> {
+    const { data, error } = await supabase.auth.getUser();
+    if (error || !data.user) return null;
     try {
-      const { data, error } = await supabase.auth.getUser();
-      if (error || !data.user) return null;
-
-      try {
-        return await this.getUserProfile(data.user.id);
-      } catch (e) {
-        const meta: any = data.user.user_metadata || {};
-        return {
-          id: data.user.id,
-          email: data.user.email || "",
-          name: meta.full_name || meta.name || "",
-          role: (meta.role as UserRole) || "client",
-          avatar: meta.avatar_url,
-          phone: meta.phone,
-          emailConfirmed: Boolean(data.user.email_confirmed_at),
-          profileCompleted: false,
-        };
-      }
-    } catch (error) {
-      console.error("Get current user error:", error);
-      return null;
+      return await this.getUserProfile(data.user.id);
+    } catch {
+      const meta: any = data.user.user_metadata || {};
+      return {
+        id: data.user.id,
+        email: data.user.email || "",
+        name: meta.full_name || meta.name || "",
+        role: (meta.role as UserRole) || "client",
+        avatar: meta.avatar_url,
+        phone: meta.phone,
+        emailConfirmed: Boolean(data.user.email_confirmed_at),
+        profileCompleted: false,
+      };
     }
   },
 
-  /**
-   * Update user profile
-   */
   async updateProfile(userId: string, updates: Partial<AuthUser>): Promise<AuthUser> {
-    try {
-      const { data, error } = await supabase
-        .from('profiles')
-        .update({
-          full_name: updates.name,
-          phone: updates.phone,
-          avatar_url: updates.avatar,
-          business_name: updates.businessName,
-          business_address: updates.businessAddress,
-          vehicle_type: updates.vehicleType,
-          delivery_zone: updates.deliveryZone,
-        })
-        .eq('id', userId)
-        .select()
-        .single();
-
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      return this.mapProfileToAuthUser(data);
-    } catch (error) {
-      console.error("Update profile error:", error);
-      throw new Error("Erreur lors de la mise à jour du profil");
-    }
-  },
-
-  // Private helper methods
-  async getUserProfile(userId: string): Promise<AuthUser> {
     const { data, error } = await supabase
       .from('profiles')
-      .select('*')
+      .update({
+        full_name: updates.name,
+        phone: updates.phone,
+        avatar_url: updates.avatar,
+        business_name: updates.businessName,
+        business_address: updates.businessAddress,
+        vehicle_type: updates.vehicleType,
+        delivery_zone: updates.deliveryZone,
+      })
       .eq('id', userId)
+      .select()
       .single();
+    if (error) throw new Error(error.message);
+    return this.mapProfileToAuthUser(data);
+  },
 
-    if (error) {
-      throw new Error("Profil utilisateur non trouvé");
-    }
-
+  async getUserProfile(userId: string): Promise<AuthUser> {
+    const { data, error } = await supabase.from('profiles').select('*').eq('id', userId).single();
+    if (error) throw new Error('Profil utilisateur non trouvé');
     return this.mapProfileToAuthUser(data);
   },
 
@@ -367,11 +198,7 @@ export const authService = {
       })
       .select()
       .single();
-
-    if (error) {
-      throw new Error("Erreur lors de la création du profil");
-    }
-
+    if (error) throw new Error('Erreur lors de la création du profil');
     return this.mapProfileToAuthUser(data);
   },
 
@@ -387,60 +214,8 @@ export const authService = {
       businessAddress: profile.business_address,
       vehicleType: profile.vehicle_type,
       deliveryZone: profile.delivery_zone,
-      emailConfirmed: true, // Assume confirmed if in profiles table
+      emailConfirmed: true,
       profileCompleted: !!(profile.full_name && profile.phone),
     };
   },
-
-/* demo login removed */
-  async loginDemo_removed(email: string, password: string): Promise<LoginResponse> {
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    // Mock user data
-    const mockUser: AuthUser = {
-      id: Math.random().toString(36).substr(2, 9),
-      email,
-      name: email.split("@")[0],
-      role: email.includes("merchant") ? "merchant" : 
-            email.includes("delivery") ? "delivery" : "client",
-      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`,
-      emailConfirmed: true,
-      profileCompleted: true,
-    };
-
-    demoUsers.set(email, mockUser);
-    localStorage.setItem("linka_user", JSON.stringify(mockUser));
-    
-    return { user: mockUser };
-  },
-
-/* demo register removed */
-  async registerDemo_removed(userData: RegisterData): Promise<{ user: AuthUser; requiresVerification: boolean }> {
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    const newUser: AuthUser = {
-      id: Math.random().toString(36).substr(2, 9),
-      email: userData.email,
-      name: `${userData.firstName} ${userData.lastName}`,
-      role: userData.role,
-      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${userData.email}`,
-      phone: userData.phone,
-      businessName: userData.businessName,
-      businessAddress: userData.businessAddress,
-      vehicleType: userData.vehicleType,
-      deliveryZone: userData.deliveryZone,
-      emailConfirmed: false,
-      profileCompleted: true,
-    };
-
-    demoUsers.set(userData.email, newUser);
-    localStorage.setItem("linka_user", JSON.stringify(newUser));
-    
-    return { 
-      user: newUser,
-      requiresVerification: true 
-    };
-  }
 };

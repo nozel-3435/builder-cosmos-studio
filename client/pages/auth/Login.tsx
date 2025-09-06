@@ -28,12 +28,17 @@ const Login = () => {
 
     setIsLoading(true);
     try {
-      await login(trimmed, password);
+      const res = await login(trimmed, password);
       toast.success("Connexion réussie!");
 
       const isAdmin = sessionStorage.getItem("admin_authenticated") === "true";
-      if (isAdmin) {
+      const role = res?.user?.role;
+      if (isAdmin || role === "admin") {
         navigate("/admin/verify");
+      } else if (role === "merchant") {
+        navigate("/merchant");
+      } else if (role === "delivery") {
+        navigate("/delivery");
       } else {
         navigate("/");
       }
@@ -46,11 +51,6 @@ const Login = () => {
     }
   };
 
-  const demoAccounts = [
-    { email: "client@demo.com", role: "Client", color: "bg-blue-500" },
-    { email: "merchant@demo.com", role: "Commerçant", color: "bg-linka-green" },
-    { email: "delivery@demo.com", role: "Livreur", color: "bg-linka-orange" },
-  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-linka-green/10 via-white to-linka-orange/10 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -175,38 +175,6 @@ const Login = () => {
             </button>
           </form>
 
-          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">
-                  Comptes de démonstration
-                </span>
-              </div>
-            </div>
-
-            <div className="mt-4 grid grid-cols-1 gap-2">
-              {demoAccounts.map((account) => (
-                <button
-                  key={account.email}
-                  onClick={() => {
-                    setEmail(account.email);
-                    setPassword("demo123");
-                  }}
-                  className="flex items-center justify-between w-full px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <span className="text-sm font-medium text-gray-700">
-                    {account.role}
-                  </span>
-                  <div
-                    className={`w-3 h-3 rounded-full ${account.color}`}
-                  ></div>
-                </button>
-              ))}
-            </div>
-          </div>
 
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
