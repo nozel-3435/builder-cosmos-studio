@@ -11,6 +11,8 @@ export interface AuthUser {
   phone?: string;
   businessName?: string;
   businessAddress?: string;
+  businessDescription?: string;
+  businessPhone?: string;
   vehicleType?: string;
   deliveryZone?: string;
   emailConfirmed: boolean;
@@ -165,6 +167,8 @@ export const authService = {
         avatar_url: updates.avatar,
         business_name: updates.businessName,
         business_address: updates.businessAddress,
+        business_description: updates.businessDescription,
+        business_phone: updates.businessPhone,
         vehicle_type: updates.vehicleType,
         delivery_zone: updates.deliveryZone,
       })
@@ -212,6 +216,8 @@ export const authService = {
       phone: profile.phone,
       businessName: profile.business_name,
       businessAddress: profile.business_address,
+      businessDescription: profile.business_description,
+      businessPhone: profile.business_phone,
       vehicleType: profile.vehicle_type,
       deliveryZone: profile.delivery_zone,
       emailConfirmed: true,
