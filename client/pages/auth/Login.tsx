@@ -18,12 +18,10 @@ const Login = () => {
     e.preventDefault();
 
     const trimmed = email.trim();
-    if (trimmed !== "NOZIMA") {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(trimmed)) {
-        toast.error("Veuillez saisir une adresse e-mail valide.");
-        return;
-      }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(trimmed)) {
+      toast.error("Veuillez saisir une adresse e-mail valide.");
+      return;
     }
 
     setIsLoading(true);
@@ -31,9 +29,8 @@ const Login = () => {
       const res = await login(trimmed, password);
       toast.success("Connexion réussie!");
 
-      const isAdmin = sessionStorage.getItem("admin_authenticated") === "true";
       const role = res?.user?.role;
-      if (isAdmin || role === "admin") {
+      if (role === "admin") {
         navigate("/admin/verify");
       } else if (role === "merchant") {
         navigate("/merchant");
