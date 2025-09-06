@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import {
   products,
   categories,
@@ -19,8 +19,12 @@ import {
   X,
   SlidersHorizontal,
 } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 
 const Products = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [searchQuery, setSearchQuery] = useState(
@@ -39,6 +43,26 @@ const Products = () => {
   const [sortBy, setSortBy] = useState("popular");
   const [showFilters, setShowFilters] = useState(false);
   const [inStockOnly, setInStockOnly] = useState(false);
+
+  const requireAuth = (action: string) => {
+    if (!user) {
+      toast.warning(`Veuillez vous connecter pour ${action}.`);
+      const redirect = encodeURIComponent(window.location.pathname + window.location.search);
+      navigate(`/login?redirect=${redirect}`);
+      return false;
+    }
+    return true;
+  };
+
+  const handleAddToCart = (product: Product) => {
+    if (!requireAuth("ajouter au panier")) return;
+    toast.success(`${product.name} ajouté au panier`);
+  };
+
+  const handleToggleFavorite = (product: Product) => {
+    if (!requireAuth("gérer vos favoris")) return;
+    toast.success("Mise à jour des favoris");
+  };
 
   // Filtrer et trier les produits
   const filteredProducts = useMemo(() => {
@@ -178,7 +202,7 @@ const Products = () => {
               -{product.discount}%
             </div>
           )}
-          <button className="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-red-50 hover:text-red-500 transition-colors">
+          <button onClick={() => handleToggleFavorite(product)} className="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-red-50 hover:text-red-500 transition-colors">
             <Heart className="w-4 h-4" />
           </button>
           {product.isPopular && (
@@ -232,6 +256,7 @@ const Products = () => {
         )}
 
         <button
+          onClick={() => handleAddToCart(product)}
           disabled={!product.inStock}
           className={`w-full flex items-center justify-center space-x-2 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
             product.inStock
