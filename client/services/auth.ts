@@ -1,4 +1,4 @@
-import { supabase, isDemoMode, type Database } from "@/lib/supabase";
+import { supabase, type Database } from "@/lib/supabase";
 
 export type UserRole = "client" | "merchant" | "delivery" | "admin";
 
