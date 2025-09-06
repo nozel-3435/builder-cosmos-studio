@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { supabase, isDemoMode } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/contexts/AuthContext";
 import { ShoppingCart, Filter, RefreshCw, Package, CreditCard, Clock } from "lucide-react";
 
@@ -22,7 +22,7 @@ interface OrderRow {
   order_items?: OrderItem[];
 }
 
-const demoOrders: OrderRow[] = [
+/* Removed demo orders */ const demoOrders_removed: OrderRow[] = [
   {
     id: "ORD-2024-001",
     status: "confirmed",
@@ -96,25 +96,20 @@ export default function MerchantOrders() {
   const load = async () => {
     setLoading(true);
     try {
-      if (isDemoMode) {
-        setOrders(demoOrders);
-      } else {
-        // RLS autorise les commerçants à voir les commandes de leurs produits
-        const { data, error } = await supabase
-          .from("orders")
-          .select(
-            `id,status,total_amount,payment_method,payment_status,created_at,
-             order_items:order_items(id, product_id, quantity, unit_price, total_price,
-               product:products(id,name,merchant_id)
-             )`
-          )
-          .order("created_at", { ascending: false });
-        if (error) throw error;
-        setOrders((data as any) || []);
-      }
+      const { data, error } = await supabase
+        .from("orders")
+        .select(
+          `id,status,total_amount,payment_method,payment_status,created_at,
+           order_items:order_items(id, product_id, quantity, unit_price, total_price,
+             product:products(id,name,merchant_id)
+           )`
+        )
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      setOrders((data as any) || []);
     } catch (e) {
       console.error("Erreur chargement commandes:", e);
-      setOrders(demoOrders);
+      setOrders([]);
     } finally {
       setLoading(false);
     }
