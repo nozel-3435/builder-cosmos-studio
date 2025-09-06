@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import KaraMap from "../components/maps/KaraMap";
 import {
   Store,
@@ -715,9 +716,9 @@ const Stores = () => {
                 </p>
               </div>
             </div>
-            <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            <Link to="/register/merchant" className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
               Devenir partenaire
-            </button>
+            </Link>
           </div>
         </div>
 

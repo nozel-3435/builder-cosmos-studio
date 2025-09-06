@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 import {
   Minus,
   Plus,
@@ -11,6 +14,7 @@ import {
 
 const Cart = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
@@ -302,7 +306,20 @@ const Cart = () => {
                 </div>
 
                 <button
-                  onClick={() => setShowPaymentModal(true)}
+                  onClick={() => {
+                    if (!user) {
+                      toast.warning("Veuillez vous connecter pour passer la commande.");
+                      const redirect = encodeURIComponent(window.location.pathname + window.location.search);
+                      navigate(`/login?redirect=${redirect}`);
+                      return;
+                    }
+                    const hasPurchased = localStorage.getItem(`hasPurchased:${user.id}`) === "true";
+                    if (!hasPurchased) {
+                      setShowPaymentModal(true);
+                    } else {
+                      toast.success("Commande passée avec votre moyen de paiement enregistré.");
+                    }
+                  }}
                   className="w-full bg-linka-green text-white py-3 rounded-lg font-semibold hover:bg-linka-green/90 transition-colors"
                 >
                   Passer la commande
@@ -545,10 +562,12 @@ const Cart = () => {
                   </button>
                   <button
                     onClick={() => {
-                      // Simulate payment processing
-                      alert(
-                        `Paiement en cours via ${selectedPaymentMethod === "mixx" ? "Mixx by Yas" : selectedPaymentMethod === "flooz" ? "Flooz" : selectedPaymentMethod === "tmoney" ? "TMoney" : "Carte bancaire"}...`,
+                      toast.success(
+                        `Paiement en cours via ${selectedPaymentMethod === "mixx" ? "Mixx by Yas" : selectedPaymentMethod === "flooz" ? "Flooz" : selectedPaymentMethod === "tmoney" ? "TMoney" : "Carte bancaire"}`,
                       );
+                      if (user) {
+                        localStorage.setItem(`hasPurchased:${user.id}`, "true");
+                      }
                       setShowPaymentModal(false);
                     }}
                     className="flex-1 px-4 py-3 bg-linka-green text-white rounded-lg hover:bg-linka-green/90 transition-colors font-semibold"

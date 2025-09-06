@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 import {
   Heart,
   Share2,
@@ -32,6 +35,8 @@ interface FavoriteProduct {
 }
 
 const Favorites = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -191,8 +196,19 @@ const Favorites = () => {
     // Here you would normally call an API to remove the items
   };
 
+  const requireAuth = (action: string) => {
+    if (!user) {
+      toast.warning(`Veuillez vous connecter pour ${action}.`);
+      const redirect = encodeURIComponent(window.location.pathname + window.location.search);
+      navigate(`/login?redirect=${redirect}`);
+      return false;
+    }
+    return true;
+  };
+
   const handleAddToCart = (productId: number) => {
-    // Add to cart logic
+    if (!requireAuth("ajouter au panier")) return;
+    toast.success("Produit ajouté au panier");
     console.log(`Added product ${productId} to cart`);
   };
 
@@ -387,7 +403,10 @@ const Favorites = () => {
                     <h3 className="font-medium text-gray-900 line-clamp-2">
                       {product.name}
                     </h3>
-                    <button className="p-1 text-red-500 hover:bg-red-50 rounded">
+                    <button onClick={() => {
+                      if (!requireAuth("gérer vos favoris")) return;
+                      toast.success("Favori mis à jour");
+                    }} className="p-1 text-red-500 hover:bg-red-50 rounded">
                       <Heart className="h-4 w-4 fill-current" />
                     </button>
                   </div>
@@ -474,7 +493,7 @@ const Favorites = () => {
           <div className="mt-8 bg-white rounded-lg shadow-sm p-6">
             <h3 className="font-medium text-gray-900 mb-4">Actions rapides</h3>
             <div className="flex flex-wrap gap-4">
-              <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              <button onClick={() => { if (!requireAuth("ajouter au panier")) return; toast.success("Produits ajoutés au panier"); }} className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                 <ShoppingCart className="h-4 w-4" />
                 <span>Tout ajouter au panier</span>
               </button>
