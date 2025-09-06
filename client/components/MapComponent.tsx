@@ -93,6 +93,14 @@ function LocationMarker({
   return null;
 }
 
+function MapRefBinder({ onReady }: { onReady: (map: L.Map) => void }) {
+  const map = useMap();
+  useEffect(() => {
+    onReady(map);
+  }, [map, onReady]);
+  return null;
+}
+
 interface MapComponentProps {
   height?: string;
   center?: [number, number];
