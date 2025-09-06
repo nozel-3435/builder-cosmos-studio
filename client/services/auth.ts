@@ -38,8 +38,6 @@ export interface LoginResponse {
   requiresVerification?: boolean;
 }
 
-// Demo data for non-Supabase mode
-const demoUsers = new Map<string, any>();
 
 export const authService = {
   /**
@@ -63,11 +61,6 @@ export const authService = {
       sessionStorage.setItem("admin_timestamp", Date.now().toString());
       
       return { user: adminUser };
-    }
-
-    if (isDemoMode) {
-      // Demo mode fallback
-      return this.loginDemo(email, password);
     }
 
     try {
@@ -101,10 +94,6 @@ export const authService = {
    * Register new user
    */
   async register(userData: RegisterData): Promise<{ user?: AuthUser; requiresVerification: boolean }> {
-    if (isDemoMode) {
-      return this.registerDemo(userData);
-    }
-
     try {
       const { data, error } = await supabase.auth.signUp({
         email: userData.email,
@@ -161,14 +150,6 @@ export const authService = {
    * Send email verification code
    */
   async sendVerificationCode(email: string): Promise<{ code: string }> {
-    if (isDemoMode) {
-      // Generate demo code
-      const code = Math.random().toString().slice(2, 10); // 8 digits
-      localStorage.setItem(`verification_code_${email}`, code);
-      console.log(`Demo verification code for ${email}: ${code}`);
-      return { code };
-    }
-
     try {
       // In a real implementation, you would send an email with a code
       // For now, we'll generate a code and store it in Supabase
@@ -202,15 +183,6 @@ export const authService = {
    * Verify email with code
    */
   async verifyEmail(email: string, code: string): Promise<boolean> {
-    if (isDemoMode) {
-      const storedCode = localStorage.getItem(`verification_code_${email}`);
-      if (storedCode === code) {
-        localStorage.removeItem(`verification_code_${email}`);
-        return true;
-      }
-      return false;
-    }
-
     try {
       // In a real implementation, verify against stored code
       const { data, error } = await supabase
@@ -253,11 +225,6 @@ export const authService = {
    * Reset password
    */
   async resetPassword(email: string): Promise<void> {
-    if (isDemoMode) {
-      console.log(`Demo password reset for ${email}`);
-      return;
-    }
-
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${window.location.origin}/reset-password`,
@@ -276,11 +243,6 @@ export const authService = {
    * Update password with reset token
    */
   async updatePassword(newPassword: string): Promise<void> {
-    if (isDemoMode) {
-      console.log("Demo password update");
-      return;
-    }
-
     try {
       const { error } = await supabase.auth.updateUser({
         password: newPassword
@@ -303,11 +265,6 @@ export const authService = {
     sessionStorage.removeItem("admin_authenticated");
     sessionStorage.removeItem("admin_timestamp");
     
-    if (isDemoMode) {
-      localStorage.removeItem("linka_user");
-      return;
-    }
-
     try {
       const { error } = await supabase.auth.signOut();
       if (error) {
@@ -322,11 +279,6 @@ export const authService = {
    * Get current user session
    */
   async getCurrentUser(): Promise<AuthUser | null> {
-    if (isDemoMode) {
-      const savedUser = localStorage.getItem("linka_user");
-      return savedUser ? JSON.parse(savedUser) : null;
-    }
-
     try {
       const { data, error } = await supabase.auth.getUser();
       if (error || !data.user) return null;
@@ -356,17 +308,6 @@ export const authService = {
    * Update user profile
    */
   async updateProfile(userId: string, updates: Partial<AuthUser>): Promise<AuthUser> {
-    if (isDemoMode) {
-      const savedUser = localStorage.getItem("linka_user");
-      if (savedUser) {
-        const user = JSON.parse(savedUser);
-        const updatedUser = { ...user, ...updates };
-        localStorage.setItem("linka_user", JSON.stringify(updatedUser));
-        return updatedUser;
-      }
-      throw new Error("Utilisateur non trouvé");
-    }
-
     try {
       const { data, error } = await supabase
         .from('profiles')
@@ -451,7 +392,8 @@ export const authService = {
     };
   },
 
-  async loginDemo(email: string, password: string): Promise<LoginResponse> {
+/* demo login removed */
+  async loginDemo_removed(email: string, password: string): Promise<LoginResponse> {
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -473,7 +415,8 @@ export const authService = {
     return { user: mockUser };
   },
 
-  async registerDemo(userData: RegisterData): Promise<{ user: AuthUser; requiresVerification: boolean }> {
+/* demo register removed */
+  async registerDemo_removed(userData: RegisterData): Promise<{ user: AuthUser; requiresVerification: boolean }> {
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 1000));
 
