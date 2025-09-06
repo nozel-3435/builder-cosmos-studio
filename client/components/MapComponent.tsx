@@ -310,10 +310,9 @@ export default function MapComponent({
         zoom={zoom}
         style={{ height, width: "100%" }}
         className="rounded-lg shadow-lg"
-        whenReady={(e) => {
-          mapRef.current = e.target as any;
-        }}
       >
+        {/* Bind map instance to ref */}
+        <MapRefBinder onReady={(m) => (mapRef.current = m)} />
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
