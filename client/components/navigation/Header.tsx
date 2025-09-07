@@ -189,18 +189,28 @@ export const Header = () => {
               </div>
             ) : (
               <div className="flex items-center space-x-2">
-                <Link
-                  to="/login"
-                  className="text-sm font-medium text-gray-700 hover:text-linka-green"
-                >
-                  {t("nav.login")}
-                </Link>
-                <Link
-                  to="/register"
-                  className="bg-linka-green text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-linka-green/90 transition-colors"
-                >
-                  {t("nav.register")}
-                </Link>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Link
+                      to="/login"
+                      className="text-sm font-medium text-gray-700 hover:text-linka-green"
+                    >
+                      {t("nav.login")}
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent side="top">Se connecter</TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Link
+                      to="/register"
+                      className="bg-linka-green text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-linka-green/90 transition-colors"
+                    >
+                      {t("nav.register")}
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent side="top">Créer un compte</TooltipContent>
+                </Tooltip>
               </div>
             )}
 
