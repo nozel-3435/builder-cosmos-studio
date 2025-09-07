@@ -493,10 +493,15 @@ const Favorites = () => {
           <div className="mt-8 bg-white rounded-lg shadow-sm p-6">
             <h3 className="font-medium text-gray-900 mb-4">Actions rapides</h3>
             <div className="flex flex-wrap gap-4">
-              <button onClick={() => { if (!requireAuth("ajouter au panier")) return; toast.success("Produits ajoutés au panier"); }} className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                <ShoppingCart className="h-4 w-4" />
-                <span>Tout ajouter au panier</span>
-              </button>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button onClick={() => { if (!requireAuth("ajouter au panier")) return; toast.success("Produits ajoutés au panier"); }} className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                    <ShoppingCart className="h-4 w-4" />
+                    <span>Tout ajouter au panier</span>
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent side="top">Ajouter tous les produits à votre panier</TooltipContent>
+              </Tooltip>
               <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
                 <Share2 className="h-4 w-4" />
                 <span>Partager ma liste</span>
