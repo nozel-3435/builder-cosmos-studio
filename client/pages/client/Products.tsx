@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 
 const Products = () => {
   const { user } = useAuth();
@@ -255,20 +256,25 @@ const Products = () => {
           </p>
         )}
 
-        <button
-          onClick={() => handleAddToCart(product)}
-          disabled={!product.inStock}
-          className={`w-full flex items-center justify-center space-x-2 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
-            product.inStock
-              ? "bg-linka-green text-white hover:bg-linka-green/90"
-              : "bg-muted text-muted-foreground cursor-not-allowed"
-          }`}
-        >
-          <ShoppingCart className="w-4 h-4" />
-          <span>
-            {product.inStock ? "Ajouter au panier" : "Non disponible"}
-          </span>
-        </button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <button
+              onClick={() => handleAddToCart(product)}
+              disabled={!product.inStock}
+              className={`w-full flex items-center justify-center space-x-2 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
+                product.inStock
+                  ? "bg-linka-green text-white hover:bg-linka-green/90"
+                  : "bg-muted text-muted-foreground cursor-not-allowed"
+              }`}
+            >
+              <ShoppingCart className="w-4 h-4" />
+              <span>
+                {product.inStock ? "Ajouter au panier" : "Non disponible"}
+              </span>
+            </button>
+          </TooltipTrigger>
+          <TooltipContent side="top">Ajouter ce produit à votre panier</TooltipContent>
+        </Tooltip>
       </div>
     </div>
   );
