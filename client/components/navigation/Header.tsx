@@ -92,18 +92,22 @@ export const Header = () => {
               const isActive = location.pathname === item.href;
               const Icon = item.icon;
               return (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    isActive
-                      ? "text-linka-green bg-linka-green/10"
-                      : "text-gray-700 hover:text-linka-green hover:bg-gray-50"
-                  }`}
-                >
-                  {Icon && <Icon className="w-4 h-4" />}
-                  <span>{item.label}</span>
-                </Link>
+                <Tooltip key={item.href}>
+                  <TooltipTrigger asChild>
+                    <Link
+                      to={item.href}
+                      className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                        isActive
+                          ? "text-linka-green bg-linka-green/10"
+                          : "text-gray-700 hover:text-linka-green hover:bg-gray-50"
+                      }`}
+                    >
+                      {Icon && <Icon className="w-4 h-4" />}
+                      <span>{item.label}</span>
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent side="top">{item.label}</TooltipContent>
+                </Tooltip>
               );
             })}
           </nav>
