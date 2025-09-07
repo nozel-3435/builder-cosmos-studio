@@ -7,6 +7,7 @@ import {
   Eye,
   Plus,
 } from "lucide-react";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 
 const MerchantDashboard = () => {
   const { user } = useAuth();
