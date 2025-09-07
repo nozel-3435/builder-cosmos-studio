@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { LinkaMarketLogo } from "@/components/ui/logos";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import {
   ShoppingCart,
   Heart,
@@ -37,27 +38,28 @@ export const Header = () => {
     switch (user.role) {
       case "client":
         return [
-          { href: "/", label: t("nav.home"), icon: null },
           { href: "/products", label: t("nav.products"), icon: Search },
           { href: "/stores", label: t("nav.stores"), icon: Store },
           { href: "/favorites", label: t("nav.favorites"), icon: Heart },
           { href: "/orders", label: t("nav.orders"), icon: Package },
+          { href: "/", label: t("nav.home"), icon: null },
         ];
       case "merchant":
         return [
-          { href: "/merchant", label: t("nav.dashboard"), icon: BarChart3 },
           { href: "/merchant/products", label: t("nav.myProducts"), icon: Package },
           { href: "/merchant/orders", label: t("nav.orders"), icon: ShoppingCart },
           { href: "/merchant/store", label: t("nav.myStore"), icon: Store },
+          { href: "/merchant", label: t("nav.dashboard"), icon: BarChart3 },
         ];
       case "delivery":
         return [
-          { href: "/delivery", label: t("nav.deliveryDashboard"), icon: Truck },
           {
             href: "/delivery/active",
             label: t("nav.activeDeliveries"),
             icon: MapPin,
           },
+          { href: "/map", label: t("map.seeFullMap"), icon: MapPin },
+          { href: "/delivery", label: t("nav.deliveryDashboard"), icon: Truck },
           { href: "/delivery/history", label: t("nav.history"), icon: Package },
         ];
       case "admin":
@@ -110,15 +112,20 @@ export const Header = () => {
           <div className="flex items-center space-x-4">
             {/* Cart (only for clients) */}
             {user?.role === "client" && (
-              <Link
-                to="/cart"
-                className="relative p-2 text-gray-600 hover:text-linka-green transition-colors"
-              >
-                <ShoppingCart className="w-6 h-6" />
-                <span className="absolute -top-1 -right-1 bg-linka-orange text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  3
-                </span>
-              </Link>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link
+                    to="/cart"
+                    className="relative p-2 text-gray-600 hover:text-linka-green transition-colors"
+                  >
+                    <ShoppingCart className="w-6 h-6" />
+                    <span className="absolute -top-1 -right-1 bg-linka-orange text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                      3
+                    </span>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent side="top">Voir mon panier</TooltipContent>
+              </Tooltip>
             )}
 
             {/* User Profile or Login */}
