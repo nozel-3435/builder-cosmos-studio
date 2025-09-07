@@ -205,10 +205,15 @@ const MerchantDashboard = () => {
               </h2>
 
               <div className="space-y-3">
-                <button className="w-full flex items-center space-x-3 p-3 text-left border border-gray-200 rounded-lg hover:bg-linka-green hover:text-white hover:border-linka-green transition-all">
-                  <Plus className="w-5 h-5" />
-                  <span>Ajouter un produit</span>
-                </button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button className="w-full flex items-center space-x-3 p-3 text-left border border-gray-200 rounded-lg hover:bg-linka-green hover:text-white hover:border-linka-green transition-all">
+                      <Plus className="w-5 h-5" />
+                      <span>Ajouter un produit</span>
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent side="top">Ajouter un produit à votre boutique</TooltipContent>
+                </Tooltip>
                 <button className="w-full flex items-center space-x-3 p-3 text-left border border-gray-200 rounded-lg hover:bg-linka-green hover:text-white hover:border-linka-green transition-all">
                   <Package className="w-5 h-5" />
                   <span>Gérer l'inventaire</span>
