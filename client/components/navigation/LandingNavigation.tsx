@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { LinkaMarketLogo } from "@/components/ui/logos";
 import {
   ShoppingBag,
@@ -116,11 +117,12 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
                       {products.map((product) => {
                         const IconComponent = product.icon;
                         return (
-                          <Link
-                            key={product.name}
-                            to={product.name === "LinkaMarket" ? "/products" : product.name === "LinkaDrop" ? "/delivery" : product.name === "LinkaPharma" ? "/stores" : "/help"}
-                            className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group"
-                          >
+                          <Tooltip key={product.name}>
+                            <TooltipTrigger asChild>
+                              <Link
+                                to={product.name === "LinkaMarket" ? "/products" : product.name === "LinkaDrop" ? "/delivery" : product.name === "LinkaPharma" ? "/stores" : "/help"}
+                                className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group"
+                              >
                             <div className="p-2 bg-gray-100 rounded-lg group-hover:bg-white">
                               <IconComponent
                                 className={`h-5 w-5 ${product.color}`}
@@ -134,7 +136,10 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
                                 {product.description}
                               </div>
                             </div>
-                          </Link>
+                              </Link>
+                            </TooltipTrigger>
+                            <TooltipContent side="top">{product.description}</TooltipContent>
+                          </Tooltip>
                         );
                       })}
                     </div>
@@ -213,22 +218,32 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
 
             {/* CTA Buttons */}
             <div className="hidden md:flex items-center space-x-3">
-              <Link
-                to="/login"
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  isScrolled
-                    ? "text-gray-700 hover:text-linka-green"
-                    : "text-white hover:text-linka-green/70"
-                }`}
-              >
-                {t("nav.login")}
-              </Link>
-              <Link
-                to="/register"
-                className="bg-gradient-to-r from-linka-green to-linka-orange text-white px-6 py-2 rounded-lg font-medium hover:from-green-600 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl"
-              >
-                {t("nav.register")}
-              </Link>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link
+                    to="/login"
+                    className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                      isScrolled
+                        ? "text-gray-700 hover:text-linka-green"
+                        : "text-white hover:text-linka-green/70"
+                    }`}
+                  >
+                    {t("nav.login")}
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent side="top">Se connecter</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link
+                    to="/register"
+                    className="bg-gradient-to-r from-linka-green to-linka-orange text-white px-6 py-2 rounded-lg font-medium hover:from-green-600 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  >
+                    {t("nav.register")}
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent side="top">Créer un compte</TooltipContent>
+              </Tooltip>
             </div>
 
             {/* Mobile Menu Button */}
@@ -296,18 +311,28 @@ const LandingNavigation: React.FC<LandingNavigationProps> = ({
 
                 {/* Mobile CTA */}
                 <div className="pt-4 border-t border-gray-200 space-y-3">
-                  <Link
-                    to="/login"
-                    className="block w-full text-center px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium"
-                  >
-                    {t("nav.login")}
-                  </Link>
-                  <Link
-                    to="/register"
-                    className="block w-full text-center bg-gradient-to-r from-linka-green to-linka-orange text-white px-4 py-2 rounded-lg font-medium"
-                  >
-                    {t("nav.register")}
-                  </Link>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Link
+                        to="/login"
+                        className="block w-full text-center px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium"
+                      >
+                        {t("nav.login")}
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent side="top">Se connecter</TooltipContent>
+                  </Tooltip>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Link
+                        to="/register"
+                        className="block w-full text-center bg-gradient-to-r from-linka-green to-linka-orange text-white px-4 py-2 rounded-lg font-medium"
+                      >
+                        {t("nav.register")}
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent side="top">Créer un compte</TooltipContent>
+                  </Tooltip>
                 </div>
               </div>
             </motion.div>
