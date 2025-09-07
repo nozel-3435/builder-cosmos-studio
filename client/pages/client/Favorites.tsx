@@ -484,9 +484,14 @@ const Favorites = () => {
                       </TooltipTrigger>
                       <TooltipContent side="top">Voir le produit</TooltipContent>
                     </Tooltip>
-                    <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                      <Share2 className="h-4 w-4 text-gray-600" />
-                    </button>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                          <Share2 className="h-4 w-4 text-gray-600" />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent side="top">Partager</TooltipContent>
+                    </Tooltip>
                   </div>
                 </div>
               </div>
