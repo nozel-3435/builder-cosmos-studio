@@ -203,9 +203,14 @@ const Products = () => {
               -{product.discount}%
             </div>
           )}
-          <button onClick={() => handleToggleFavorite(product)} className="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-red-50 hover:text-red-500 transition-colors">
-            <Heart className="w-4 h-4" />
-          </button>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button onClick={() => handleToggleFavorite(product)} className="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-red-50 hover:text-red-500 transition-colors">
+                <Heart className="w-4 h-4" />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="top">Ajouter aux favoris</TooltipContent>
+          </Tooltip>
           {product.isPopular && (
             <div className="absolute bottom-3 left-3 bg-linka-green text-white px-2 py-1 rounded-full text-xs font-semibold">
               Populaire
