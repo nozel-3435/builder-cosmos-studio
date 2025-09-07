@@ -223,10 +223,15 @@ const MerchantDashboard = () => {
                   </TooltipTrigger>
                   <TooltipContent side="top">Gérer vos stocks et produits</TooltipContent>
                 </Tooltip>
-                <button className="w-full flex items-center space-x-3 p-3 text-left border border-gray-200 rounded-lg hover:bg-linka-green hover:text-white hover:border-linka-green transition-all">
-                  <Eye className="w-5 h-5" />
-                  <span>Voir ma boutique</span>
-                </button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button className="w-full flex items-center space-x-3 p-3 text-left border border-gray-200 rounded-lg hover:bg-linka-green hover:text-white hover:border-linka-green transition-all">
+                      <Eye className="w-5 h-5" />
+                      <span>Voir ma boutique</span>
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent side="top">Aperçu de votre boutique</TooltipContent>
+                </Tooltip>
               </div>
             </div>
           </div>
