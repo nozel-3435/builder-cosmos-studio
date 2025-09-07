@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "@/contexts/AuthContext";
@@ -8,6 +8,7 @@ import AnimatedCard from "../components/animations/AnimatedCard";
 import InteractiveButton from "../components/animations/InteractiveButton";
 import AnimatedIcon from "../components/animations/AnimatedIcon";
 import ErrorBoundary from "../components/ErrorBoundary";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import {
   Search,
   Store,
@@ -28,6 +29,7 @@ import {
 const MapComponent = React.lazy(() => import("../components/MapComponent"));
 
 const HomePage = () => {
+  const [showMap, setShowMap] = useState(false);
   const { user } = useAuth();
   const { t } = useTranslation();
 
@@ -530,12 +532,26 @@ const HomePage = () => {
                     {t("map.bannerSubtitle")}
                   </p>
                 </div>
-                <MapPin className="w-12 h-12 text-white/80" />
+                <div className="flex items-center gap-3">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button
+                        onClick={() => setShowMap((v) => !v)}
+                        className="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg transition-colors"
+                      >
+                        {showMap ? "Masquer la carte" : "Voir la carte"}
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent side="top">Afficher ou masquer la carte</TooltipContent>
+                  </Tooltip>
+                  <MapPin className="w-12 h-12 text-white/80" />
+                </div>
               </div>
             </div>
 
             <div className="p-6">
               {/* Wrap MapComponent in Suspense for lazy loading */}
+              {showMap && (
               <React.Suspense
                 fallback={
                   <div className="h-[500px] bg-gray-100 rounded-lg flex items-center justify-center">
@@ -577,6 +593,7 @@ const HomePage = () => {
                   />
                 </ErrorBoundary>
               </React.Suspense>
+              )}
             </div>
 
             <div className="px-6 pb-6">
