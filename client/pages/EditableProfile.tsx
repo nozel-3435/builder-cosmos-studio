@@ -220,13 +220,20 @@ const EditableProfile = () => {
 
     if (name.includes(".")) {
       const [parent, child] = name.split(".");
-      setFormData((prev) => ({
-        ...prev,
-        [parent]: {
-          ...(prev[parent as keyof typeof prev] || {}),
-          [child]: type === "checkbox" ? checked : value,
-        },
-      }));
+      setFormData((prev) => {
+        const parentValue = prev[parent as keyof typeof prev];
+        const safeParent =
+          typeof parentValue === "object" && parentValue !== null
+            ? parentValue
+            : {};
+        return {
+          ...prev,
+          [parent]: {
+            ...safeParent,
+            [child]: type === "checkbox" ? checked : value,
+          },
+        };
+      });
     } else {
       setFormData((prev) => ({
         ...prev,
