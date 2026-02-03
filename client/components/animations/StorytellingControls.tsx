@@ -58,7 +58,7 @@ const StorytellingControls = () => {
       scale: 1,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 260,
         damping: 20,
       },
@@ -76,7 +76,7 @@ const StorytellingControls = () => {
       scale: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 300,
         damping: 30,
       },
@@ -184,7 +184,7 @@ const StorytellingControls = () => {
       </AnimatePresence>
 
       {/* Global styles for intensity control */}
-      <style jsx global>{`
+      <style>{`
         .intensity-subtle {
           --animation-duration-multiplier: 1.5;
           --animation-scale-multiplier: 0.5;

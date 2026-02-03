@@ -183,8 +183,10 @@ const ActiveDeliveries = () => {
     );
   };
 
-  const getNextStatus = (currentStatus: ActiveDelivery["status"]) => {
-    const statusFlow = [
+  const getNextStatus = (
+    currentStatus: ActiveDelivery["status"],
+  ): ActiveDelivery["status"] | null => {
+    const statusFlow: ActiveDelivery["status"][] = [
       "assigned",
       "pickup_arrived",
       "picked_up",
